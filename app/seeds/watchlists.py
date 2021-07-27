@@ -8,12 +8,10 @@ from app.models import db, Watchlist
 def seed_watchlists():
     demo = Watchlist(
         destination = 'Miami',
-        price = null,
         depart_date = '08/25/2021',
         user_id = 1,
         )
     marnie = Watchlist(
-        destination = null,
         price = 300.00,
         depart_date = '08/25/2021',
         user_id = 1,
