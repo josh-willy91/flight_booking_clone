@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+
 function Home() {
     const { userId }  = useParams();
 
@@ -8,7 +9,7 @@ function Home() {
     const [search, setSearch] = useState('');
 
     const updateSearch = (event) => setSearch(event.target.value)
-    console.log(search, '=============')
+    // console.log(search, '=============')
 
 
     const searchFlights = (event) => {
@@ -30,6 +31,12 @@ function Home() {
                             value={search}
                             required
                             onChange={updateSearch}
+                        ></input>
+                        <div class='jqueryCalander'></div>
+                        <input
+                            className = 'jqueryCalander'
+                            type='text'
+                            id='calander'
                         ></input>
                     </div>
                     <button >Search Flights</button>

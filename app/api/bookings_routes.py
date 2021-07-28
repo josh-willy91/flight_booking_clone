@@ -1,7 +1,7 @@
 import os
 from flask import Flask,  Blueprint, request
 from flask_login import login_required
-from app.models import User, Booking
+from app.models import db, User, Booking
 
 bookings_routes = Blueprint('bookings', __name__)
 
@@ -14,11 +14,14 @@ def get_bookings(id):
     return {'bookings_list': booking_list}
 
 
-@bookings_routes.route('delete')
+@bookings_routes.route('delete', methods=['DELETE'])
 @login_required
 def delete_booking():
-    print('============================= inside backend ======')
     request_payload = request.get_json()
-    # id = request_payload['userId']
-    print(request_payload, '===================================')
-    return {}
+    flight_id = request_payload['flightId']
+
+    delete_booking = Booking.query.get(flight_id)
+    db.session.delete(delete_booking)
+    db.session.commit()
+
+    return {'confirmation': 'Your booking was deleted'}

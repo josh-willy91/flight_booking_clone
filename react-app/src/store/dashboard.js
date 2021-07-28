@@ -2,6 +2,7 @@
 const BOOKINGS = 'dashboard/BOOKINGS';
 const DELETE_BOOKING = 'dashboard/DELETE_BOOKING';
 const WATCHLISTS = 'dashboard/WATCHLISTS';
+const DELETE_WATCHLIST = 'dashboard/DELETE_WATCHLIST';
 
 
 // Action Creators
@@ -20,6 +21,11 @@ const getWatchlists = (watchlists) => ({
     payload: watchlists
 })
 
+const deleteWatchlist = (confirmation) => ({
+    type: DELETE_WATCHLIST,
+    payload: confirmation
+})
+
 
 export const bookingDetails = (userId) => async(dispatch) => {
     const response = await fetch(`/api/bookings/${userId}`)
@@ -30,10 +36,11 @@ export const bookingDetails = (userId) => async(dispatch) => {
     }
 }
 
-export const deleteOneBooking = () => async(dispatch) => {
-    console.log('thunk ======================================')
+export const deleteOneBooking = (payload) => async(dispatch) => {
     const response = await fetch(`/api/bookings/delete`, {
         method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
     })
 
     if(response.ok) {
@@ -51,6 +58,19 @@ export const watchlistDetails = (userId) => async(dispatch) => {
     }
 }
 
+export const deleteOneWatchlist = (payload) => async(dispatch) => {
+    const response = await fetch(`/api/watchlists/delete`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+    })
+
+    if(response.ok) {
+        const confirmation = await response.json()
+        dispatch(deleteWatchlist(confirmation))
+    }
+}
+
 
 // Define initial state
 const initialState = {}
@@ -64,6 +84,8 @@ export default function dashboardReducer(state = initialState, action) {
             return {...state, 'confirmation': action.payload }
         case WATCHLISTS:
             return {...state, 'watchlists': action.payload }
+        case DELETE_WATCHLIST:
+            return {...state, 'confirmation': action.payload }
         default:
             return state;
     };

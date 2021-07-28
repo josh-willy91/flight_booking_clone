@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { bookingDetails, deleteOneBooking, watchlistDetails } from '../store/dashboard';
+import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist } from '../store/dashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -12,6 +12,7 @@ function Dashboard() {
   const watchlists = useSelector((state) => state.dashboardReducer.watchlists)
   const [user, setUser] = useState({});
   const [flightId, setFlightId] = useState('');
+  const [watchlistId, setWatchlistId] = useState('');
 
   useEffect(() => {
     if (!userId) {
@@ -30,22 +31,19 @@ function Dashboard() {
   }, [])
 
 
-  // const deleteBooking = async() => {
-  //   const response = await fetch(`/api/bookings/delete`, {
-  //     method: 'DELETE',
-  //   })
-
-  //   if(response.ok) {
-  //     const confirmation = await response.json()
-  //     console.log(confirmation, '=====================')
-  //   }
-  // }
+  useEffect(() => {
+    if(flightId) {
+      dispatch(deleteOneBooking({flightId}))
+      window.location.reload();
+    }
+  }, [flightId])
 
   useEffect(() => {
-    dispatch(deleteOneBooking(flightId))
-    // console.log('inside use effect =====================')
-    // deleteBooking()
-  }, [flightId])
+    if(watchlistId) {
+      dispatch(deleteOneWatchlist(watchlistId))
+      window.location.reload();
+    }
+  }, [watchlistId])
 
   if(!sessionUser) {
     return null;
@@ -78,7 +76,7 @@ function Dashboard() {
                 <div>Departure Date: {details.depart_date}</div>
                 <div>Destination: {details.destination}</div>
                 <div>Price: {details.price ? `Less than $${details.price}`: 'Unlimited'}</div>
-                {/* <button onClick={(() => setFlightId(details.id))}>Cancel Booking</button> */}
+                <button onClick={(() => setWatchlistId(details.id))}>Cancel Booking</button>
             </li>
           ))}
         </ul>
