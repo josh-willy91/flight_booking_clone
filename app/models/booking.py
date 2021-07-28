@@ -23,7 +23,7 @@ class Booking(db.Model):
             'id': self.id,
             'city_from': self.city_from,
             'city_to': self.city_to,
-            'price': self.price,
+            'price': float(self.price),
             'flight_num': self.flight_num,
             'airline': self.airline,
             'depart_date': self.depart_date,

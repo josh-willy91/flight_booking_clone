@@ -15,12 +15,21 @@ class Watchlist(db.Model):
     user = db.relationship("User", back_populates="watchlist")
 
     def to_dict(self):
-        return {
-            'id': self.id,
-            'destination': self.destination,
-            'price': self.price,
-            'depart_date': self.depart_date,
-            'arrival_date': self.arrival_date,
-            'createdAt': self.createdAt,
-            'updatedAt': self.updatedAt,
-        }
+        if self.price:
+            return {
+                'id': self.id,
+                'destination': self.destination,
+                'price': float(self.price),
+                'depart_date': self.depart_date,
+                'createdAt': self.createdAt,
+                'updatedAt': self.updatedAt,
+            }
+        else:
+            return {
+                'id': self.id,
+                'destination': self.destination,
+                'price': self.price,
+                'depart_date': self.depart_date,
+                'createdAt': self.createdAt,
+                'updatedAt': self.updatedAt,
+            }
