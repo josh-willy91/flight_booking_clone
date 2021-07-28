@@ -22,5 +22,4 @@ def delete_watchlist():
     db.session.delete(delete_watchlist)
     db.session.commit()
 
-    print(delete_watchlist, '===================================')
     return {'confirmation': 'Your booking was deleted'}

@@ -7,13 +7,21 @@ function Home() {
 
     const [user, setUser] = useState({});
     const [search, setSearch] = useState('');
+    const [start, setStart] = useState('');
+    const [end, setEnd] = useState('');
 
     const updateSearch = (event) => setSearch(event.target.value)
-    // console.log(search, '=============')
+    const updateStart = (event) => setEnd(event.target.value)
+    const updateEnd = (event) => setEnd(event.target.value)
+    console.log(start, end, '=============')
 
 
-    const searchFlights = (event) => {
+    const searchFlights = () => {
     }
+
+    // <input type="date" id="start" name="trip-start"
+    //    value="2018-07-22"
+    //    min="2018-01-01" max="2018-12-31"></input>
 
     return (
         <div>
@@ -32,14 +40,16 @@ function Home() {
                             required
                             onChange={updateSearch}
                         ></input>
-                        <div class='jqueryCalander'></div>
                         <input
-                            className = 'jqueryCalander'
-                            type='text'
-                            id='calander'
+                            type='date'
+                            onChange={updateStart}
+                        ></input>
+                        <input
+                            type='date'
+                            onChange={updateEnd}
                         ></input>
                     </div>
-                    <button >Search Flights</button>
+                    <button>Search Flights</button>
                 </form>
             </div>
         </div>

@@ -76,7 +76,7 @@ function Dashboard() {
                 <div>Departure Date: {details.depart_date}</div>
                 <div>Destination: {details.destination}</div>
                 <div>Price: {details.price ? `Less than $${details.price}`: 'Unlimited'}</div>
-                <button onClick={(() => setWatchlistId(details.id))}>Cancel Booking</button>
+                <button onClick={(() => setWatchlistId(details.id))}>Cancel Watchlist</button>
             </li>
           ))}
         </ul>
