@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
 import dashboardReducer from './dashboard';
+import searchAllFlights from './home';
 
 const rootReducer = combineReducers({
   session,
   dashboardReducer,
+  searchAllFlights,
 });
 
 

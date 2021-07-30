@@ -19,7 +19,7 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/bookyou' exact={true} activeClassName='active'>
+            <NavLink to='/bookyeah' exact={true} activeClassName='active'>
               Home
             </NavLink>
           </li>
