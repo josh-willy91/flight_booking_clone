@@ -4,6 +4,7 @@ const DELETE_BOOKING = 'dashboard/DELETE_BOOKING';
 const CREATE_BOOKING = 'dashboard/CREATE_BOOKING';
 const WATCHLISTS = 'dashboard/WATCHLISTS';
 const DELETE_WATCHLIST = 'dashboard/DELETE_WATCHLIST';
+const CREATE_WATCHLIST = 'dashboard/CREATE_WATCHLIST';
 
 
 // Action Creators
@@ -30,6 +31,11 @@ const getWatchlists = (watchlists) => ({
 const deleteWatchlist = (confirmation) => ({
     type: DELETE_WATCHLIST,
     payload: confirmation
+})
+
+const createWatchlist = (watchlistResults) => ({
+    type: CREATE_WATCHLIST,
+    payload: watchlistResults
 })
 
 
@@ -90,6 +96,19 @@ export const deleteOneWatchlist = (payload) => async(dispatch) => {
     }
 }
 
+export const createOneWatchlist = (payload) => async(dispatch) => {
+    const response = await fetch(`/api/watchlists/create`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+    })
+
+    if(response.ok) {
+        const watchlistResults = await response.json()
+        dispatch(createWatchlist(watchlistResults))
+    }
+}
+
 
 // Define initial state
 const initialState = {}
@@ -102,11 +121,13 @@ export default function dashboardReducer(state = initialState, action) {
         case DELETE_BOOKING:
             return {...state, 'confirmation': action.payload }
         case CREATE_BOOKING:
-            return {...state, 'newBooking': action.payload }
+            return {...state, 'confirmBooking': action.payload }
         case WATCHLISTS:
             return {...state, 'watchlists': action.payload }
         case DELETE_WATCHLIST:
             return {...state, 'confirmation': action.payload }
+        case CREATE_WATCHLIST:
+            return {...state, 'watchlistResults': action.payload }
         default:
             return state;
     };

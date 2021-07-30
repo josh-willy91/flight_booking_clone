@@ -31,14 +31,27 @@ def delete_booking():
 @login_required
 def create_booking():
     request_payload = request.get_json()
-    userId = request_payload['userId']
+    user_id = request_payload['userId']
     city_from = request_payload['cityFrom']
     city_to = request_payload['cityTo']
     price = request_payload['price']
-    flight_Num = request_payload['flightNum']
+    flight_num = request_payload['flightNum']
+    airline = request_payload['airline']
     depart_date = request_payload['departDate']
     arrival_date = request_payload['arrivalDate']
-    print(userId ,city_from, city_to, price, flight_Num,
-    depart_date, arrival_date, '============================================')
+    # print(userId ,city_from, city_to, price, flight_Num,
+    # depart_date, arrival_date, '============================================')
 
-    return {}
+    add_booking = Booking(
+        city_from = city_from,
+        city_to = city_to,
+        price = price,
+        flight_num = flight_num,
+        airline = airline,
+        depart_date = depart_date,
+        arrival_date = arrival_date,
+        user_id = user_id
+    )
+    db.session.add(add_booking)
+    db.session.commit()
+    return {'confirmBooking': 'Flight booked successfully'}

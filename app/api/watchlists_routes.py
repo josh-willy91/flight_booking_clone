@@ -23,3 +23,17 @@ def delete_watchlist():
     db.session.commit()
 
     return {'confirmation': 'Your booking was deleted'}
+
+@watchlists_routes.route('create', methods=['POST'])
+@login_required
+def create_watchlist():
+    request_payload = request.get_json()
+    user_id = request_payload['userId']
+    destination = request_payload['destination']
+    origin = request_payload['origin']
+    price = request_payload['price']
+    depart_date = request_payload['start']
+    trip_return = request_payload['tripReturn']
+
+
+    return {}
