@@ -1,6 +1,7 @@
 // Define action types
 const BOOKINGS = 'dashboard/BOOKINGS';
 const DELETE_BOOKING = 'dashboard/DELETE_BOOKING';
+const CREATE_BOOKING = 'dashboard/CREATE_BOOKING';
 const WATCHLISTS = 'dashboard/WATCHLISTS';
 const DELETE_WATCHLIST = 'dashboard/DELETE_WATCHLIST';
 
@@ -14,6 +15,11 @@ const getBookings = (bookings) => ({
 const deleteBooking = (confirmation) => ({
     type: DELETE_BOOKING,
     payload: confirmation
+})
+
+const createBooking = (details) => ({
+    type: CREATE_BOOKING,
+    payload: details
 })
 
 const getWatchlists = (watchlists) => ({
@@ -48,6 +54,19 @@ export const deleteOneBooking = (payload) => async(dispatch) => {
         dispatch(deleteBooking(confirmation))
     }
 }
+
+// export const createOneBooking = (payload) => async(dispatch) => {
+//     const response = await fetch(`/api/bookings/create`, {
+//         method: 'DELETE',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify(payload)
+//     })
+
+//     if(response.ok) {
+//         const confirmBooking = await response.json()
+//         dispatch(createBooking(confirmBooking))
+//     }
+// }
 
 export const watchlistDetails = (userId) => async(dispatch) => {
     const response = await fetch(`/api/watchlists/${userId}`)
