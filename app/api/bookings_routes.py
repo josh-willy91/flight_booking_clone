@@ -25,3 +25,20 @@ def delete_booking():
     db.session.commit()
 
     return {'confirmation': 'Your booking was deleted'}
+
+
+@bookings_routes.route('create', methods=['POST'])
+@login_required
+def create_booking():
+    request_payload = request.get_json()
+    userId = request_payload['userId']
+    city_from = request_payload['cityFrom']
+    city_to = request_payload['cityTo']
+    price = request_payload['price']
+    flight_Num = request_payload['flightNum']
+    depart_date = request_payload['departDate']
+    arrival_date = request_payload['arrivalDate']
+    print(userId ,city_from, city_to, price, flight_Num,
+    depart_date, arrival_date, '============================================')
+
+    return {}

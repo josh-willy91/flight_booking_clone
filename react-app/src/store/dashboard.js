@@ -55,18 +55,18 @@ export const deleteOneBooking = (payload) => async(dispatch) => {
     }
 }
 
-// export const createOneBooking = (payload) => async(dispatch) => {
-//     const response = await fetch(`/api/bookings/create`, {
-//         method: 'DELETE',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.stringify(payload)
-//     })
+export const createOneBooking = (payload) => async(dispatch) => {
+    const response = await fetch(`/api/bookings/create`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+    })
 
-//     if(response.ok) {
-//         const confirmBooking = await response.json()
-//         dispatch(createBooking(confirmBooking))
-//     }
-// }
+    if(response.ok) {
+        const confirmBooking = await response.json()
+        dispatch(createBooking(confirmBooking))
+    }
+}
 
 export const watchlistDetails = (userId) => async(dispatch) => {
     const response = await fetch(`/api/watchlists/${userId}`)
@@ -101,6 +101,8 @@ export default function dashboardReducer(state = initialState, action) {
             return {...state, 'bookings': action.payload }
         case DELETE_BOOKING:
             return {...state, 'confirmation': action.payload }
+        case CREATE_BOOKING:
+            return {...state, 'newBooking': action.payload }
         case WATCHLISTS:
             return {...state, 'watchlists': action.payload }
         case DELETE_WATCHLIST:

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchAllFlights } from '../store/home';
+import { createOneBooking } from '../store/dashboard';
 import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
+import { areIntervalsOverlapping } from 'date-fns';
 
 
 function Home() {
@@ -15,6 +17,9 @@ function Home() {
     const [destination, setDestination] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
+    const [price, setPrice] = useState(0);
+    const [flightNum, setFlightNum] = useState('');
+    const [airline, setAirline] = useState('');
 
     const updateOrigin = (event) => setOrigin(event.target.value)
     const updateDestination = (event) => setDestination(event.target.value)
@@ -41,12 +46,29 @@ function Home() {
                 start,
                 end
             }
-            dispatch(searchAllFlights(payload))
+            dispatch(createOneBooking(payload))
         }
     }
 
     const bookFlight = (event) => {
 
+        const payload = {
+            'userId': user.id,
+            'cityFrom': origin,
+            'cityTo': destination,
+            'price': price,
+            'flightNum': flightNum,
+            'airline': airline,
+            'departDate': start,
+            'arrivalDate': end,
+        }
+        dispatch(createOneBooking(payload))
+    }
+
+    const getLastElement = (array) => {
+        const nested = array.itineraries[0].segments
+        const length = nested.length - 1;
+        return nested[length].arrival.iataCode
     }
 
 
@@ -119,14 +141,34 @@ function Home() {
                 {searchResults ?
                 <div>
                     <ul>
-                        {searchResults.flight.map((flight) => (
+                        {searchResults && searchResults.flight.map((flight) => (
                             <li key={flight.id}>
-                                <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[1].arrival.iataCode}</div>
+                                <div>
+                                    {flight.oneWay === true ?
+                                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
+                                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastElement(flight)}</div>
+                                    }
+                                </div>
+                                <div>
+                                    {flight.oneWay === true ?
+                                    <div>One Way: Yes</div> :
+                                    <div>Stops: {flight.itineraries[0].segments.length}</div>
+                                    }
+                                </div>
                                 <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
-                                <div>Arrival: {format(flight.itineraries[0].segments[1].arrival.at)}</div>
+                                <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
                                 <div>Price: ${flight.price.total}</div>
-                                <div>Airline Code {flight.validatingAirlineCodes}</div>
-                                <button onClick={bookFlight}>Book Flight</button>
+                                <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
+                                <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
+                                <button onClick={() => {
+                                    setAirline(flight.validatingAirlineCodes[0])
+                                    setStart(format(flight.itineraries[0].segments[0].arrival.at))
+                                    setEnd(format(flight.itineraries[0].segments[0].departure.at))
+                                    setFlightNum((flight.validatingAirlineCodes + flight.itineraries[0].segments[0].number))
+                                    setPrice(flight.price.total)
+                                    bookFlight()
+                                }}
+                                >Book Flight</button>
                             </li>
                         ))}
                     </ul>
