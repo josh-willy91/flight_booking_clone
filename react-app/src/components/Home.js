@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchAllFlights } from '../store/home';
+import formatISO from 'date-fns/formatISO'
+import format from 'date-fns/formatISO'
 
 
 function Home() {
@@ -46,6 +48,17 @@ function Home() {
     const bookFlight = (event) => {
 
     }
+
+
+        // formatISO(date, [options]) syntax for function
+    // formats the data string returned from query
+    // ('+020201-06-26T00:00:00.000Z')
+    const format = function(dateString) {
+        const spitTime = dateString.split('T').join(' ')
+        // const result = format(spitTime, 'eeee do MMMM')
+        return spitTime;
+    };
+    // 2021-08-01T08:38:00
 
     // <input type="date" id="start" name="trip-start"
     //    value="2018-07-22"
@@ -109,8 +122,8 @@ function Home() {
                         {searchResults.flight.map((flight) => (
                             <li key={flight.id}>
                                 <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[1].arrival.iataCode}</div>
-                                <div>Departs: {flight.itineraries[0].segments[0].departure.at}</div>
-                                <div>Arrival: {flight.itineraries[0].segments[1].arrival.at}</div>
+                                <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
+                                <div>Arrival: {format(flight.itineraries[0].segments[1].arrival.at)}</div>
                                 <div>Price: ${flight.price.total}</div>
                                 <div>Airline Code {flight.validatingAirlineCodes}</div>
                                 <button onClick={bookFlight}>Book Flight</button>
