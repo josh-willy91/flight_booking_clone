@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f72141f467bb
+Revision ID: 999a63498409
 Revises: 
-Create Date: 2021-07-28 13:29:29.224100
+Create Date: 2021-07-30 17:39:50.363948
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f72141f467bb'
+revision = '999a63498409'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,6 +38,7 @@ def upgrade():
     sa.Column('airline', sa.VARCHAR(), nullable=False),
     sa.Column('depart_date', sa.DateTime(), nullable=False),
     sa.Column('arrival_date', sa.DateTime(), nullable=False),
+    sa.Column('trip_return', sa.DateTime(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('createdAt', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updatedAt', sa.DateTime(), nullable=True),
@@ -46,9 +47,11 @@ def upgrade():
     )
     op.create_table('watchlists',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('destination', sa.String(), nullable=True),
+    sa.Column('origin', sa.String(), nullable=False),
+    sa.Column('destination', sa.String(), nullable=False),
     sa.Column('price', sa.Float(precision=8, asdecimal=2), nullable=True),
-    sa.Column('depart_date', sa.DateTime(), nullable=True),
+    sa.Column('depart_date', sa.DateTime(), nullable=False),
+    sa.Column('trip_return', sa.DateTime(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('createdAt', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updatedAt', sa.DateTime(), nullable=True),

@@ -1,7 +1,10 @@
 import os
+import amadeus
 from flask import Flask,  Blueprint, request
 from flask_login import login_required
-from app.models import db, User, Watchlist
+from app.models import db, User, Watchlist, user
+from amadeus import Client
+
 
 watchlists_routes = Blueprint('watchlists', __name__)
 
@@ -10,6 +13,34 @@ watchlists_routes = Blueprint('watchlists', __name__)
 def get_watchlists(id):
     watchlists_query = Watchlist.query.filter_by(user_id = id).all()
     watchlist_list = [watchlist.to_dict() for watchlist in watchlists_query]
+
+    print(watchlist_list, '===============================')
+
+    for watchlist_obj in watchlist_list:
+        origin = watchlist_obj['origin']
+        destination = watchlist_obj['destination']
+        departure_date = watchlist_obj['depart_date']
+        num_adults = 1
+
+        if(watchlist_obj['price'] == None):
+            price = watchlist_obj['price']
+            print(price, '==================skjfs================')
+
+    # amadeus = Client(
+    #     client_id=os.environ.get('API_PUBLIC_KEY'),
+    #     client_secret=os.environ.get('API_SECRET_KEY')
+    # )
+    # response = amadeus.shopping.flight_offers_search.get(
+    #     originLocationCode = origin,
+    #     destinationLocationCode = destination,
+    #     departureDate = departure_date,
+    #     adults = 1,
+    #     currencyCode = 'USD',
+    #     max = 50,
+    # )
+    # print(response.data)
+    # return {'flight': response.data}
+
     return {'watchlist_list': watchlist_list}
 
 
@@ -23,3 +54,28 @@ def delete_watchlist():
     db.session.commit()
 
     return {'confirmation': 'Your booking was deleted'}
+
+@watchlists_routes.route('create', methods=['POST'])
+@login_required
+def create_watchlist():
+    request_payload = request.get_json()
+    user_id = request_payload['userId']
+    destination = request_payload['destination']
+    origin = request_payload['origin']
+    price = request_payload['price']
+    depart_date = request_payload['start']
+    trip_return = request_payload['tripReturn']
+
+    add_watchlist = Watchlist(
+        origin = origin,
+        destination = destination,
+        price = price,
+        depart_date = depart_date,
+        trip_return = trip_return,
+        user_id = user_id,
+    )
+
+    db.session.add(add_watchlist)
+    db.session.commit()
+
+    return {'confirmation': 'Watchlist added successfully'}

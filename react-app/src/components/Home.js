@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchAllFlights } from '../store/home';
+import { createOneBooking } from '../store/dashboard';
+import formatISO from 'date-fns/formatISO'
+import format from 'date-fns/formatISO'
+import { areIntervalsOverlapping } from 'date-fns';
 
 
 function Home() {
@@ -13,6 +17,10 @@ function Home() {
     const [destination, setDestination] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
+    const [price, setPrice] = useState(0);
+    const [flightNum, setFlightNum] = useState('');
+    const [airline, setAirline] = useState('');
+    const [tripReturn, setTripReturn] = useState('');
 
     const updateOrigin = (event) => setOrigin(event.target.value)
     const updateDestination = (event) => setDestination(event.target.value)
@@ -39,13 +47,48 @@ function Home() {
                 start,
                 end
             }
-            dispatch(searchAllFlights(payload))
+            dispatch(createOneBooking(payload))
         }
     }
 
     const bookFlight = (event) => {
 
+        const payload = {
+            'userId': user.id,
+            'cityFrom': origin,
+            'cityTo': destination,
+            'price': price,
+            'flightNum': flightNum,
+            'airline': airline,
+            'departDate': start,
+            'arrivalDate': end,
+            'tripReturn': tripReturn,
+        }
+        dispatch(createOneBooking(payload))
     }
+
+    const getLastIATA = (array) => {
+        const nested = array.itineraries[0].segments
+        const length = nested.length - 1;
+        return nested[length].arrival.iataCode
+    }
+
+    const getLastDeparture = (array) => {
+        const nested = array.itineraries[0].segments
+        const length = nested.length - 1;
+        return nested[length].departure.at
+    }
+
+
+        // formatISO(date, [options]) syntax for function
+    // formats the data string returned from query
+    // ('+020201-06-26T00:00:00.000Z')
+    const format = function(dateString) {
+        const spitTime = dateString.split('T').join(' ')
+        // const result = format(spitTime, 'eeee do MMMM')
+        return spitTime;
+    };
+    // 2021-08-01T08:38:00
 
     // <input type="date" id="start" name="trip-start"
     //    value="2018-07-22"
@@ -106,14 +149,36 @@ function Home() {
                 {searchResults ?
                 <div>
                     <ul>
-                        {searchResults.flight.map((flight) => (
+                        {searchResults && searchResults.flight.map((flight) => (
                             <li key={flight.id}>
-                                <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[1].arrival.iataCode}</div>
-                                <div>Departs: {flight.itineraries[0].segments[0].departure.at}</div>
-                                <div>Arrival: {flight.itineraries[0].segments[1].arrival.at}</div>
+                                <div>
+                                    {flight.oneWay === true ?
+                                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
+                                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
+                                    }
+                                </div>
+                                <div>
+                                    {flight.oneWay === true ?
+                                    <div>One Way: Yes</div> :
+                                    <div>Layovers: {flight.itineraries[0].segments.length - 1}</div>
+                                    }
+                                </div>
+                                <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
+                                <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
+                                <div>Return Flight: {format(getLastDeparture(flight))}</div>
                                 <div>Price: ${flight.price.total}</div>
-                                <div>Airline Code {flight.validatingAirlineCodes}</div>
-                                <button onClick={bookFlight}>Book Flight</button>
+                                <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
+                                <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
+                                <button onClick={() => {
+                                    setAirline(flight.validatingAirlineCodes[0])
+                                    setStart(format(flight.itineraries[0].segments[0].arrival.at))
+                                    setEnd(format(flight.itineraries[0].segments[0].departure.at))
+                                    setFlightNum((flight.validatingAirlineCodes + flight.itineraries[0].segments[0].number))
+                                    setPrice(flight.price.total)
+                                    setTripReturn(format(getLastDeparture(flight)))
+                                    bookFlight()
+                                }}
+                                >Book Flight</button>
                             </li>
                         ))}
                     </ul>

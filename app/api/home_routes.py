@@ -5,7 +5,7 @@ import requests
 from flask import Flask,  Blueprint, request
 from flask_login import login_required
 from app.models import db, User, Booking
-from amadeus import Client, ResponseError
+from amadeus import Client
 
 home_routes = Blueprint('bookyeah', __name__)
 
@@ -17,7 +17,6 @@ def search_flights():
     destination = request_payload['destination']
     departure_date = request_payload['start']
     return_date = request_payload['end']
-    print(user_id, origin, destination, departure_date, return_date, '===========')
 
     amadeus = Client(
         client_id=os.environ.get('API_PUBLIC_KEY'),
