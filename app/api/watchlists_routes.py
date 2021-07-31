@@ -1,9 +1,11 @@
+from logging import error
 import os
 import amadeus
 from flask import Flask,  Blueprint, request
+from flask.wrappers import Response
 from flask_login import login_required
 from app.models import db, User, Watchlist, user
-from amadeus import Client
+from amadeus import Client, ResponseError
 
 
 watchlists_routes = Blueprint('watchlists', __name__)
@@ -17,53 +19,62 @@ def get_watchlists(id):
     print(watchlist_list, '========================================')
 
     for watchlist_obj in watchlist_list:
+
+        id = watchlist_obj['id']
         origin = watchlist_obj['origin']
         destination = watchlist_obj['destination']
         departure_date = watchlist_obj['depart_date']
         trip_return = watchlist_obj['trip_return']
         price = watchlist_obj['price']
         num_adults = 1
-        print(origin, destination, departure_date, trip_return, price, num_adults,
+        print(id, origin, destination, departure_date, trip_return, price, num_adults,
         '==============================================')
 
-    #     if(price == None):
-    #         print(price, '================price is none================')
+        if(price == None):
+            print(price, '================price is none================')
 
-    #         amadeus = Client(
-    #             client_id=os.environ.get('API_PUBLIC_KEY'),
-    #             client_secret=os.environ.get('API_SECRET_KEY')
-    #         )
-    #         response = amadeus.shopping.flight_offers_search.get(
-    #             originLocationCode = origin,
-    #             destinationLocationCode = destination,
-    #             departureDate = departure_date,
-    #             returnDate = trip_return,
-    #             adults = 1,
-    #             currencyCode = 'USD',
-    #             max = 50,
-    #         )
-    #         watchlist_data_obj['watchlist_results'] = response.data
+            amadeus = Client(
+                client_id=os.environ.get('API_PUBLIC_KEY'),
+                client_secret=os.environ.get('API_SECRET_KEY')
+            )
+            try:
+                response = amadeus.shopping.flight_offers_search.get(
+                    originLocationCode = origin,
+                    destinationLocationCode = destination,
+                    departureDate = departure_date,
+                    returnDate = trip_return,
+                    adults = 1,
+                    currencyCode = 'USD',
+                    max = 50,
+                )
+                # print(response.data, '=================response=============================')
+                watchlist_data_obj[f'watchlist_results_{id}'] = response.data
+            except ResponseError as error:
+                print(error)
 
-    #     else:
-    #             amadeus = Client(
-    #             client_id=os.environ.get('API_PUBLIC_KEY'),
-    #             client_secret=os.environ.get('API_SECRET_KEY')
-    #         )
-    #             response = amadeus.shopping.flight_offers_search.get(
-    #                 originLocationCode = origin,
-    #                 destinationLocationCode = destination,
-    #                 departureDate = departure_date,
-    #                 returnDate = trip_return,
-    #                 maxPrice = price,
-    #                 adults = 1,
-    #                 currencyCode = 'USD',
-    #                 max = 50,
-    #             )
-    #             watchlist_data_obj['watchlist_results_price'] = response.data
+        else:
+            amadeus = Client(
+                client_id=os.environ.get('API_PUBLIC_KEY'),
+                client_secret=os.environ.get('API_SECRET_KEY')
+            )
+            try:
+                response = amadeus.shopping.flight_offers_search.get(
+                    originLocationCode = origin,
+                    destinationLocationCode = destination,
+                    departureDate = departure_date,
+                    returnDate = trip_return,
+                    maxPrice = price,
+                    adults = 1,
+                    currencyCode = 'USD',
+                    max = 50,
+                )
+                watchlist_data_obj[f'watchlist_results_price_{id}'] = response.data
+            except ResponseError as error:
+                print(error)
 
     # watchlist_data_obj['watchlist_list'] = watchlist_list
     # print(watchlist_data_obj, '=====================================================')
-    return {'watchlist_list': watchlist_list}
+    return {'watchlist_list': watchlist_list, 'watchlist_data_obj': watchlist_data_obj}
 
 
 @watchlists_routes.route('delete', methods=['DELETE'])
