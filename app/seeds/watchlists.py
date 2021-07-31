@@ -7,19 +7,26 @@ from app.models import db, Watchlist
 # Adds a demo user, you can add other users here if you want
 def seed_watchlists():
     demo = Watchlist(
-        destination = 'Miami',
+        origin = 'MCO',
+        destination = 'MIA',
         depart_date = '08/25/2021',
+        trip_return = '08/29/2021',
         user_id = 1,
         )
     marnie = Watchlist(
+        origin = 'MCO',
+        destination = 'MIA',
         price = 300.00,
         depart_date = '08/25/2021',
+        trip_return = '09/05/2021',
         user_id = 1,
         )
     bobbie = Watchlist(
-        destination = 'Orlando',
+        origin = 'JAX',
+        destination = 'MIA',
         price = 400.00,
         depart_date = '08/20/2021',
+        trip_return = '08/24/2021',
         user_id = 1,
         )
 

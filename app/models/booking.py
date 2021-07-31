@@ -13,6 +13,7 @@ class Booking(db.Model):
     airline = db.Column(db.VARCHAR, nullable=False)
     depart_date = db.Column(db.DateTime, nullable=False)
     arrival_date = db.Column(db.DateTime, nullable=False)
+    trip_return = db.Column(db.DateTime, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     createdAt = db.Column(db.DateTime, server_default=func.now())
     updatedAt = db.Column(db.DateTime, onupdate=func.now())
@@ -28,6 +29,7 @@ class Booking(db.Model):
             'airline': self.airline,
             'depart_date': self.depart_date,
             'arrival_date': self.arrival_date,
+            'trip_return': self.trip_return,
             'user_id': self.user_id,
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt,

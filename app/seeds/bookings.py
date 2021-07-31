@@ -4,33 +4,36 @@ from app.models import db, Booking
 # Adds a demo user, you can add other users here if you want
 def seed_bookings():
     demo = Booking(
-        city_from = 'Jacksonville',
-        city_to = 'Orlando',
+        city_from = 'JAX',
+        city_to = 'MCO',
         price = 187.00,
-        flight_num = 'A18310003',
-        airline = 'American Airlines',
+        flight_num = 'B6147',
+        airline = 'B6',
         depart_date= '08/12/2021',
         arrival_date= '08/12/2021',
+        trip_return = '08/18/2021',
         user_id = 1,
         )
     marnie = Booking(
-        city_from = 'Orlando',
-        city_to = 'Miami',
+        city_from = 'MCO',
+        city_to = 'MIA',
         price = 212.00,
-        flight_num = 'A21310009',
-        airline = 'Delta',
+        flight_num = 'B6242',
+        airline = 'B6',
         depart_date= '08/15/2021',
         arrival_date= '08/15/2021',
+        trip_return = '08/25/2021',
         user_id = 1,
         )
     bobbie = Booking(
-        city_from = 'Miami',
-        city_to = 'Jacksonville',
+        city_from = 'MIA',
+        city_to = 'JAX',
         price = 392.00,
-        flight_num = 'B65310012',
-        airline = 'Spirit',
+        flight_num = 'B6988',
+        airline = 'B6',
         depart_date= '08/14/2021',
         arrival_date= '08/14/2021',
+        trip_return = '08/20/2021',
         user_id = 1,
         )
 

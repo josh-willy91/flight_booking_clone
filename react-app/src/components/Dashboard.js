@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist, createOneBooking } from '../store/dashboard';
+import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist, createOneBooking, createOneWatchlist } from '../store/dashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ function Dashboard() {
   const [watchlistId, setWatchlistId] = useState('');
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState('');
   const [start, setStart] = useState('');
   const [tripReturn, setTripReturn] = useState('');
 
@@ -60,6 +60,10 @@ function Dashboard() {
   const submitWatchlistForm = (event) => {
     event.preventDefault()
 
+    if(price === false) {
+      setPrice(null)
+    }
+
     const payload = {
       'origin': origin,
       'destination': destination,
@@ -69,7 +73,7 @@ function Dashboard() {
       'userId': userId
     }
     console.log(payload, '==================')
-    // dispatch(createOneBooking(payload))
+    dispatch(createOneWatchlist(payload))
   }
 
 
@@ -92,6 +96,7 @@ function Dashboard() {
                 <div>Departs on {details.depart_date}</div>
                 <div>Arriving in {details.city_to}</div>
                 <div>On {details.depart_date}</div>
+                <div>Return flight leaves {details.trip_return}</div>
                 <button onClick={(() => setFlightId(details.id))}>Cancel Booking</button>
             </li>
           ))}
@@ -112,6 +117,7 @@ function Dashboard() {
                 placeholder='Origin'
                 name='origin'
                 value={origin}
+                required
                 onChange={updateOrigin}
               ></input>
             </div>
@@ -122,6 +128,7 @@ function Dashboard() {
                 placeholder='Destination'
                 name='destination'
                 value={destination}
+                required
                 onChange={updateDestination}
               ></input>
             </div>
@@ -142,6 +149,7 @@ function Dashboard() {
                 placeholder='Departure Date'
                 name='departDate'
                 value={start}
+                required
                 onChange={updateStart}
               ></input>
             </div>
@@ -152,17 +160,20 @@ function Dashboard() {
                 placeholder='Return Date'
                 name='tripReturn'
                 value={tripReturn}
+                required
                 onChange={updateReturn}
               ></input>
             </div>
-            <button>Create Watchlist</button>
+            <button type='submit'>Create Watchlist</button>
           </form>
         </div>
         <ul>
           {watchlists && watchlists.watchlist_list.map((details) => (
             <li key={details.id}>
+                <div>Leaving from {details.origin}</div>
                 <div>Departure Date: {details.depart_date}</div>
                 <div>Destination: {details.destination}</div>
+                <div>Return flight leaves: {details.trip_return}</div>
                 <div>Price: {details.price ? `Less than $${details.price}`: 'No limit set'}</div>
                 <button onClick={(() => setWatchlistId(details.id))}>Cancel Watchlist</button>
             </li>

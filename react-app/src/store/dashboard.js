@@ -104,8 +104,8 @@ export const createOneWatchlist = (payload) => async(dispatch) => {
     })
 
     if(response.ok) {
-        const watchlistResults = await response.json()
-        dispatch(createWatchlist(watchlistResults))
+        const addConfirmation = await response.json()
+        dispatch(createWatchlist(addConfirmation))
     }
 }
 
@@ -127,7 +127,7 @@ export default function dashboardReducer(state = initialState, action) {
         case DELETE_WATCHLIST:
             return {...state, 'confirmation': action.payload }
         case CREATE_WATCHLIST:
-            return {...state, 'watchlistResults': action.payload }
+            return {...state, 'confirmWatchlist': action.payload }
         default:
             return state;
     };

@@ -20,6 +20,7 @@ function Home() {
     const [price, setPrice] = useState(0);
     const [flightNum, setFlightNum] = useState('');
     const [airline, setAirline] = useState('');
+    const [tripReturn, setTripReturn] = useState('');
 
     const updateOrigin = (event) => setOrigin(event.target.value)
     const updateDestination = (event) => setDestination(event.target.value)
@@ -61,14 +62,21 @@ function Home() {
             'airline': airline,
             'departDate': start,
             'arrivalDate': end,
+            'tripReturn': tripReturn,
         }
         dispatch(createOneBooking(payload))
     }
 
-    const getLastElement = (array) => {
+    const getLastIATA = (array) => {
         const nested = array.itineraries[0].segments
         const length = nested.length - 1;
         return nested[length].arrival.iataCode
+    }
+
+    const getLastDeparture = (array) => {
+        const nested = array.itineraries[0].segments
+        const length = nested.length - 1;
+        return nested[length].departure.at
     }
 
 
@@ -146,17 +154,18 @@ function Home() {
                                 <div>
                                     {flight.oneWay === true ?
                                     <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
-                                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastElement(flight)}</div>
+                                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
                                     }
                                 </div>
                                 <div>
                                     {flight.oneWay === true ?
                                     <div>One Way: Yes</div> :
-                                    <div>Stops: {flight.itineraries[0].segments.length}</div>
+                                    <div>Layovers: {flight.itineraries[0].segments.length - 1}</div>
                                     }
                                 </div>
                                 <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
                                 <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
+                                <div>Return Flight: {format(getLastDeparture(flight))}</div>
                                 <div>Price: ${flight.price.total}</div>
                                 <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
                                 <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
@@ -166,6 +175,7 @@ function Home() {
                                     setEnd(format(flight.itineraries[0].segments[0].departure.at))
                                     setFlightNum((flight.validatingAirlineCodes + flight.itineraries[0].segments[0].number))
                                     setPrice(flight.price.total)
+                                    setTripReturn(format(getLastDeparture(flight)))
                                     bookFlight()
                                 }}
                                 >Book Flight</button>

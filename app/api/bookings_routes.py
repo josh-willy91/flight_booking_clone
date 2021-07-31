@@ -39,8 +39,7 @@ def create_booking():
     airline = request_payload['airline']
     depart_date = request_payload['departDate']
     arrival_date = request_payload['arrivalDate']
-    # print(userId ,city_from, city_to, price, flight_Num,
-    # depart_date, arrival_date, '============================================')
+    trip_return = request_payload['tripReturn']
 
     add_booking = Booking(
         city_from = city_from,
@@ -50,7 +49,8 @@ def create_booking():
         airline = airline,
         depart_date = depart_date,
         arrival_date = arrival_date,
-        user_id = user_id
+        trip_return = trip_return,
+        user_id = user_id,
     )
     db.session.add(add_booking)
     db.session.commit()
