@@ -1,12 +1,15 @@
 
+body {
+    margin: 0;
+}
 
 .homeDiv {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: minmax(150px, auto);
     grid-template-areas:
-    '. . . . .'
-    '. searchDiv searchDiv searchDiv .'
+    'searchBackground searchBackground searchBackground searchBackground searchBackground'
+    'searchBackground searchBackground searchBackground searchBackground searchBackground'
     '. searchResultsDiv searchResultsDiv searchResultsDiv .'
     '. searchResultsDiv searchResultsDiv searchResultsDiv .'
     '. . . . .'
@@ -14,13 +17,26 @@
     width: 100%;
 }
 
+.searchBackground {
+    grid-area: searchBackground;
+    position: absolute;
+    background-position: top;
+    width: 100%;
+    height: fit-content;
+}
+
 .searchDiv {
-    grid-area: searchDiv;
-    /* background-color: rgb(160, 148, 148)60, 148, 148); */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 150px;
+    margin-left: 90%;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, .7);
     border: black solid 1px;
     border-radius: 8px;
     box-shadow: 0px 0px 20px 1px blue;
-    padding: 10px;
+    padding: 15px;
 }
 
 .searchDiv h3 {
