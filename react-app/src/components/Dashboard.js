@@ -60,10 +60,11 @@ function Dashboard() {
   const submitWatchlistForm = (event) => {
     event.preventDefault()
 
-    if(price === false) {
+    if(price === '') {
       setPrice(null)
+      console.log('============price is false=====================')
     }
-
+    // console.log(price === '')
     const payload = {
       'origin': origin,
       'destination': destination,
@@ -75,6 +76,28 @@ function Dashboard() {
     console.log(payload, '==================')
     dispatch(createOneWatchlist(payload))
   }
+
+  const getLastIATA = (array) => {
+    const nested = array.itineraries[0].segments
+    const length = nested.length - 1;
+    return nested[length].arrival.iataCode
+  }
+
+  const getLastDeparture = (array) => {
+    const nested = array.itineraries[0].segments
+    const length = nested.length - 1;
+    return nested[length].departure.at
+  }
+
+
+  // formatISO(date, [options]) syntax for function
+  // formats the data string returned from query
+  // ('+020201-06-26T00:00:00.000Z')
+  const format = function(dateString) {
+    const spitTime = dateString.split('T').join(' ')
+    // const result = format(spitTime, 'eeee do MMMM')
+    return spitTime;
+  };
 
 
   if(!sessionUser) {
@@ -167,18 +190,48 @@ function Dashboard() {
             <button type='submit'>Create Watchlist</button>
           </form>
         </div>
+        <div>
+          <ul>
+            {watchlists && watchlists.watchlist_list.map((details) => (
+              <li key={details.id}>
+                  <h3>Watchlist Search Criteria</h3>
+                  <div>Leaving from {details.origin}</div>
+                  <div>Departure Date: {details.depart_date}</div>
+                  <div>Destination: {details.destination}</div>
+                  <div>Return flight leaves: {details.trip_return}</div>
+                  <div>Price: {details.price ? `Less than $${details.price}`: 'No limit set'}</div>
+                  <button onClick={(() => setWatchlistId(details.id))}>Cancel Watchlist</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
         <ul>
-          {watchlists && watchlists.watchlist_list.map((details) => (
-            <li key={details.id}>
-                <div>Leaving from {details.origin}</div>
-                <div>Departure Date: {details.depart_date}</div>
-                <div>Destination: {details.destination}</div>
-                <div>Return flight leaves: {details.trip_return}</div>
-                <div>Price: {details.price ? `Less than $${details.price}`: 'No limit set'}</div>
-                <button onClick={(() => setWatchlistId(details.id))}>Cancel Watchlist</button>
+          {watchlists && watchlists.watchlist_data_obj.watchlist_results_4.map((flight) => (
+            <li key={flight.id}>
+                <h3>Watchlist Search Results</h3>
+                <div>
+                    {flight.oneWay === true ?
+                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
+                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
+                    }
+                </div>
+                <div>
+                    {flight.oneWay === true ?
+                    <div>One Way: Yes</div> :
+                    <div>Layovers: {flight.itineraries[0].segments.length - 1}</div>
+                    }
+                </div>
+                <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
+                <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
+                <div>Return Flight: {format(getLastDeparture(flight))}</div>
+                <div>Price: ${flight.price.total}</div>
+                <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
+                <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
             </li>
           ))}
         </ul>
+        </div>
       </div>
     </div>
   );

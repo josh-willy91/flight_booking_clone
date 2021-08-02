@@ -5,6 +5,7 @@ import { createOneBooking } from '../store/dashboard';
 import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
 import { areIntervalsOverlapping } from 'date-fns';
+import '../styles/home.css'
 
 
 function Home() {
@@ -95,57 +96,55 @@ function Home() {
     //    min="2018-01-01" max="2018-12-31"></input>
 
     return (
-        <div>
-            <div>
-                Home page
-            </div>
-            <div>
-                <h3>Search</h3>
-                <form onSubmit={searchFlights}>
-                    <div>
-                        <div>
-                            <input
-                                type='text'
-                                placeholder='Leaving from'
-                                name='origin'
-                                value={origin}
-                                required
-                                onChange={updateOrigin}
-                            ></input>
-                        </div>
-                        <div>
-                            <input
-                                type='text'
-                                placeholder='Going to'
-                                name='destination'
-                                value={destination}
-                                required
-                                onChange={updateDestination}
-                            ></input>
-                        </div>
-                        <div>
-                            <label>Departure Date</label>
-                            <input
-                                type='date'
-                                name='departure'
-                                value={start}
-                                onChange={updateStart}
-                            ></input>
-                        </div>
-                        <div>
-                            <label>Return Date</label>
-                            <input
-                                type='date'
-                                name='return'
-                                value={end}
-                                onChange={updateEnd}
-                            ></input>
-                        </div>
-                        <button>Search Flights</button>
+        <div className='homeDiv'>
+            <div className='searchDiv'>
+                <img src="/images/bookYeah - searchBackground.jpg" alt="" className="searchBackground"/>
+                <h3>Search Flights</h3>
+                <form onSubmit={searchFlights} className='searchForm'>
+                    <div className='searchInputDivOrigin'>
+                        <label>Origin Airport</label>
+                        <input
+                            type='text'
+                            placeholder='Leaving from'
+                            name='origin'
+                            value={origin}
+                            required
+                            onChange={updateOrigin}
+                        ></input>
                     </div>
+                    <div className='searchInputDivOrigin'>
+                        <label>Departure Date</label>
+                        <input
+                            type='date'
+                            name='departure'
+                            value={start}
+                            onChange={updateStart}
+                        ></input>
+                    </div>
+                    <div className='searchInputDivDestination'>
+                        <label>Destination Airport</label>
+                        <input
+                            type='text'
+                            placeholder='Going to'
+                            name='destination'
+                            value={destination}
+                            required
+                            onChange={updateDestination}
+                        ></input>
+                    </div>
+                    <div className='searchInputDivDestination'>
+                        <label>Return Date</label>
+                        <input
+                            type='date'
+                            name='return'
+                            value={end}
+                            onChange={updateEnd}
+                        ></input>
+                    </div>
+                    <button className='searchFormButton'>Search Flights</button>
                 </form>
             </div>
-            <div>
+            <div className='searchResultsDiv'>
                 {searchResults ?
                 <div>
                     <ul>
