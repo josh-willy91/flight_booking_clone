@@ -159,29 +159,29 @@ function Home() {
                                 </div>
                                 {flight.oneWay === true ?
                                 <div className='searchResultsLiDiv'>One Way:
-                                    <p>Yes</p>
+                                    <p className='searchResultsLiP'>Yes</p>
                                 </div> :
                                 <div className='searchResultsLiDiv'>Layovers:
-                                    <p>{flight.itineraries[0].segments.length - 1}</p>
+                                    <p className='searchResultsLiP'>{flight.itineraries[0].segments.length - 1}</p>
                                 </div>
                                 }
                                 <div className='searchResultsLiDiv'> Departs:
-                                    <p>{format(flight.itineraries[0].segments[0].departure.at)}</p>
+                                    <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].departure.at)}</p>
                                 </div>
                                 <div className='searchResultsLiDiv'>Arrival:
-                                    <p>{format(flight.itineraries[0].segments[0].arrival.at)}</p>
+                                    <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].arrival.at)}</p>
                                 </div>
                                 <div className='searchResultsLiDiv'>Return Flight:
-                                    <p>{format(getLastDeparture(flight))}</p>
+                                    <p className='searchResultsLiP'>{format(getLastDeparture(flight))}</p>
                                 </div>
                                 <div className='searchResultsLiDiv'>Price:
-                                    <p>${flight.price.total}</p>
+                                    <p className='searchResultsLiP'>${flight.price.total}</p>
                                 </div>
                                 <div className='searchResultsLiDiv'>Airline Code:
-                                    <p>{flight.validatingAirlineCodes[0]}</p>
+                                    <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}</p>
                                 </div>
                                 <div className='searchResultsLiDiv'>Flight Number:
-                                    <p>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
+                                    <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
                                 </div>
                                 <button className='searchResultsButton' onClick={() => {
                                     setAirline(flight.validatingAirlineCodes[0])

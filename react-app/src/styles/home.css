@@ -1,6 +1,7 @@
 
 body {
     margin: 0;
+    letter-spacing: 1px;
 }
 
 .homeDiv {
@@ -73,7 +74,7 @@ body {
 
 .searchResultsDiv {
     grid-area: searchResultsDiv;
-    background-color: burlywood;
+    background-color: lightgray;
     display: flex;
     flex-direction: column;
 }
@@ -113,10 +114,22 @@ body {
 .searchResultsLiDiv {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+.searchResultsLiP {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .searchResultsButton {
-
+    cursor: pointer;
+    font-weight: bold;
+    border: white solid 1px;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
 }
