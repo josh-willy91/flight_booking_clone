@@ -97,8 +97,8 @@ function Home() {
 
     return (
         <div className='homeDiv'>
+        <img src="images/searchBackground.jpg" alt="" className="searchBackground"/>
             <div className='searchDiv'>
-                <img src="/images/bookYeah - searchBackground.jpg" alt="" className="searchBackground"/>
                 <h3>Search Flights</h3>
                 <form onSubmit={searchFlights} className='searchForm'>
                     <div className='searchInputDivOrigin'>
