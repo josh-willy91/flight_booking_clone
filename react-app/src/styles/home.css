@@ -16,7 +16,7 @@
 
 .searchDiv {
     grid-area: searchDiv;
-    background-color: white;
+    /* background-color: rgb(160, 148, 148)60, 148, 148); */
     border: black solid 1px;
     border-radius: 8px;
     box-shadow: 0px 0px 20px 1px blue;
@@ -55,4 +55,7 @@
 .searchResultsDiv {
     grid-area: searchResultsDiv;
     background-color: burlywood;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
 }
