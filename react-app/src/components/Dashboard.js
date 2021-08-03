@@ -113,24 +113,12 @@ function Dashboard() {
   //   }
   // }
 
-  let slidePostion = 0;
-  const slides = document.querySelectorAll('.carousel_item')
-  const totalSlides = slides.length
-  console.log(totalSlides, '==================================')
-
-  const nextBut = document.getElementById('carousel_Button--Next')
-  nextBut.addEventListener('click', (event) => {
-
-  })
 
   if(!sessionUser) {
     return null;
   }
   return (
     <div className='dashboardDiv'>
-      <div>
-        Welcome {sessionUser.first_name}
-      </div>
       <div className='bookingsDiv'>
         <h3>Bookings</h3>
         <ul className='bookingsUl'>
@@ -217,7 +205,7 @@ function Dashboard() {
           <ul className='watchlistsSearchUl'>
             {watchlists && watchlists.watchlist_list.map((details) => (
               <li className='watchlistsSearchLi' key={details.id}>
-                <div>
+                <div className='searchCriteriaDiv'>
                   <h3>Watchlist Search Criteria</h3>
                   <div>Leaving from {details.origin}</div>
                   <div>Departure Date: {details.depart_date}</div>
@@ -229,32 +217,43 @@ function Dashboard() {
                 <div className='carousel'>
                   {watchlists.watchlist_data_obj[`${details.id}`].map((flight) => (
                     <li className='carousel_item' key={flight.id}>
-                      <h3>Watchlist Search Results</h3>
                       <div>
                           {flight.oneWay === true ?
-                          <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
-                          <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
+                          <p>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
+                          <p>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</p>
                           }
                       </div>
                       <div>
                           {flight.oneWay === true ?
-                          <div>One Way: Yes</div> :
-                          <div>Layovers: {flight.itineraries[0].segments.length - 1}</div>
+                          <p>One Way: Yes</p> :
+                          <p>Layovers: {flight.itineraries[0].segments.length - 1}</p>
                           }
                       </div>
-                      <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
-                      <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
-                      <div>Return Flight: {format(getLastDeparture(flight))}</div>
-                      <div>Price: ${flight.price.total}</div>
-                      <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
-                      <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
+                      <div>
+                          <p>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</p>
+                      </div>
+                      <div>
+                          <p>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</p>
+                      </div>
+                      <div>
+                          <p>Return Flight: {format(getLastDeparture(flight))}</p>
+                      </div>
+                      <div>
+                          <p>Price: ${flight.price.total}</p>
+                      </div>
+                      <div>
+                          <p>Airline Code: {flight.validatingAirlineCodes[0]}</p>
+                      </div>
+                      <div>
+                          <p>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
+                      </div>
                     </li>
                   ))}
                 </div>
-                <div className='carousel_actions'>
+                {/* <div className='carousel_actions'>
                   <button id='carousel_Button--Prev' aria-label='previous slide'>Previous Slide</button>
                   <button id='carousel_Button--Next' aria-label='next slide'>Next Slide</button>
-                </div>
+                </div> */}
               </li>
             ))}
           </ul>

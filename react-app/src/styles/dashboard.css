@@ -6,7 +6,6 @@
     grid-template-columns: repeat(2, 50%);
     grid-auto-rows: minmax(150px, auto);
     grid-template-areas:
-    '. .'
     'bookingsDiv watchlistsDiv'
     'bookingsDiv watchlistsDiv'
     'bookingsDiv watchlistsDiv'
@@ -101,10 +100,21 @@
     border-radius: 5px;
     margin-top: 10px;
     padding: 10px;
+    cursor: pointer;
 }
 
-.watchlistsSearchDiv {
+.searchCriteriaDiv {
 
+}
+
+.searchCriteriaDiv button {
+    background-color: rgb(0, 55, 138);
+    color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .watchlistsSearchUl {
@@ -124,21 +134,10 @@
 }
 
 .carousel {
-    overflow: hidden;
-    max-width: 100%;
-    max-height: 275px;
-    position: relative;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
 }
-
-/* .carousel .carousel_item,
-.carousel .carousel_item--hidden {
-    display: none;
-} */
-
-.carousel .carousel_item {
-    max-width: 100%;
-}
-
 
 .carousel_item {
     list-style-type: none;
@@ -149,25 +148,16 @@
     color: black;
     font-weight: bold;
     background-color: white;
-}
-
-.carousel_actions {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
-.carousel_actions button {
-    border: 0;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 5px;
+.carousel_item div {
+    width: 300px;
+    margin: 8px;
+    padding: 0;
 }
 
-.carousel_actions button#carousel_Button--Prev {
-    margin-left: 20px;
-}
-
-.carousel_actions button#carousel_Button--Next {
-    margin-right: 20px;
+.carousel div p {
+    margin: 0;
 }
