@@ -1,0 +1,150 @@
+
+
+.dashboardDiv {
+    background-color: rgb(247, 243, 230);
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-auto-rows: minmax(150px, auto);
+    grid-template-areas:
+    '. .'
+    'bookingsDiv watchlistsDiv'
+    'bookingsDiv watchlistsDiv'
+    'bookingsDiv watchlistsDiv'
+    '. .'
+    ;
+    width: 100%;
+}
+
+.bookingsDiv {
+    grid-area: bookingsDiv;
+    /* background-color: aqua; */
+    margin: 40px;
+}
+
+.bookingsDiv h3 {
+    border-bottom: black solid 1px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.bookingsUl {
+    margin: 0;
+    padding: 0;
+}
+
+.bookingsLi {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 15px;
+    border: black solid 1px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+}
+
+.bookingsLi button {
+    background-color: rgb(0, 55, 138);
+    color: white;
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.watchlistsDiv {
+    grid-area: watchlistsDiv;
+    /* background-color: burlywood; */
+    margin: 40px;
+}
+
+.watchlistsDiv h3 {
+    border-bottom: black solid 1px;
+    text-align: center;
+}
+
+.watchlistsShowP {
+    border: black solid 1px;
+    border-radius: 15px;
+    background-color: rgb(0, 55, 138);
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.watchlistsP {
+    visibility: hidden;
+    border: solid black 1px;
+    border-radius: 10px;
+    width: 50%;
+    padding: 15px;
+    margin: 0;
+    background-color: rgb(0, 55, 138);
+    color: white;
+}
+
+.watchlistsCreate {
+    background-color: rgb(0, 55, 138);
+    color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.watchlistsFormDiv {
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+}
+
+.watchlistsFormDiv button {
+    background-color: rgb(0, 55, 138);
+    color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.watchlistsSearchDiv {
+
+}
+
+.watchlistsSearchUl {
+
+}
+
+.watchlistsSearchLi {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 15px;
+    border: black solid 1px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+}
+
+.watchlistsResultsDiv {
+
+}
+
+.watchlistsResultsUl {
+
+}
+
+.watchlistsResultsLi {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 15px;
+    border: black solid 1px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+}

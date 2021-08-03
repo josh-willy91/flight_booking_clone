@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist, createOneBooking, createOneWatchlist } from '../store/dashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import '../styles/dashboard.css'
 
 function Dashboard() {
   const dispatch = useDispatch()
@@ -99,20 +100,32 @@ function Dashboard() {
     return spitTime;
   };
 
+  // const showHideElements = () => {
+  //   let show = document.getElementById('showHide')
+
+  //   if(show.classList === 'show') {
+  //     show.classList.remove('show')
+  //     show.classList.add('hidden')
+  //   } else {
+  //     show.classList.remove('hidden')
+  //     show.classList.add('show')
+  //   }
+  // }
+
 
   if(!sessionUser) {
     return null;
   }
   return (
-    <div>
+    <div className='dashboardDiv'>
       <div>
         Welcome {sessionUser.first_name}
       </div>
-      <div>
+      <div className='bookingsDiv'>
         <h3>Bookings</h3>
-        <ul>
+        <ul className='bookingsUl'>
           {bookings && bookings.bookings_list.map((details) => (
-            <li key={details.id}>
+            <li className='bookingsLi' key={details.id}>
                 <div>Airline: {details.airline}</div>
                 <div>Price: ${details.price}</div>
                 <div>Leaving from {details.city_from}</div>
@@ -125,14 +138,15 @@ function Dashboard() {
           ))}
         </ul>
       </div>
-      <div>
+      <div className='watchlistsDiv'>
         <h3>Watchlists</h3>
-        <p>What is a watchlist?... It's a convinient way to track flights you may be interested in.
+        <button className='watchlistsShowP'>?</button>
+        <p className='watchlistsP'>What is a watchlist?... It's a convinient way to track flights you may be interested in.
           Simply create a watchlist for a destination you'd like to go to.
           Search filters, such as price, will only show flights that meet all criteria.</p>
-        <button>Create New Watchlist</button>
-        <div>
-          <form onSubmit={submitWatchlistForm}>
+        <button className='watchlistsCreate'>Create New Watchlist</button>
+        <div className='watchlistsFormDiv'>
+          <form className='watchlistsForm' onSubmit={submitWatchlistForm}>
             <div>
               <label>Origin Airport</label>
               <input
@@ -190,10 +204,10 @@ function Dashboard() {
             <button type='submit'>Create Watchlist</button>
           </form>
         </div>
-        <div>
-          <ul>
+        <div className='watchlistsSearchDiv'>
+          <ul className='watchlistsSearchUl'>
             {watchlists && watchlists.watchlist_list.map((details) => (
-              <li key={details.id}>
+              <li className='watchlistsSearchLi' key={details.id}>
                   <h3>Watchlist Search Criteria</h3>
                   <div>Leaving from {details.origin}</div>
                   <div>Departure Date: {details.depart_date}</div>
@@ -205,10 +219,10 @@ function Dashboard() {
             ))}
           </ul>
         </div>
-        <div>
-        <ul>
+        <div className='watchlistsResultsDiv'>
+        <ul className='watchlistsResultsUl'>
           {watchlists && watchlists.watchlist_data_obj.watchlist_results_4.map((flight) => (
-            <li key={flight.id}>
+            <li className='watchlistsResultsLi' key={flight.id}>
                 <h3>Watchlist Search Results</h3>
                 <div>
                     {flight.oneWay === true ?

@@ -16,7 +16,7 @@ def get_watchlists(id):
     watchlist_data_obj = {}
     watchlists_query = Watchlist.query.filter_by(user_id = id).all()
     watchlist_list = [watchlist.to_dict() for watchlist in watchlists_query]
-    print(watchlist_list, '========================================')
+    # print(watchlist_list, '========================================')
 
     for watchlist_obj in watchlist_list:
 
@@ -27,11 +27,11 @@ def get_watchlists(id):
         trip_return = watchlist_obj['trip_return']
         price = watchlist_obj['price']
         num_adults = 1
-        print(id, origin, destination, departure_date, trip_return, price, num_adults,
-        '==============================================')
+        # print(id, origin, destination, departure_date, trip_return, price, num_adults,
+        # '==============================================')
 
         if(price == None):
-            print(price, '================price is none================')
+            print(price, f'================price is none===={id}============')
 
             amadeus = Client(
                 client_id=os.environ.get('API_PUBLIC_KEY'),
@@ -53,6 +53,7 @@ def get_watchlists(id):
                 print(error)
 
         else:
+            print(f'==========================line 56 inside else=========={id}==============')
             amadeus = Client(
                 client_id=os.environ.get('API_PUBLIC_KEY'),
                 client_secret=os.environ.get('API_SECRET_KEY')
