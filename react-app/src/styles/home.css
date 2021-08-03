@@ -5,6 +5,7 @@ body {
 }
 
 .homeDiv {
+    background-color: rgb(247, 243, 230);
     display: grid;
     grid-template-columns: repeat(5, 20%);
     grid-auto-rows: minmax(150px, auto);
@@ -37,7 +38,7 @@ body {
     background-color: rgba(255, 255, 255, .7);
     border: black solid 1px;
     border-radius: 8px;
-    box-shadow: 0px 0px 20px 1px blue;
+    box-shadow: 0px 0px 20px 1px rgb(0, 55, 138);
     padding: 15px;
 }
 
@@ -63,7 +64,7 @@ body {
 .searchForm button {
     color: white;
     font-weight: bold;
-    background-color: blue;
+    background-color: rgb(0, 55, 138);
     position: absolute;
     margin-top: 40px;
     padding: 10px;
@@ -74,7 +75,6 @@ body {
 
 .searchResultsDiv {
     grid-area: searchResultsDiv;
-    background-color: lightgray;
     display: flex;
     flex-direction: column;
 }
@@ -91,6 +91,7 @@ body {
     display: flex;
     justify-content: center;
     border-bottom: black solid 1px;
+    font-size: 25px;
     margin: 10px;
     padding: 0;
 }
@@ -103,6 +104,7 @@ body {
 }
 
 .searchResultsLi {
+    background-color: white;
     display: flex;
     flex-direction: row;
     border: black solid 1px;
@@ -128,8 +130,8 @@ body {
 .searchResultsButton {
     cursor: pointer;
     font-weight: bold;
-    border: white solid 1px;
+    border: black solid 1px;
     border-radius: 5px;
-    background-color: blue;
+    background-color: rgb(0, 55, 138);
     color: white;
 }
