@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import '../styles/dashboard.css'
 
+
 function Dashboard() {
   const dispatch = useDispatch()
   const { userId }  = useParams();
@@ -112,6 +113,15 @@ function Dashboard() {
   //   }
   // }
 
+  let slidePostion = 0;
+  const slides = document.querySelectorAll('.carousel_item')
+  const totalSlides = slides.length
+  console.log(totalSlides, '==================================')
+
+  const nextBut = document.getElementById('carousel_Button--Next')
+  nextBut.addEventListener('click', (event) => {
+
+  })
 
   if(!sessionUser) {
     return null;
@@ -216,9 +226,9 @@ function Dashboard() {
                   <div>Price: {details.price ? `Less than $${details.price}`: 'No limit set'}</div>
                   <button onClick={(() => setWatchlistId(details.id))}>Cancel Watchlist</button>
                 </div>
-                <div>
+                <div className='carousel'>
                   {watchlists.watchlist_data_obj[`${details.id}`].map((flight) => (
-                    <li className='watchlistsResultsLi' key={flight.id}>
+                    <li className='carousel_item' key={flight.id}>
                       <h3>Watchlist Search Results</h3>
                       <div>
                           {flight.oneWay === true ?
@@ -240,6 +250,10 @@ function Dashboard() {
                       <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
                     </li>
                   ))}
+                </div>
+                <div className='carousel_actions'>
+                  <button id='carousel_Button--Prev' aria-label='previous slide'>Previous Slide</button>
+                  <button id='carousel_Button--Next' aria-label='next slide'>Next Slide</button>
                 </div>
               </li>
             ))}
