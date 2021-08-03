@@ -144,7 +144,6 @@ function Dashboard() {
         <p className='watchlistsP'>What is a watchlist?... It's a convinient way to track flights you may be interested in.
           Simply create a watchlist for a destination you'd like to go to.
           Search filters, such as price, will only show flights that meet all criteria.</p>
-        <button className='watchlistsCreate'>Create New Watchlist</button>
         <div className='watchlistsFormDiv'>
           <form className='watchlistsForm' onSubmit={submitWatchlistForm}>
             <div>
@@ -208,6 +207,7 @@ function Dashboard() {
           <ul className='watchlistsSearchUl'>
             {watchlists && watchlists.watchlist_list.map((details) => (
               <li className='watchlistsSearchLi' key={details.id}>
+                <div>
                   <h3>Watchlist Search Criteria</h3>
                   <div>Leaving from {details.origin}</div>
                   <div>Departure Date: {details.depart_date}</div>
@@ -215,36 +215,35 @@ function Dashboard() {
                   <div>Return flight leaves: {details.trip_return}</div>
                   <div>Price: {details.price ? `Less than $${details.price}`: 'No limit set'}</div>
                   <button onClick={(() => setWatchlistId(details.id))}>Cancel Watchlist</button>
+                </div>
+                <div>
+                  {watchlists.watchlist_data_obj[`${details.id}`].map((flight) => (
+                    <li className='watchlistsResultsLi' key={flight.id}>
+                      <h3>Watchlist Search Results</h3>
+                      <div>
+                          {flight.oneWay === true ?
+                          <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
+                          <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
+                          }
+                      </div>
+                      <div>
+                          {flight.oneWay === true ?
+                          <div>One Way: Yes</div> :
+                          <div>Layovers: {flight.itineraries[0].segments.length - 1}</div>
+                          }
+                      </div>
+                      <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
+                      <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
+                      <div>Return Flight: {format(getLastDeparture(flight))}</div>
+                      <div>Price: ${flight.price.total}</div>
+                      <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
+                      <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
+                    </li>
+                  ))}
+                </div>
               </li>
             ))}
           </ul>
-        </div>
-        <div className='watchlistsResultsDiv'>
-        <ul className='watchlistsResultsUl'>
-          {/* {watchlists && watchlists.watchlist_data_obj.watchlist_results_4.map((flight) => (
-            <li className='watchlistsResultsLi' key={flight.id}>
-                <h3>Watchlist Search Results</h3>
-                <div>
-                    {flight.oneWay === true ?
-                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
-                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
-                    }
-                </div>
-                <div>
-                    {flight.oneWay === true ?
-                    <div>One Way: Yes</div> :
-                    <div>Layovers: {flight.itineraries[0].segments.length - 1}</div>
-                    }
-                </div>
-                <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
-                <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
-                <div>Return Flight: {format(getLastDeparture(flight))}</div>
-                <div>Price: ${flight.price.total}</div>
-                <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
-                <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
-            </li>
-          ))} */}
-        </ul>
         </div>
       </div>
     </div>
