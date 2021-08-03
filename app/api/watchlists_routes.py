@@ -13,10 +13,10 @@ watchlists_routes = Blueprint('watchlists', __name__)
 @watchlists_routes.route('<path:id>')
 @login_required
 def get_watchlists(id):
-    watchlist_data_obj = {}
+    search_results = {}
     watchlists_query = Watchlist.query.filter_by(user_id = id).all()
     watchlist_list = [watchlist.to_dict() for watchlist in watchlists_query]
-    # print(watchlist_list, '========================================')
+    print(watchlist_list, '==================line 19======================')
 
     for watchlist_obj in watchlist_list:
 
@@ -48,7 +48,7 @@ def get_watchlists(id):
                     max = 50,
                 )
                 # print(response.data, '=================response=============================')
-                watchlist_data_obj[f'watchlist_results_{id}'] = response.data
+                search_results[f'{id}'] = response.data
             except ResponseError as error:
                 print(error)
 
@@ -64,18 +64,18 @@ def get_watchlists(id):
                     destinationLocationCode = destination,
                     departureDate = departure_date,
                     returnDate = trip_return,
-                    maxPrice = price,
+                    maxPrice = int(price),
                     adults = 1,
                     currencyCode = 'USD',
                     max = 50,
                 )
-                watchlist_data_obj[f'watchlist_results_price_{id}'] = response.data
+                search_results[f'{id}'] = response.data
             except ResponseError as error:
-                print(error)
+                print(error, '===================line 74============================')
 
     # watchlist_data_obj['watchlist_list'] = watchlist_list
     # print(watchlist_data_obj, '=====================================================')
-    return {'watchlist_list': watchlist_list, 'watchlist_data_obj': watchlist_data_obj}
+    return {'watchlist_list': watchlist_list, 'watchlist_data_obj': search_results}
 
 
 @watchlists_routes.route('delete', methods=['DELETE'])

@@ -221,7 +221,7 @@ function Dashboard() {
         </div>
         <div className='watchlistsResultsDiv'>
         <ul className='watchlistsResultsUl'>
-          {watchlists && watchlists.watchlist_data_obj.watchlist_results_4.map((flight) => (
+          {/* {watchlists && watchlists.watchlist_data_obj.watchlist_results_4.map((flight) => (
             <li className='watchlistsResultsLi' key={flight.id}>
                 <h3>Watchlist Search Results</h3>
                 <div>
@@ -243,7 +243,7 @@ function Dashboard() {
                 <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
                 <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
             </li>
-          ))}
+          ))} */}
         </ul>
         </div>
       </div>
