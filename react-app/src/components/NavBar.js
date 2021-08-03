@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-
+import '../styles/navbar.css'
 
 const NavBar = () => {
 
@@ -11,24 +11,20 @@ const NavBar = () => {
 
   if(sessionUser) {
     return (
-      <nav>
-        <ul>
-          <li>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              Landing
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/bookyeah' exact={true} activeClassName='active'>
+      <nav className='navbar'>
+        <ul className='navbarUl'>
+          <h2 className='logo'>BookYeah</h2>
+          <li className='navBarLeft'>
+            <NavLink className='navLink' className='middle' to='/bookyeah' exact={true} activeClassName='active'>
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
+          <li className='navBarLeft'>
+            <NavLink className='navLink' className='left' to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
               Dashboard
             </NavLink>
           </li>
-          <li>
+          <li className='navBut'>
             <LogoutButton />
           </li>
         </ul>
@@ -36,20 +32,20 @@ const NavBar = () => {
     );
   } else {
     return (
-      <nav>
-        <ul>
-          <li>
-            <NavLink to='/' exact={true} activeClassName='active'>
+      <nav className='navbar'>
+        <ul className='navbarUl'>
+          <li className='navBarLeft'>
+            <NavLink className='navLink' className='middle' to='/' exact={true} activeClassName='active'>
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink to='/login' exact={true} activeClassName='active'>
+          <li className='navBarLeft'>
+            <NavLink className='navLink' className='left' to='/login' exact={true} activeClassName='active'>
               Login
             </NavLink>
           </li>
-          <li>
-            <NavLink to='/sign-up' exact={true} activeClassName='active'>
+          <li className='navBarLeft'>
+            <NavLink className='navLink' className='right' to='/sign-up' exact={true} activeClassName='active'>
               Sign Up
             </NavLink>
           </li>

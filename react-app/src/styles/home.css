@@ -1,11 +1,13 @@
 
 body {
     margin: 0;
+    letter-spacing: 1px;
 }
 
 .homeDiv {
+    background-color: rgb(247, 243, 230);
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 20%);
     grid-auto-rows: minmax(150px, auto);
     grid-template-areas:
     'searchBackground searchBackground searchBackground searchBackground searchBackground'
@@ -29,13 +31,14 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    margin-top: 150px;
-    margin-left: 90%;
-    margin-right: auto;
+    margin-top: 120px;
+    margin-left: 600px;
+    width: fit-content;
+    height: 140px;
     background-color: rgba(255, 255, 255, .7);
     border: black solid 1px;
     border-radius: 8px;
-    box-shadow: 0px 0px 20px 1px blue;
+    box-shadow: 0px 0px 20px 1px rgb(0, 55, 138);
     padding: 15px;
 }
 
@@ -43,6 +46,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 5px;
+    font-size: 25px;
     border-bottom: black solid 1px;
 }
 
@@ -59,7 +64,7 @@ body {
 .searchForm button {
     color: white;
     font-weight: bold;
-    background-color: blue;
+    background-color: rgb(0, 55, 138);
     position: absolute;
     margin-top: 40px;
     padding: 10px;
@@ -70,8 +75,63 @@ body {
 
 .searchResultsDiv {
     grid-area: searchResultsDiv;
-    background-color: burlywood;
-    margin-top: 15px;
     display: flex;
     flex-direction: column;
+}
+
+.searchResultsDiv ul {
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 500px;
+}
+
+.searchResultsDiv h3 {
+    display: flex;
+    justify-content: center;
+    border-bottom: black solid 1px;
+    font-size: 25px;
+    margin: 10px;
+    padding: 0;
+}
+
+.searchResultsRoute {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.searchResultsLi {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.searchResultsLiDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.searchResultsLiP {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.searchResultsButton {
+    cursor: pointer;
+    font-weight: bold;
+    border: black solid 1px;
+    border-radius: 5px;
+    background-color: rgb(0, 55, 138);
+    color: white;
 }

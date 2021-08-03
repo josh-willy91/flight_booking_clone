@@ -97,7 +97,7 @@ function Home() {
 
     return (
         <div className='homeDiv'>
-        <img src="images/searchBackground.jpg" alt="" className="searchBackground"/>
+            <img src="images/searchBackground.jpg" alt="" className="searchBackground"/>
             <div className='searchDiv'>
                 <h3>Search Flights</h3>
                 <form onSubmit={searchFlights} className='searchForm'>
@@ -147,28 +147,43 @@ function Home() {
             <div className='searchResultsDiv'>
                 {searchResults ?
                 <div>
+                    <h3>Search Results</h3>
                     <ul>
                         {searchResults && searchResults.flight.map((flight) => (
-                            <li key={flight.id}>
-                                <div>
+                            <li key={flight.id} className='searchResultsLi'>
+                                <div className='searchResultsRoute'>
                                     {flight.oneWay === true ?
-                                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
-                                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
+                                    <p className='searchResultsRoute'>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
+                                    <p className='searchResultsRoute'>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</p>
                                     }
                                 </div>
-                                <div>
-                                    {flight.oneWay === true ?
-                                    <div>One Way: Yes</div> :
-                                    <div>Layovers: {flight.itineraries[0].segments.length - 1}</div>
-                                    }
+                                {flight.oneWay === true ?
+                                <div className='searchResultsLiDiv'>One Way:
+                                    <p className='searchResultsLiP'>Yes</p>
+                                </div> :
+                                <div className='searchResultsLiDiv'>Layovers:
+                                    <p className='searchResultsLiP'>{flight.itineraries[0].segments.length - 1}</p>
                                 </div>
-                                <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
-                                <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
-                                <div>Return Flight: {format(getLastDeparture(flight))}</div>
-                                <div>Price: ${flight.price.total}</div>
-                                <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
-                                <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
-                                <button onClick={() => {
+                                }
+                                <div className='searchResultsLiDiv'> Departs:
+                                    <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].departure.at)}</p>
+                                </div>
+                                <div className='searchResultsLiDiv'>Arrival:
+                                    <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].arrival.at)}</p>
+                                </div>
+                                <div className='searchResultsLiDiv'>Return Flight:
+                                    <p className='searchResultsLiP'>{format(getLastDeparture(flight))}</p>
+                                </div>
+                                <div className='searchResultsLiDiv'>Price:
+                                    <p className='searchResultsLiP'>${flight.price.total}</p>
+                                </div>
+                                <div className='searchResultsLiDiv'>Airline Code:
+                                    <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}</p>
+                                </div>
+                                <div className='searchResultsLiDiv'>Flight Number:
+                                    <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
+                                </div>
+                                <button className='searchResultsButton' onClick={() => {
                                     setAirline(flight.validatingAirlineCodes[0])
                                     setStart(format(flight.itineraries[0].segments[0].arrival.at))
                                     setEnd(format(flight.itineraries[0].segments[0].departure.at))
