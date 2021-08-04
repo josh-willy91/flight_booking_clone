@@ -1,18 +1,17 @@
 import os
-import re
 import amadeus
 import requests
 from flask import Flask,  Blueprint, request
-from flask_login import login_required
 from app.models import db, User, Booking
 from amadeus import Client
 
 home_routes = Blueprint('bookyeah', __name__)
 
+
 @home_routes.route('search', methods=['POST'])
 def search_flights():
     request_payload = request.get_json()
-    user_id = int(request_payload['userId'])
+    user_id = request_payload['userId']
     origin = request_payload['origin']
     destination = request_payload['destination']
     departure_date = request_payload['start']
@@ -26,9 +25,10 @@ def search_flights():
         originLocationCode = origin,
         destinationLocationCode = destination,
         departureDate = departure_date,
+        returnDate = return_date,
         adults = 1,
         currencyCode = 'USD',
-        max = 20,
+        max = 50,
     )
     # print(response.data)
     return {'flight': response.data}
