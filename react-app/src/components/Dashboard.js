@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist, createOneBooking, createOneWatchlist } from '../store/dashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import '../styles/dashboard.css'
+
 
 function Dashboard() {
   const dispatch = useDispatch()
@@ -99,20 +101,29 @@ function Dashboard() {
     return spitTime;
   };
 
+  // const showHideElements = () => {
+  //   let show = document.getElementById('showHide')
+
+  //   if(show.classList === 'show') {
+  //     show.classList.remove('show')
+  //     show.classList.add('hidden')
+  //   } else {
+  //     show.classList.remove('hidden')
+  //     show.classList.add('show')
+  //   }
+  // }
+
 
   if(!sessionUser) {
     return null;
   }
   return (
-    <div>
-      <div>
-        Welcome {sessionUser.first_name}
-      </div>
-      <div>
+    <div className='dashboardDiv'>
+      <div className='bookingsDiv'>
         <h3>Bookings</h3>
-        <ul>
+        <ul className='bookingsUl'>
           {bookings && bookings.bookings_list.map((details) => (
-            <li key={details.id}>
+            <li className='bookingsLi' key={details.id}>
                 <div>Airline: {details.airline}</div>
                 <div>Price: ${details.price}</div>
                 <div>Leaving from {details.city_from}</div>
@@ -125,14 +136,14 @@ function Dashboard() {
           ))}
         </ul>
       </div>
-      <div>
+      <div className='watchlistsDiv'>
         <h3>Watchlists</h3>
-        <p>What is a watchlist?... It's a convinient way to track flights you may be interested in.
+        <button className='watchlistsShowP'>?</button>
+        <p className='watchlistsP'>What is a watchlist?... It's a convinient way to track flights you may be interested in.
           Simply create a watchlist for a destination you'd like to go to.
           Search filters, such as price, will only show flights that meet all criteria.</p>
-        <button>Create New Watchlist</button>
-        <div>
-          <form onSubmit={submitWatchlistForm}>
+        <div className='watchlistsFormDiv'>
+          <form className='watchlistsForm' onSubmit={submitWatchlistForm}>
             <div>
               <label>Origin Airport</label>
               <input
@@ -190,10 +201,11 @@ function Dashboard() {
             <button type='submit'>Create Watchlist</button>
           </form>
         </div>
-        <div>
-          <ul>
+        <div className='watchlistsSearchDiv'>
+          <ul className='watchlistsSearchUl'>
             {watchlists && watchlists.watchlist_list.map((details) => (
-              <li key={details.id}>
+              <li className='watchlistsSearchLi' key={details.id}>
+                <div className='searchCriteriaDiv'>
                   <h3>Watchlist Search Criteria</h3>
                   <div>Leaving from {details.origin}</div>
                   <div>Departure Date: {details.depart_date}</div>
@@ -201,36 +213,50 @@ function Dashboard() {
                   <div>Return flight leaves: {details.trip_return}</div>
                   <div>Price: {details.price ? `Less than $${details.price}`: 'No limit set'}</div>
                   <button onClick={(() => setWatchlistId(details.id))}>Cancel Watchlist</button>
+                </div>
+                <div className='carousel'>
+                  {watchlists.watchlist_data_obj[`${details.id}`].map((flight) => (
+                    <li className='carousel_item' key={flight.id}>
+                      <div>
+                          {flight.oneWay === true ?
+                          <p>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
+                          <p>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</p>
+                          }
+                      </div>
+                      <div>
+                          {flight.oneWay === true ?
+                          <p>One Way: Yes</p> :
+                          <p>Layovers: {flight.itineraries[0].segments.length - 1}</p>
+                          }
+                      </div>
+                      <div>
+                          <p>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</p>
+                      </div>
+                      <div>
+                          <p>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</p>
+                      </div>
+                      <div>
+                          <p>Return Flight: {format(getLastDeparture(flight))}</p>
+                      </div>
+                      <div>
+                          <p>Price: ${flight.price.total}</p>
+                      </div>
+                      <div>
+                          <p>Airline Code: {flight.validatingAirlineCodes[0]}</p>
+                      </div>
+                      <div>
+                          <p>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
+                      </div>
+                    </li>
+                  ))}
+                </div>
+                {/* <div className='carousel_actions'>
+                  <button id='carousel_Button--Prev' aria-label='previous slide'>Previous Slide</button>
+                  <button id='carousel_Button--Next' aria-label='next slide'>Next Slide</button>
+                </div> */}
               </li>
             ))}
           </ul>
-        </div>
-        <div>
-        <ul>
-          {watchlists && watchlists.watchlist_data_obj.watchlist_results_4.map((flight) => (
-            <li key={flight.id}>
-                <h3>Watchlist Search Results</h3>
-                <div>
-                    {flight.oneWay === true ?
-                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
-                    <div>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
-                    }
-                </div>
-                <div>
-                    {flight.oneWay === true ?
-                    <div>One Way: Yes</div> :
-                    <div>Layovers: {flight.itineraries[0].segments.length - 1}</div>
-                    }
-                </div>
-                <div>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</div>
-                <div>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</div>
-                <div>Return Flight: {format(getLastDeparture(flight))}</div>
-                <div>Price: ${flight.price.total}</div>
-                <div>Airline Code: {flight.validatingAirlineCodes[0]}</div>
-                <div>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</div>
-            </li>
-          ))}
-        </ul>
         </div>
       </div>
     </div>
