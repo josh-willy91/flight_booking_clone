@@ -6,6 +6,8 @@ import { createOneBooking } from '../store/dashboard';
 import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
 import { areIntervalsOverlapping } from 'date-fns';
+
+import Amadeus from 'amadeus';
 import '../styles/home.css'
 
 
@@ -26,14 +28,10 @@ function Home() {
 
     const updateOrigin = (event) => {
         const value = event.target.value
-        if(value.includes(/0123456789/)) {
-            console.log('whats happening')
-        }
         // const format = value.toUppercase()
         console.log(value, '======31=========')
         setOrigin(value)
         console.log(origin, '=======33========')
-
     }
     const updateDestination = (event) => setDestination(event.target.value)
     const updateStart = (event) => setStart(event.target.value)
@@ -63,6 +61,38 @@ function Home() {
         }
     }
 
+    const fetchFlights = async(event) => {
+        event.preventDefault()
+
+        const response = await fetch(`https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=JAX&destinationLocationCode=MCO&departureDate=2021-08-12&adults=1&nonStop=false&max=5`)
+        console.log(response, '========response=====================')
+
+        if(response.ok) {
+            const result = response.json()
+            console.log(result, '===========result=============')
+        }
+
+
+        // const amadeus = new Amadeus({
+        //     clientId: process.env.API_PUBLIC_KEY,
+        //     clientSecret: process.env.API_SECRET_KEY
+        //     // client_id=os.environ.get('API_PUBLIC_KEY'),
+        //     // client_secret=os.environ.get('API_SECRET_KEY')
+        // });
+
+        // amadeus.shopping.flightOffersSearch.get({
+        //     originLocationCode: 'JAX',
+        //     destinationLocationCode: 'MCO',
+        //     departureDate: '2021-12-12',
+        //     adults: '1',
+        //     max: 5,
+        // }).then(function(response){
+        //     console.log(response.data);
+        // }).catch(function(responseError){
+        //     console.log(responseError.code);
+        // });
+    }
+
     const bookFlight = (event) => {
         const payload = {
             'userId': user.id,
@@ -76,6 +106,7 @@ function Home() {
             'tripReturn': tripReturn,
         }
         dispatch(createOneBooking(payload))
+        //history.push
     }
 
     const noUserRedirect = () => {
@@ -114,7 +145,7 @@ function Home() {
             <img src="images/searchBackground.jpg" alt="" className="searchBackground"/>
             <div className='searchDiv'>
                 <h3>Search Flights</h3>
-                <form onSubmit={searchFlights} className='searchForm'>
+                <form onSubmit={fetchFlights} className='searchForm'>
                     <div className='searchInputDivOrigin'>
                         <label>Origin Airport</label>
                         <input
@@ -123,7 +154,7 @@ function Home() {
                             name='origin'
                             value={origin}
                             required
-                            onChange={updateOrigin}
+                            onChange={(e) => setOrigin(e.target.value)}
                         ></input>
                     </div>
                     <div className='searchInputDivOrigin'>
@@ -198,14 +229,14 @@ function Home() {
                                     <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
                                 </div>
                                 {user ?
-                                    <button className='searchResultsButton' onClick={() => {
-                                        setAirline(flight.validatingAirlineCodes[0])
-                                        setStart(format(flight.itineraries[0].segments[0].arrival.at))
-                                        setEnd(format(flight.itineraries[0].segments[0].departure.at))
-                                        setFlightNum((flight.validatingAirlineCodes + flight.itineraries[0].segments[0].number))
-                                        setPrice(flight.price.total)
-                                        setTripReturn(format(getLastDeparture(flight)))
-                                        bookFlight()
+                                    <button className='searchResultsButton' onClick={ async() => {
+                                        await setAirline(flight.validatingAirlineCodes[0])
+                                        await setStart(format(flight.itineraries[0].segments[0].arrival.at))
+                                        await setEnd(format(flight.itineraries[0].segments[0].departure.at))
+                                        await setFlightNum((flight.validatingAirlineCodes + flight.itineraries[0].segments[0].number))
+                                        await setPrice(flight.price.total)
+                                        await setTripReturn(format(getLastDeparture(flight)))
+                                        await bookFlight()
                                     }}
                                     >Book Flight</button> :
                                     <button className='searchResultsButton'>Login to Book</button>
