@@ -27,42 +27,51 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const demoSubmit = async() => {
+    setEmail('demo@aa.io')
+    setPassword('password')
+    const data = await dispatch(login(email, password))
+  };
+
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/bookYeah'/>;
   }
 
   return (
     <div className='loginDiv'>
       <img className='loginImg' src="images/signup.jpg" alt=""/>
-      <form className='loginForm' onSubmit={onLogin}>
-        <h3>Login</h3>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-          />
-        </div>
-        <button type='submit'>Login</button>
-      </form>
+      <div className='formWrapper'>
+        <form className='loginForm' onSubmit={onLogin}>
+          <h3>Login</h3>
+          <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <div>
+            <label htmlFor='email'>Email</label>
+            <input
+              name='email'
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+          <div>
+            <label htmlFor='password'>Password</label>
+            <input
+              name='password'
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={updatePassword}
+            />
+          </div>
+          <button className='formButton' type='submit'>Login</button>
+        </form>
+        <button className='demoUser' onClick={demoSubmit}>Demo User</button>
+      </div>
     </div>
   );
 };
