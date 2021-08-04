@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { searchAllFlights } from '../store/home';
 import { createOneBooking } from '../store/dashboard';
 import formatISO from 'date-fns/formatISO'
@@ -23,7 +24,17 @@ function Home() {
     const [airline, setAirline] = useState('');
     const [tripReturn, setTripReturn] = useState('');
 
-    const updateOrigin = (event) => setOrigin(event.target.value)
+    const updateOrigin = (event) => {
+        const value = event.target.value
+        if(value.includes(/0123456789/)) {
+            console.log('whats happening')
+        }
+        // const format = value.toUppercase()
+        console.log(value, '======31=========')
+        setOrigin(value)
+        console.log(origin, '=======33========')
+
+    }
     const updateDestination = (event) => setDestination(event.target.value)
     const updateStart = (event) => setStart(event.target.value)
     const updateEnd = (event) => setEnd(event.target.value)
@@ -53,7 +64,6 @@ function Home() {
     }
 
     const bookFlight = (event) => {
-
         const payload = {
             'userId': user.id,
             'cityFrom': origin,
@@ -66,6 +76,10 @@ function Home() {
             'tripReturn': tripReturn,
         }
         dispatch(createOneBooking(payload))
+    }
+
+    const noUserRedirect = () => {
+        return <Redirect to='/login'/>
     }
 
     const getLastIATA = (array) => {
@@ -183,16 +197,19 @@ function Home() {
                                 <div className='searchResultsLiDiv'>Flight Number:
                                     <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
                                 </div>
-                                <button className='searchResultsButton' onClick={() => {
-                                    setAirline(flight.validatingAirlineCodes[0])
-                                    setStart(format(flight.itineraries[0].segments[0].arrival.at))
-                                    setEnd(format(flight.itineraries[0].segments[0].departure.at))
-                                    setFlightNum((flight.validatingAirlineCodes + flight.itineraries[0].segments[0].number))
-                                    setPrice(flight.price.total)
-                                    setTripReturn(format(getLastDeparture(flight)))
-                                    bookFlight()
-                                }}
-                                >Book Flight</button>
+                                {user ?
+                                    <button className='searchResultsButton' onClick={() => {
+                                        setAirline(flight.validatingAirlineCodes[0])
+                                        setStart(format(flight.itineraries[0].segments[0].arrival.at))
+                                        setEnd(format(flight.itineraries[0].segments[0].departure.at))
+                                        setFlightNum((flight.validatingAirlineCodes + flight.itineraries[0].segments[0].number))
+                                        setPrice(flight.price.total)
+                                        setTripReturn(format(getLastDeparture(flight)))
+                                        bookFlight()
+                                    }}
+                                    >Book Flight</button> :
+                                    <button className='searchResultsButton'>Login to Book</button>
+                                }
                             </li>
                         ))}
                     </ul>
