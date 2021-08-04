@@ -49,8 +49,8 @@ const SignUpForm = () => {
   }
 
   const demoSubmit = async() => {
-    setEmail('demo@aa.io')
-    setPassword('password')
+    const email = 'demo@aa.io'
+    const password = 'password'
     const data = await dispatch(login(email, password))
   };
 
