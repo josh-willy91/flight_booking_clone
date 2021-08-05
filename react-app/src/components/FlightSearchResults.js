@@ -58,7 +58,7 @@ function FlightSearchResults({ flight, origin, destination }) {
             'tripReturn': tripReturn,
         }
         await dispatch(createOneBooking(payload))
-        // history.push(`/user/${user.id}`)
+        history.push(`/users/${user.id}`)
     }
 
     const bookFlightButton = () => {
