@@ -18,9 +18,10 @@ function Home() {
 
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
-    const [start, setStart] = useState('');
-    const [end, setEnd] = useState('');
+    // const [start, setStart] = useState('');
+    // const [end, setEnd] = useState('');
 
+    console.log(origin, '===24====')
 
     return (
         <div className='homeDiv'>

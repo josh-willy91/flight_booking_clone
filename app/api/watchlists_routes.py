@@ -4,7 +4,7 @@ import os
 from flask import Flask,  Blueprint, request
 from flask.wrappers import Response
 from flask_login import login_required
-from app.models import db, User, Watchlist, user
+from app.models import db, User, Watchlist
 from amadeus import Client, ResponseError
 
 

@@ -67,7 +67,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
                     name='origin'
                     value={origin}
                     required
-                    onChange={(e) => setOrigin(e.target.value)}
+                    onChange={updateOrigin}
                 ></input>
             </div>
             <div className='searchInputDivOrigin'>
