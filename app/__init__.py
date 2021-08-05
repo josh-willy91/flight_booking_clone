@@ -75,4 +75,10 @@ def inject_csrf_token(response):
 def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
+    if path == 'login.jpg':
+        return app.send_static_file('login.jpg')
+    if path == 'searchBackground.jpg':
+        return app.send_static_file('searchBackground.jpg')
+    if path == 'signup.jpg':
+        return app.send_static_file('signup.jpg')
     return app.send_static_file('index.html')
