@@ -9,7 +9,7 @@ import '../styles/home.css'
 
 
 
-function FlightSearchResults({ flight, origin, destination, start, end }) {
+function FlightSearchResults({ flight, origin, destination }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector((state) => state.session.user)

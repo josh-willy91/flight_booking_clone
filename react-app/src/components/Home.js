@@ -22,48 +22,13 @@ function Home() {
     const [end, setEnd] = useState('');
 
 
-    const updateOrigin = (event) => {
-        const value = event.target.value
-        // const format = value.toUppercase()
-        console.log(value, '======31=========')
-        setOrigin(value)
-        console.log(origin, '=======33========')
-    }
-    const updateDestination = (event) => setDestination(event.target.value)
-    const updateStart = (event) => setStart(event.target.value)
-    const updateEnd = (event) => setEnd(event.target.value)
-
-
-    const searchFlights = (event) => {
-        event.preventDefault();
-        if (user) {
-            const payload = {
-                userId: user.id,
-                origin,
-                destination,
-                start,
-                end
-            }
-            dispatch(searchAllFlights(payload))
-        } else {
-            const payload = {
-                userId: false,
-                origin,
-                destination,
-                start,
-                end
-            }
-            dispatch(createOneBooking(payload))
-        }
-    }
-
-
     return (
         <div className='homeDiv'>
             <img src="images/searchBackground.jpg" alt="" className="searchBackground" />
             <div className='searchDiv'>
                 <h3>Search Flights</h3>
-                <FlightSearchForm/>
+                <FlightSearchForm origin={origin} setOrigin={setOrigin}
+                    destination={destination} setDestination={setDestination}/>
             </div>
             <div className='searchResultsDiv'>
                 {searchResults ?
@@ -71,8 +36,7 @@ function Home() {
                         <h3>Search Results</h3>
                         <ul>
                             {searchResults && searchResults.flight.map((flightDetails) => (
-                                <FlightSearchResults flight={flightDetails} origin={origin} destination={destination}
-                                    start={start} end={end}/>
+                                <FlightSearchResults flight={flightDetails} origin={origin} destination={destination}/>
                                 // flight, origin, destination, start, end
                             ))}
                         </ul>

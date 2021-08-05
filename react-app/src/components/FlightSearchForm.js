@@ -10,13 +10,13 @@ import '../styles/home.css'
 
 
 
-function FlightSearchForm() {
+function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector((state) => state.session.user)
 
-    const [origin, setOrigin] = useState('');
-    const [destination, setDestination] = useState('');
+    // const [origin, setOrigin] = useState('');
+    // const [destination, setDestination] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
 
