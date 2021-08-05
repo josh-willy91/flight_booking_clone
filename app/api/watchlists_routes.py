@@ -1,6 +1,6 @@
 from logging import error
 import os
-import amadeus
+# import amadeus
 from flask import Flask,  Blueprint, request
 from flask.wrappers import Response
 from flask_login import login_required
