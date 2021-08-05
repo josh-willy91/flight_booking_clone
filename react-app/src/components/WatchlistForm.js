@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { watchlistDetails, deleteOneWatchlist, createOneWatchlist, editOneWatchlist } from '../store/dashboard';
-import { bookingDetails, deleteOneBooking, createOneBooking } from '../store/dashboard';
+import { createOneWatchlist } from '../store/dashboard';
+import ModalWatchlistQuestion from './ModalWatchlistQuestion';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import '../styles/dashboard.css'
 
 
 function WatchlistForm({ origin, setOrigin, destination, setDestination,
-    price, setPrice, start, setStart, tripReturn, setTripReturn }) {
+    price, setPrice, start, setStart, tripReturn, setTripReturn, openModal, closeModal }) {
 
     const dispatch = useDispatch()
     const { userId } = useParams();
@@ -34,18 +34,16 @@ function WatchlistForm({ origin, setOrigin, destination, setDestination,
             'tripReturn': tripReturn,
             'userId': userId
         }
-        console.log(payload, '==================')
         await dispatch(createOneWatchlist(payload))
         window.location.reload();
     }
 
     return (
         <div className='watchlistsDiv'>
-            <h3>Watchlists</h3>
-            <button className='watchlistsShowP'>?</button>
-            <p className='watchlistsP'>What is a watchlist?... It's a convinient way to track flights you may be interested in.
-                Simply create a watchlist for a destination you'd like to go to.
-                Search filters, such as price, will only show flights that meet all criteria.</p>
+            <h3>Watchlists
+                <button className='watchlistsShowP'>?</button>
+            </h3>
+            {/* <ModalWatchlistQuestion openModal={openModal} closeModal={closeModal}/> */}
             <div className='watchlistsFormDiv'>
                 <form className='watchlistsForm' onSubmit={submitWatchlistForm}>
                     <div>

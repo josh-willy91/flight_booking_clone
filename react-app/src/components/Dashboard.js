@@ -50,15 +50,9 @@ function Dashboard() {
     }
   }, [flightId])
 
-  useEffect(() => {
-    if(watchlistId) {
-      dispatch(deleteOneWatchlist(watchlistId))
-      window.location.reload();
-    }
-  }, [watchlistId])
-
   const deleteWatchlist = async(watchlistId) => {
     await dispatch(deleteOneWatchlist(watchlistId))
+    window.location.reload();
   }
 
   const getLastIATA = (array) => {
@@ -122,7 +116,10 @@ function Dashboard() {
         <WatchlistForm origin={origin} setOrigin={setOrigin} destination={destination}
         setDestination={setDestination} price={price} setPrice={setPrice} start={start}
         setStart={setStart} tripReturn={tripReturn} setTripReturn={setTripReturn}/>
-        <ModalWatchlistForm openModal={openModal} closeModal={() => setOpenModal(false)}/>
+        <ModalWatchlistForm origin={origin} setOrigin={setOrigin} destination={destination}
+        setDestination={setDestination} price={price} setPrice={setPrice} start={start}
+        setStart={setStart} tripReturn={tripReturn} setTripReturn={setTripReturn}
+        watchlistId={watchlistId} openModal={openModal} closeModal={() => setOpenModal(false)}/>
         <div className='watchlistsSearchDiv'>
           <ul className='watchlistsSearchUl'>
             {watchlists && watchlists.watchlist_list.map((details) => (
@@ -136,7 +133,10 @@ function Dashboard() {
                   <div>Price: {details.price ? `Less than $${details.price}`: 'No limit set'}</div>
                   <div>
                     <button onClick={() => deleteWatchlist(details.id)}>Delete Watchlist</button>
-                    <button onClick={() => setOpenModal(true)}> Edit Watchlist</button>
+                    <button onClick={() => {
+                      setOpenModal(true)
+                      setWatchlistId(details.id)}
+                    }> Edit Watchlist</button>
                   </div>
                 </div>
                 <div className='carousel'>

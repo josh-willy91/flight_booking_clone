@@ -1,0 +1,78 @@
+
+
+.modal_wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal_content {
+    position: absolute;
+    background-color: rgb(247, 243, 230);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.x_button_div {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.x_button_div button {
+    background-color: rgb(0, 55, 138);
+    color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.modalWatchlistsForm {
+    background-color:white;
+    margin: 20px;
+    padding: 20px;
+    border: black solid 1px;
+    border-radius: 5px;
+}
+
+.modalWatchlistsForm div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalWatchlistsForm input {
+    width: 150px;
+    margin: 3px;
+    padding: 3px;
+}
+
+.modalWatchlistsForm label {
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+}
+
+.modalFormSubmit {
+    background-color: rgb(0, 55, 138);
+    color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+}

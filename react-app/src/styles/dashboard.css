@@ -12,6 +12,7 @@
     '. .'
     ;
     width: 100%;
+    min-height: 100vh;
 }
 
 .bookingsDiv {
@@ -93,7 +94,32 @@
     background-color: white;
 }
 
-.watchlistsFormDiv button {
+.watchlistsForm {
+    background-color:white;
+    margin: 20px;
+    padding: 20px;
+    margin-right: 55%;
+    min-width: 300px;
+}
+
+.watchlistsForm div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.watchlistsForm input {
+    width: 150px;
+    margin: 3px;
+    padding: 3px;
+}
+
+.watchlistsForm label {
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+}
+
+.watchlistsForm button {
     background-color: rgb(0, 55, 138);
     color: white;
     border: solid black 1px;
