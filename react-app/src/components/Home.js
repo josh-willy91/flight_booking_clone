@@ -22,7 +22,6 @@ function Home() {
     // const [end, setEnd] = useState('');
 
 
-
     return (
         <div className='homeDiv'>
             <img src="images/searchBackground.jpg" alt="" className="searchBackground" />
