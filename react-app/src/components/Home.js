@@ -18,8 +18,9 @@ function Home() {
 
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
-    const [start, setStart] = useState('');
-    const [end, setEnd] = useState('');
+    // const [start, setStart] = useState('');
+    // const [end, setEnd] = useState('');
+
 
 
     return (
