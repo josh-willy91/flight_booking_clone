@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: row;
     background-color: rgb(247, 243, 230);
+    min-height: 100vh;
+
 }
 
 .signupImg {

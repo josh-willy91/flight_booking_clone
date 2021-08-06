@@ -56,7 +56,7 @@ const SignUpForm = () => {
 
   return (
     <div className='signupDiv'>
-      <img className='signupImg' src="images/signup.jpg" alt=""/>
+      {/* <img className='signupImg' src="images/signup.jpg" alt=""/> */}
       <div className='form_wrapper'>
         <form className='signupForm' onSubmit={onSignUp}>
           <h3>Signup</h3>

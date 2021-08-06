@@ -39,7 +39,7 @@ function Home() {
 
     return (
         <div className='homeDiv'>
-            <img src="images/searchBackground.jpg" alt="" className="searchBackground" />
+            {/* <img src="images/searchBackground.jpg" alt="" className="searchBackground" /> */}
             <div className='searchDiv'>
                 <h3>Search Flights</h3>
                 <FlightSearchForm origin={origin} setOrigin={setOrigin}

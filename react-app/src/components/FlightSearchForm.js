@@ -82,7 +82,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
                 <input
                     id = 'originInput'
                     type='text'
-                    placeholder='Leaving from'
+                    placeholder='Airport leaving from ex: MIA'
                     name='origin'
                     value={origin}
                     required
@@ -104,7 +104,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
                 <input
                     id = 'destinationInput'
                     type='text'
-                    placeholder='Going to'
+                    placeholder='Airport going to ex: JFK'
                     name='destination'
                     value={destination}
                     required
