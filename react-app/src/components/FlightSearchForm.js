@@ -20,6 +20,23 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
 
+    // const form = document.getElementById('formValidation')
+    // const originInput = document.getElementById('originInput')
+    // const departureInput = document.getElementById('departureInput')
+    // const destinationInput = document.getElementById('destinationInput')
+    // const returnInput = document.getElementById('returnInput')
+    // const errorElement = document.getElementById('errorElement')
+
+    // form.addEventListener('submit', (event) => {
+    //     event.preventDefault()
+    //     let messages = []
+
+    //     if(messages.length > 0) {
+    //         event.preventDefault()
+
+    //     }
+    // })
+
 
     const updateOrigin = (event) => {
         const value = event.target.value
@@ -58,10 +75,12 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
 
 
     return (
-        <form onSubmit={searchFlights} className='searchForm'>
+        <form onSubmit={searchFlights} className='searchForm' id='formValidation'>
             <div className='searchInputDivOrigin'>
+                <div id = 'errorElement'>{}</div>
                 <label>Origin Airport</label>
                 <input
+                    id = 'originInput'
                     type='text'
                     placeholder='Leaving from'
                     name='origin'
@@ -73,6 +92,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
             <div className='searchInputDivOrigin'>
                 <label>Departure Date</label>
                 <input
+                    id = 'departureInput'
                     type='date'
                     name='departure'
                     value={start}
@@ -82,6 +102,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
             <div className='searchInputDivDestination'>
                 <label>Destination Airport</label>
                 <input
+                    id = 'destinationInput'
                     type='text'
                     placeholder='Going to'
                     name='destination'
@@ -93,6 +114,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
             <div className='searchInputDivDestination'>
                 <label>Return Date</label>
                 <input
+                    id = 'returnInput'
                     type='date'
                     name='return'
                     value={end}

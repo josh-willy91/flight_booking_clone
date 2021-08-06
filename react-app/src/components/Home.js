@@ -21,6 +21,21 @@ function Home() {
     // const [start, setStart] = useState('');
     // const [end, setEnd] = useState('');
 
+    // useEffect(() => {
+
+    //     if(origin) {
+    //         const upperCase = origin.toUpperCase()
+    //         setOrigin()
+
+    //         // if(origin.includes(/#/)) {
+    //         //     console.log('error error error')
+    //         // }
+    //     }
+
+    // }, [origin])
+
+
+
 
     return (
         <div className='homeDiv'>
