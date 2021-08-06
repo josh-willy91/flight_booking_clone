@@ -75,54 +75,56 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
 
 
     return (
-        <form onSubmit={searchFlights} className='searchForm' id='formValidation'>
-            <div className='searchInputDivOrigin'>
-                <div id = 'errorElement'>{}</div>
-                <label>Origin Airport</label>
-                <input
-                    id = 'originInput'
-                    type='text'
-                    placeholder='Airport leaving from ex: MIA'
-                    name='origin'
-                    value={origin}
-                    required
-                    onChange={updateOrigin}
-                ></input>
-            </div>
-            <div className='searchInputDivOrigin'>
-                <label>Departure Date</label>
-                <input
-                    id = 'departureInput'
-                    type='date'
-                    name='departure'
-                    value={start}
-                    onChange={updateStart}
-                ></input>
-            </div>
-            <div className='searchInputDivDestination'>
-                <label>Destination Airport</label>
-                <input
-                    id = 'destinationInput'
-                    type='text'
-                    placeholder='Airport going to ex: JFK'
-                    name='destination'
-                    value={destination}
-                    required
-                    onChange={updateDestination}
-                ></input>
-            </div>
-            <div className='searchInputDivDestination'>
-                <label>Return Date</label>
-                <input
-                    id = 'returnInput'
-                    type='date'
-                    name='return'
-                    value={end}
-                    onChange={updateEnd}
-                ></input>
-            </div>
-            <button className='searchFormButton'>Search Flights</button>
-        </form>
+        <div className='form_wrapper'>
+            <form onSubmit={searchFlights} className='searchForm' id='formValidation'>
+                <div className='searchInputDivOrigin'>
+                    <div id = 'errorElement'>{}</div>
+                    <label>Origin Airport</label>
+                    <input
+                        id = 'originInput'
+                        type='text'
+                        placeholder='Airport leaving from ex: MIA'
+                        name='origin'
+                        value={origin}
+                        required
+                        onChange={updateOrigin}
+                    ></input>
+                </div>
+                <div className='searchInputDivOrigin'>
+                    <label>Departure Date</label>
+                    <input
+                        id = 'departureInput'
+                        type='date'
+                        name='departure'
+                        value={start}
+                        onChange={updateStart}
+                    ></input>
+                </div>
+                <div className='searchInputDivDestination'>
+                    <label>Destination Airport</label>
+                    <input
+                        id = 'destinationInput'
+                        type='text'
+                        placeholder='Airport going to ex: JFK'
+                        name='destination'
+                        value={destination}
+                        required
+                        onChange={updateDestination}
+                    ></input>
+                </div>
+                <div className='searchInputDivDestination'>
+                    <label>Return Date</label>
+                    <input
+                        id = 'returnInput'
+                        type='date'
+                        name='return'
+                        value={end}
+                        onChange={updateEnd}
+                    ></input>
+                </div>
+                <button className='searchFormButton'>Search Flights</button>
+            </form>
+        </div>
     )
 
 }

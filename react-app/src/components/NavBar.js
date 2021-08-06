@@ -35,7 +35,7 @@ const NavBar = () => {
       <nav className='navbar'>
         <ul className='navbarUl'>
           <li className='navBarLeft'>
-            <NavLink className='navLink' className='middle' to='/bookYeah' exact={true} activeClassName='active'>
+            <NavLink className='navLink' className='middle' to='/bookyeah' exact={true} activeClassName='active'>
               Home
             </NavLink>
           </li>

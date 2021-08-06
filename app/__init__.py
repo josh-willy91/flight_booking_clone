@@ -17,6 +17,7 @@ from .seeds import seed_commands
 from .config import Config
 
 app = Flask(__name__)
+CORS(app)
 
 # Setup login manager
 login = LoginManager(app)
