@@ -21,8 +21,8 @@ def get_watchlists(id):
     for watchlist_obj in watchlist_list:
 
         id = watchlist_obj['id']
-        origin = watchlist_obj['origin']
-        destination = watchlist_obj['destination']
+        origin = watchlist_obj['origin'].upper()
+        destination = watchlist_obj['destination'].upper()
         departure_date = watchlist_obj['depart_date']
         trip_return = watchlist_obj['trip_return']
         price = watchlist_obj['price']

@@ -1,37 +1,59 @@
 import os
-import amadeus
 import requests
 from flask import Flask,  Blueprint, request
 from app.models import db, User, Booking
 from amadeus import Client
+from app.forms.search_form import SearchForm
 
 home_routes = Blueprint('bookyeah', __name__)
+
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 
 @home_routes.route('search', methods=['POST'])
 def search_flights():
     request_payload = request.get_json()
     user_id = request_payload['userId']
-    origin = request_payload['origin']
-    destination = request_payload['destination']
+    origin = request_payload['origin'].upper()
+    destination = request_payload['destination'].upper()
     departure_date = request_payload['start']
     return_date = request_payload['end']
+    # print(departure_date, return_date, '========dates===========')
 
-    amadeus = Client(
-        client_id=os.environ.get('API_PUBLIC_KEY'),
-        client_secret=os.environ.get('API_SECRET_KEY')
-    )
-    response = amadeus.shopping.flight_offers_search.get(
-        originLocationCode = origin,
-        destinationLocationCode = destination,
-        departureDate = departure_date,
-        returnDate = return_date,
-        adults = 1,
-        currencyCode = 'USD',
-        max = 50,
-    )
-    # print(response.data)
-    return {'flight': response.data}
+    form = SearchForm()
+    form.data['return_date'] = return_date
+    form.data['departure_date'] = departure_date
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data, '==============form data==================')
+    if(form.validate_on_submit()):
+
+        amadeus = Client(
+            client_id=os.environ.get('API_PUBLIC_KEY'),
+            client_secret=os.environ.get('API_SECRET_KEY')
+        )
+        response = amadeus.shopping.flight_offers_search.get(
+            originLocationCode = origin,
+            destinationLocationCode = destination,
+            departureDate = departure_date,
+            returnDate = return_date,
+            adults = 1,
+            currencyCode = 'USD',
+            max = 50,
+        )
+        # print(response.data)
+        return {'flight': response.data}
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}
+
 
 
     # bookings_query = Booking.query.filter_by(user_id = id).all()
