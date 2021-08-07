@@ -43,9 +43,9 @@ function Dashboard() {
     dispatch(watchlistDetails(userId))
   }, [])
 
-  useEffect(() => {
+  useEffect(async() => {
     if(flightId) {
-      dispatch(deleteOneBooking({flightId}))
+      await dispatch(deleteOneBooking({flightId}))
       window.location.reload();
     }
   }, [flightId])

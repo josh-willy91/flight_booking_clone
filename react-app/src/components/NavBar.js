@@ -14,19 +14,19 @@ const NavBar = () => {
       <nav className='navbar'>
         <ul className='navbarUl'>
           <h2 className='logo'>BookYeah</h2>
-          <li className='navBarLeft'>
+          <div className='navBarLeft'>
             <NavLink className='navLink' className='middle' to='/bookyeah' exact={true} activeClassName='active'>
               Home
             </NavLink>
-          </li>
-          <li className='navBarLeft'>
+          </div>
+          <div className='navBarLeft'>
             <NavLink className='navLink' className='left' to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
               Dashboard
             </NavLink>
-          </li>
-          <li className='navBut'>
+          </div>
+          <div className='navBut'>
             <LogoutButton />
-          </li>
+          </div>
         </ul>
       </nav>
     );
@@ -34,21 +34,21 @@ const NavBar = () => {
     return (
       <nav className='navbar'>
         <ul className='navbarUl'>
-          <li className='navBarLeft'>
+          <div className='navBarLeft'>
             <NavLink className='navLink' className='middle' to='/bookyeah' exact={true} activeClassName='active'>
               Home
             </NavLink>
-          </li>
-          <li className='navBarLeft'>
+          </div>
+          <div className='navBarLeft'>
             <NavLink className='navLink' className='left' to='/login' exact={true} activeClassName='active'>
               Login
             </NavLink>
-          </li>
-          <li className='navBarLeft'>
+          </div>
+          <div className='navBarLeft'>
             <NavLink className='navLink' className='right' to='/sign-up' exact={true} activeClassName='active'>
               Sign Up
             </NavLink>
-          </li>
+          </div>
         </ul>
       </nav>
     );
