@@ -71,7 +71,7 @@ def get_watchlists(id):
                 )
                 search_results[f'{id}'] = response.data
             except ResponseError as error:
-                print(error, '===================line 74============================')
+                print(error, '===================errors============================')
 
     # watchlist_data_obj['watchlist_list'] = watchlist_list
     # print(watchlist_data_obj, '=====================================================')
