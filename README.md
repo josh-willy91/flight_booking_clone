@@ -1,5 +1,5 @@
 # BookYeah
-BookYeah is a rough clone of Expedia.  It mainly copies the flight booking capabilities of Expedia or other online travel agencies.  I'm a passionate traveler so creating an app that made the flight process easier and more transparent was a fun experience.  After creating the flight search feature, I definitely found myself searching for flight prices to Vienna, Honolulu, and other locations I want to visit so I hope you enjoy it as well!
+BookYeah is a rough clone of Expedia.  It mainly copies the flight booking capabilities of Expedia or other online travel agencies.  I'm a passionate traveler so creating an app that made the flight process easier and more transparent was a fun experience.  After creating the flight search feature, I definitely found myself searching for flight prices to Vienna, Honolulu, and other locations I want to visit so I hope you enjoy it as well!!!
 
 # Technologies Used
 
