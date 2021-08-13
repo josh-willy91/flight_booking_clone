@@ -25,5 +25,5 @@ def check_dates(form, field):
 class SearchForm(FlaskForm):
     origin = StringField('origin', validators=[DataRequired(), special_char_check])
     destination = StringField('destination', validators=[DataRequired(), special_char_check])
-    departure_date = DateField('departure_date', validators=[DataRequired(), check_dates])
+    # departure_date = DateField('departure_date', validators=[DataRequired(), check_dates])
     # return_date = DateField('return_date', validators=[DataRequired(), check_dates])
