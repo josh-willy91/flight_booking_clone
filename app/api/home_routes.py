@@ -4,6 +4,8 @@ from flask import Flask,  Blueprint, request
 from app.models import db, User, Booking
 from amadeus import Client
 from app.forms.search_form import SearchForm
+from datetime import date
+
 
 home_routes = Blueprint('bookyeah', __name__)
 
@@ -33,7 +35,10 @@ def search_flights():
     form.data['return_date'] = return_date
     form.data['departure_date'] = departure_date
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data, '==============form data==================')
+
+    today = date.today()
+    # print(form.data, '==============form data==================')
+    print(today, '==============today date==================')
     if(form.validate_on_submit()):
 
         amadeus = Client(
