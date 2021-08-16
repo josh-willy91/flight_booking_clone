@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist, createOneBooking, createOneWatchlist } from '../store/dashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
 import WatchlistForm from './WatchlistForm';
 import ModalWatchlistForm from './ModalWatchlistForm';
 import '../styles/dashboard.css'
@@ -77,6 +78,13 @@ function Dashboard() {
     return spitTime;
   };
 
+  const daysUntilFlight = (departDate) => {
+    let today = new Date()
+    let format = new Date(departDate)
+    let value = differenceInCalendarDays(format, today)
+    return value
+  }
+
   // const showHideElements = () => {
   //   let show = document.getElementById('showHide')
 
@@ -100,6 +108,7 @@ function Dashboard() {
         <ul className='bookingsUl'>
           {bookings && bookings.bookings_list.map((details) => (
             <li className='bookingsLi' key={details.id}>
+                <div>{daysUntilFlight(details.depart_date)} days until flight departure</div>
                 <div>Airline: {details.airline}</div>
                 <div>Price: ${details.price}</div>
                 <div>Leaving from {details.city_from}</div>
