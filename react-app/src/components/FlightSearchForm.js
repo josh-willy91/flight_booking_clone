@@ -41,13 +41,20 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     const updateOrigin = (event) => {
         const value = event.target.value
         // const format = value.toUppercase()
-        console.log(value, '======31=========')
+        // console.log(value, '======31=========')
         setOrigin(value)
-        console.log(origin, '=======33========')
+        // console.log(origin, '=======33========')
     }
     const updateDestination = (event) => setDestination(event.target.value)
-    const updateStart = (event) => setStart(event.target.value)
-    const updateEnd = (event) => setEnd(event.target.value)
+    const updateStart = (event) => {
+        setStart(event.target.value)
+        let today = new Date()
+        console.log(start, today, '========start 51=================')
+        if(start < today) {
+            console.log('conditional works')
+        }
+    }
+        const updateEnd = (event) => setEnd(event.target.value)
 
 
     const searchFlights = async(event) => {
@@ -60,6 +67,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
                 start,
                 end
             }
+            console.log(payload, '==========payload============')
             await dispatch(searchAllFlights(payload))
         } else {
             const payload = {

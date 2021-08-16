@@ -18,21 +18,21 @@ function Home() {
 
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
-    // const [start, setStart] = useState('');
-    // const [end, setEnd] = useState('');
+    const [start, setStart] = useState('');
+    const [end, setEnd] = useState('');
 
-    // useEffect(() => {
 
-    //     if(origin) {
-    //         const upperCase = origin.toUpperCase()
-    //         setOrigin()
 
-    //         // if(origin.includes(/#/)) {
-    //         //     console.log('error error error')
-    //         // }
-    //     }
+    useEffect(() => {
 
-    // }, [origin])
+        // if(origin) {
+        //     const upperCase = origin.toUpperCase()
+        //     setOrigin(upperCase)
+        //     console.log(origin, '==============start==================')
+
+        console.log(start, '=============start=================')
+
+    }, [start])
 
 
 
@@ -43,7 +43,8 @@ function Home() {
             <div className='searchDiv'>
                 <h3>Search Flights</h3>
                 <FlightSearchForm origin={origin} setOrigin={setOrigin}
-                    destination={destination} setDestination={setDestination}/>
+                    destination={destination} setDestination={setDestination}
+                    start={start} end={end} setStart={setStart} setEnd={setEnd}/>
             </div>
             <div className='searchResultsDiv'>
                 {searchResults ?
