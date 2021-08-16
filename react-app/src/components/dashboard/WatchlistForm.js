@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { createOneWatchlist } from '../../store/dashboard';
+import ModalWatchlistQuestion from './ModalWatchlistQuestion';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { editOneWatchlist } from '../store/dashboard';
-import ReactDOM from 'react-dom';
-import '../styles/modalWatchlistForm.css'
+import '../../styles/dashboard.css'
 
 
-function ModalWatchlistForm({ origin, setOrigin, destination, setDestination,
-    price, setPrice, start, setStart, tripReturn, setTripReturn, watchlistId,
-    openModal, closeModal, children}) {
+function WatchlistForm({ origin, setOrigin, destination, setDestination,
+    price, setPrice, start, setStart, tripReturn, setTripReturn, openModal, closeModal }) {
+
     const dispatch = useDispatch()
     const { userId } = useParams();
 
@@ -27,7 +27,6 @@ function ModalWatchlistForm({ origin, setOrigin, destination, setDestination,
         }
 
         const payload = {
-            'watchlistId': watchlistId,
             'origin': origin,
             'destination': destination,
             'price': price,
@@ -35,25 +34,18 @@ function ModalWatchlistForm({ origin, setOrigin, destination, setDestination,
             'tripReturn': tripReturn,
             'userId': userId
         }
-        console.log(payload, '==================')
-        await dispatch(editOneWatchlist(payload))
+        await dispatch(createOneWatchlist(payload))
         window.location.reload();
     }
 
-    if(!openModal) {
-        return null;
-    }
-
-    // ReactDOM.createPortal
-    return(
-        <div className='modal_wrapper'>
-            <div className='modal_background' onClick={closeModal}/>
-            <div className='modal_content'>
-                <div className='x_button_div'>
-                    <button onClick={closeModal}>X</button>
-                </div>
-                <form className='modalWatchlistsForm' onSubmit={submitWatchlistForm}>
-                    <h3>Edit Your Watchlist</h3>
+    return (
+        <div className='watchlistsDiv'>
+            <h3>Watchlists
+                <button className='watchlistsShowP'>?</button>
+            </h3>
+            {/* <ModalWatchlistQuestion openModal={openModal} closeModal={closeModal}/> */}
+            <div className='watchlistsFormDiv'>
+                <form className='watchlistsForm' onSubmit={submitWatchlistForm}>
                     <div>
                         <label>Origin Airport</label>
                         <input
@@ -108,13 +100,11 @@ function ModalWatchlistForm({ origin, setOrigin, destination, setDestination,
                             onChange={updateReturn}
                         ></input>
                     </div>
-                    <button className='modalFormSubmit' type='submit'>Submit Edits to Watchlist</button>
+                    <button type='submit'>Create Watchlist</button>
                 </form>
             </div>
         </div>
-        // ,
-        // document.getElementById('portal')
     )
 }
 
-export default ModalWatchlistForm;
+export default WatchlistForm;

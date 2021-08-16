@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist, createOneBooking, createOneWatchlist } from '../store/dashboard';
+import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist, createOneBooking, createOneWatchlist } from '../../store/dashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
 import WatchlistForm from './WatchlistForm';
 import ModalWatchlistForm from './ModalWatchlistForm';
-import '../styles/dashboard.css'
+import Bookings from './Bookings';
+import '../../styles/dashboard.css'
 
 
 function Dashboard() {
@@ -78,13 +79,6 @@ function Dashboard() {
     return spitTime;
   };
 
-  const daysUntilFlight = (departDate) => {
-    let today = new Date()
-    let format = new Date(departDate)
-    let value = differenceInCalendarDays(format, today)
-    return value
-  }
-
   // const showHideElements = () => {
   //   let show = document.getElementById('showHide')
 
@@ -103,24 +97,7 @@ function Dashboard() {
   }
   return (
     <div className='dashboardDiv'>
-      <div className='bookingsDiv'>
-        <h3>Bookings</h3>
-        <ul className='bookingsUl'>
-          {bookings && bookings.bookings_list.map((details) => (
-            <li className='bookingsLi' key={details.id}>
-                <div>{daysUntilFlight(details.depart_date)} days until flight departure</div>
-                <div>Airline: {details.airline}</div>
-                <div>Price: ${details.price}</div>
-                <div>Leaving from {details.city_from}</div>
-                <div>Departs on {details.depart_date}</div>
-                <div>Arriving in {details.city_to}</div>
-                <div>On {details.depart_date}</div>
-                <div>Return flight leaves {details.trip_return}</div>
-                <button onClick={(() => setFlightId(details.id))}>Cancel Booking</button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Bookings setFlightId={setFlightId}/>
       <div className='watchlistsDiv'>
         <WatchlistForm origin={origin} setOrigin={setOrigin} destination={destination}
         setDestination={setDestination} price={price} setPrice={setPrice} start={start}

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { editOneWatchlist } from '../store/dashboard';
+import { editOneWatchlist } from '../../store/dashboard';
 import ReactDOM from 'react-dom';
-import '../styles/modalWatchlistForm.css'
+import '../../styles/modalWatchlistForm.css'
 
 
 function ModalWatchlistQuestion({openModal, closeModal}) {
