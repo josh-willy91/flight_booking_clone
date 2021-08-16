@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Dashboard from './components/Dashboard';
 import Landing from './components/Landing';
-import Home from './components/Home';
+import Home from './components/home/Home'
 import { authenticate } from './store/session';
 
 

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { searchAllFlights } from '../store/home';
-import { createOneBooking } from '../store/dashboard';
+import { searchAllFlights } from '../../store/home';
+import { createOneBooking } from '../../store/dashboard';
 import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
 import FlightSearchResults from './FlightSearchResults';
-import '../styles/home.css'
+import '../../styles/home.css'
+
+
 
 
 
@@ -47,15 +49,17 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
         // console.log(origin, '=======33========')
     }
     const updateDestination = (event) => setDestination((event.target.value).toUpperCase())
-    const updateStart = (event) => setStart(event.target.value)
-    //     setStart(event.target.value)
-    //     let today = new Date()
-    //     // let dateFormat = format(today, 'yyyy')
-    //     console.log(start, today, '========start 51=================')
-    //     if(start > today) {
-    //         console.log('conditional works')
-    //     }
-    // }
+    const updateStart = (event) => {
+        setStart(event.target.value)
+        let today = new Date()
+        // let today = current.toString()
+        let dateFormat = format(today, 'yyyy')
+        console.log(typeof(today))
+        console.log(today, dateFormat, '======today==============')
+        if(start > today) {
+            console.log('conditional works')
+        }
+    }
         const updateEnd = (event) => setEnd(event.target.value)
 
 

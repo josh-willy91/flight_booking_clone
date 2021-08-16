@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
-import { searchAllFlights } from '../store/home';
-import { createOneBooking } from '../store/dashboard';
+import { searchAllFlights } from '../../store/home';
+import { createOneBooking } from '../../store/dashboard';
 import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
-import '../styles/home.css'
+import '../../styles/home.css'
+
+
 
 
 
