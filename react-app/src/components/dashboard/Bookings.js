@@ -15,7 +15,12 @@ function Bookings({setFlightId}) {
         let today = new Date()
         let format = new Date(departDate)
         let value = differenceInCalendarDays(format, today)
-        return value
+        if(value === 0) {
+            return 'Your flight departs today!!!'
+        } else if(value < 0) {
+            return null
+        }
+        return `${value} days until flight departure`
     }
 
 
@@ -25,7 +30,7 @@ function Bookings({setFlightId}) {
             <ul className='bookingsUl'>
             {bookings && bookings.bookings_list.map((details) => (
                 <li className='bookingsLi' key={details.id}>
-                    <div>{daysUntilFlight(details.depart_date)} days until flight departure</div>
+                    <div>{daysUntilFlight(details.depart_date)}</div>
                     <div>Airline: {details.airline}</div>
                     <div>Price: ${details.price}</div>
                     <div>Leaving from {details.city_from}</div>
