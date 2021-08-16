@@ -39,21 +39,23 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
 
 
     const updateOrigin = (event) => {
-        const value = event.target.value
+        const value = (event.target.value).toUpperCase()
+        console.log(value, 'vale========================')
         // const format = value.toUppercase()
         // console.log(value, '======31=========')
         setOrigin(value)
         // console.log(origin, '=======33========')
     }
-    const updateDestination = (event) => setDestination(event.target.value)
-    const updateStart = (event) => {
-        setStart(event.target.value)
-        let today = new Date()
-        console.log(start, today, '========start 51=================')
-        if(start < today) {
-            console.log('conditional works')
-        }
-    }
+    const updateDestination = (event) => setDestination((event.target.value).toUpperCase())
+    const updateStart = (event) => setStart(event.target.value)
+    //     setStart(event.target.value)
+    //     let today = new Date()
+    //     // let dateFormat = format(today, 'yyyy')
+    //     console.log(start, today, '========start 51=================')
+    //     if(start > today) {
+    //         console.log('conditional works')
+    //     }
+    // }
         const updateEnd = (event) => setEnd(event.target.value)
 
 

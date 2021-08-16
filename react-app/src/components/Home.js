@@ -23,16 +23,16 @@ function Home() {
 
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        // if(origin) {
-        //     const upperCase = origin.toUpperCase()
-        //     setOrigin(upperCase)
-        //     console.log(origin, '==============start==================')
+    //     // if(origin) {
+    //     //     const upperCase = origin.toUpperCase()
+    //     //     setOrigin(upperCase)
+    //     //     console.log(origin, '==============start==================')
 
-        console.log(start, '=============start=================')
+    //     console.log(origin.toUpperCase(), '=============start=================')
 
-    }, [start])
+    // }, [origin])
 
 
 
