@@ -41,7 +41,6 @@ function Home() {
         <div className='homeDiv'>
             {/* <img src="images/searchBackground.jpg" alt="" className="searchBackground" /> */}
             <div className='searchDiv'>
-                <h3>Search Flights</h3>
                 <FlightSearchForm origin={origin} setOrigin={setOrigin}
                     destination={destination} setDestination={setDestination}
                     start={start} end={end} setStart={setStart} setEnd={setEnd}/>

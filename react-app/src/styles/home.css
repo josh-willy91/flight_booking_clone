@@ -29,23 +29,23 @@ body {
 }
 
 .searchDiv {
+    grid-area: searchBackground;
     display: flex;
-    flex-direction: column;
-    position: relative;
-    margin-top: 120px;
-    margin-left: 600px;
-    width: fit-content;
-    height: 140px;
+    justify-content: center;
+    align-items: center;
+
+    /* margin-left: 50%; */
+    /* position: relative; */
+    /* margin-top: 120px; */
+    /* margin-left: 600px; */
+    /* width: fit-content; */
+    /* height: 140px;
     background-color: rgba(255, 255, 255, .7);
     border: black solid 1px;
     border-radius: 8px;
     box-shadow: 0px 0px 20px 1px rgb(0, 55, 138);
-    padding: 15px;
+    padding: 15px; */
 }
-
-/* .searchDiv {
-    width: 100vh;
-} */
 
 .searchDiv h3 {
     display: flex;
