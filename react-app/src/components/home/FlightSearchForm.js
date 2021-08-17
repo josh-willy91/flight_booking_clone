@@ -50,17 +50,21 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     }
     const updateDestination = (event) => setDestination((event.target.value).toUpperCase())
     const updateStart = (event) => {
-        setStart(event.target.value)
+        // setStart(event.target.value)
+        let flightOut = event.target.value
         let today = new Date()
-        // let today = current.toString()
+        console.log(flightOut < today)
+
         let dateFormat = format(today, 'yyyy')
+
         console.log(typeof(today))
         console.log(today, dateFormat, '======today==============')
+
         if(start > today) {
             console.log('conditional works')
         }
     }
-        const updateEnd = (event) => setEnd(event.target.value)
+    const updateEnd = (event) => setEnd(event.target.value)
 
 
     const searchFlights = async(event) => {
