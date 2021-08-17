@@ -1,0 +1,32 @@
+
+
+
+.form_wrapper {
+    background-color: aqua;
+}
+
+.searchForm {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchForm div {
+    /* background-color: brown; */
+}
+
+.searchInputDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.searchFormButton {
+    color: white;
+    font-weight: bold;
+    background-color: rgb(0, 55, 138);
+    position: absolute;
+    margin-top: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}

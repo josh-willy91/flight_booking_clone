@@ -6,7 +6,7 @@ import { createOneBooking } from '../../store/dashboard';
 import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
 import FlightSearchResults from './FlightSearchResults';
-import '../../styles/home.css'
+import './styles/flightSearchForm.css'
 
 
 

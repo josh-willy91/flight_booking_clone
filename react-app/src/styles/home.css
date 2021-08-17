@@ -56,31 +56,6 @@ body {
     border-bottom: black solid 1px;
 }
 
-.form_wrapper {
-}
-
-.searchForm {
-    display: flex;
-    flex-direction: row;
-}
-
-.searchInputDiv {
-    display: flex;
-    flex-direction: column;
-}
-
-.searchForm button {
-    color: white;
-    font-weight: bold;
-    background-color: rgb(0, 55, 138);
-    position: absolute;
-    margin-top: 40px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
 .searchResultsDiv {
     grid-area: searchResultsDiv;
     display: flex;

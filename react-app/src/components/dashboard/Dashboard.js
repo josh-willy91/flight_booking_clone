@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { bookingDetails, deleteOneBooking, watchlistDetails, deleteOneWatchlist, createOneBooking, createOneWatchlist } from '../../store/dashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
 import WatchlistForm from './WatchlistForm';
 import ModalWatchlistForm from './ModalWatchlistForm';
 import Bookings from './Bookings';
@@ -86,7 +85,7 @@ function Dashboard() {
           setStart={setStart} tripReturn={tripReturn} setTripReturn={setTripReturn}
           watchlistId={watchlistId} openModal={openModal} closeModal={() => setOpenModal(false)} />
         <WatchlistSearch setOpenModal={setOpenModal} setWatchlistId={setWatchlistId}
-          deleteWatchlist={deleteWatchlist}/>
+          deleteWatchlist={deleteWatchlist} />
       </div>
     </div>
   );
