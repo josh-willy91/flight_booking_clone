@@ -42,7 +42,8 @@ function FlightSearchResults({ flight, origin, destination }) {
     //    min="2018-01-01" max="2018-12-31"></input>
 
     const getLastDeparture = (array) => {
-        const nested = array.itineraries[0].segments
+        const itenaryLength = array.itineraries.length - 1
+        const nested = array.itineraries[itenaryLength].segments
         const length = nested.length - 1;
         return nested[length].departure.at
     }
@@ -77,15 +78,17 @@ function FlightSearchResults({ flight, origin, destination }) {
         <li key={flight.id} className='searchResultsLi'>
             <div className='searchResultsRoute'>
                 {flight.oneWay === true ?
-                    <p className='searchResultsRoute'>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
-                    <p className='searchResultsRoute'>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</p>
+                    <p className='searchResultsRoute'>{flight.itineraries[0].segments[0].departure.iataCode} to
+                        {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
+                    <p className='searchResultsRoute'>{flight.itineraries[0].segments[0].departure.iataCode} to
+                        {getLastIATA(flight)}</p>
                 }
             </div>
             {flight.oneWay === true ?
                 <div className='searchResultsLiDiv'>One Way:
                     <p className='searchResultsLiP'>Yes</p>
                 </div> :
-                <div className='searchResultsLiDiv'>Layovers:
+                <div className='searchResultsLiDiv'>Stops:
                     <p className='searchResultsLiP'>{flight.itineraries[0].segments.length - 1}</p>
                 </div>
             }

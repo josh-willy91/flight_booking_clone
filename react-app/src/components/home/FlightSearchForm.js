@@ -50,7 +50,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     }
     const updateDestination = (event) => setDestination((event.target.value).toUpperCase())
     const updateStart = (event) => {
-        // setStart(event.target.value)
+        setStart(event.target.value)
         let flightOut = event.target.value
         let today = new Date()
         console.log(flightOut < today)
