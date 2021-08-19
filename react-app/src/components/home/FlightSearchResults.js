@@ -74,47 +74,65 @@ function FlightSearchResults({ flight, origin, destination }) {
         bookFlight(airline, start, end, flightNum, price, tripReturn)
     }
 
+    let noDuplicateFlightNums = {};
+
+    function noDuplicateFlights(array) {
+        const IATA = array.validatingAirlineCodes[0]
+        const planeNum = array.itineraries[0].segments[0].number
+        const flightNum = IATA + planeNum
+        console.log(flightNum)
+        console.log(noDuplicateFlightNums)
+
+        if(noDuplicateFlightNums[flightNum]) {
+            return false
+        } else {
+            noDuplicateFlightNums[flightNum] = 'true'
+            return true
+        }
+    }
+
     return (
         <li key={flight.id} className='searchResultsLi'>
-            <div className='searchResultsRoute'>
-                {flight.oneWay === true ?
-                    <p className='searchResultsRoute'>{flight.itineraries[0].segments[0].departure.iataCode} to
-                        {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
-                    <p className='searchResultsRoute'>{flight.itineraries[0].segments[0].departure.iataCode} to
-                        {getLastIATA(flight)}</p>
-                }
-            </div>
-            {flight.oneWay === true ?
-                <div className='searchResultsLiDiv'>One Way:
-                    <p className='searchResultsLiP'>Yes</p>
-                </div> :
-                <div className='searchResultsLiDiv'>Stops:
-                    <p className='searchResultsLiP'>{flight.itineraries[0].segments.length - 1}</p>
+            {noDuplicateFlights(flight) === true ? null : 'no'}
+                <div className='searchResultsRoute'>
+                    {flight.oneWay === true ?
+                        <p className='searchResultsRoute'>{flight.itineraries[0].segments[0].departure.iataCode} to
+                            {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
+                        <p className='searchResultsRoute'>{flight.itineraries[0].segments[0].departure.iataCode} to
+                            {getLastIATA(flight)}</p>
+                    }
                 </div>
-            }
-            <div className='searchResultsLiDiv'> Departs:
+                {flight.oneWay === true ?
+                    <div className='searchResultsLiDiv'>One Way:
+                        <p className='searchResultsLiP'>Yes</p>
+                    </div> :
+                    <div className='searchResultsLiDiv'>Stops:
+                    <p className='searchResultsLiP'>{flight.itineraries[0].segments.length - 1}</p>
+                    </div>
+                }
+                <div className='searchResultsLiDiv'> Departs:
                 <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].departure.at)}</p>
-            </div>
-            <div className='searchResultsLiDiv'>Arrival:
-                <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].arrival.at)}</p>
-            </div>
-            <div className='searchResultsLiDiv'>Return Flight:
-                <p className='searchResultsLiP'>{format(getLastDeparture(flight))}</p>
-            </div>
-            <div className='searchResultsLiDiv'>Price:
-                <p className='searchResultsLiP'>${flight.price.total}</p>
-            </div>
-            <div className='searchResultsLiDiv'>Airline Code:
-                <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}</p>
-            </div>
-            <div className='searchResultsLiDiv'>Flight Number:
-                <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
-            </div>
-            {user ?
-                <button className='searchResultsButton' onClick={bookFlightButton}
-                >Book Flight</button> :
-                <button className='searchResultsButton' onClick={noUserRedirect}>Login to Book</button>
-            }
+                </div>
+                <div className='searchResultsLiDiv'>Arrival:
+                    <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].arrival.at)}</p>
+                </div>
+                <div className='searchResultsLiDiv'>Return Flight:
+                    <p className='searchResultsLiP'>{format(getLastDeparture(flight))}</p>
+                </div>
+                <div className='searchResultsLiDiv'>Price:
+                    <p className='searchResultsLiP'>${flight.price.total}</p>
+                </div>
+                <div className='searchResultsLiDiv'>Airline Code:
+                    <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}</p>
+                </div>
+                <div className='searchResultsLiDiv'>Flight Number:
+                    <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
+                </div>
+                {user ?
+                    <button className='searchResultsButton' onClick={bookFlightButton}
+                    >Book Flight</button> :
+                    <button className='searchResultsButton' onClick={noUserRedirect}>Login to Book</button>
+                }
         </li>
     )
 }
