@@ -43,9 +43,9 @@ function FlightSearchResults({ flight, origin, destination }) {
 
     const getLastDeparture = (array) => {
         const itenaryLength = array.itineraries.length - 1
-        const nested = array.itineraries[itenaryLength].segments
-        const length = nested.length - 1;
-        return nested[length].departure.at
+        const nested = array.itineraries[itenaryLength].segments[0]
+        // const length = nested.length - 1;
+        return nested.departure.at
     }
 
     const bookFlight = async (airline, start, end, flightNum, price, tripReturn) => {
@@ -84,16 +84,16 @@ function FlightSearchResults({ flight, origin, destination }) {
         console.log(noDuplicateFlightNums)
 
         if(noDuplicateFlightNums[flightNum]) {
-            return false
+            return true
         } else {
             noDuplicateFlightNums[flightNum] = 'true'
-            return true
+            return false
         }
     }
 
     return (
         <li key={flight.id} className='searchResultsLi'>
-            {noDuplicateFlights(flight) === true ? null : 'no'}
+            {noDuplicateFlights(flight) === true ? null : null}
                 <div className='searchResultsRoute'>
                     {flight.oneWay === true ?
                         <p className='searchResultsRoute'>{flight.itineraries[0].segments[0].departure.iataCode} to
