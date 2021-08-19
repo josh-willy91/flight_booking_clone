@@ -93,7 +93,7 @@ function FlightSearchResults({ flight, origin, destination }) {
 
     return (
         <li key={flight.id} className='searchResultsLi'>
-            {noDuplicateFlights(flight) === true ? null : null}
+            {/* {noDuplicateFlights(flight) === true ? null : null} */}
                 <div className='searchResultsRoute'>
                     {flight.oneWay === true ?
                         <p className='searchResultsRoute'>{flight.itineraries[0].segments[0].departure.iataCode} to
