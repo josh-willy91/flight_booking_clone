@@ -43,11 +43,11 @@ const LoginForm = () => {
       <div className='form-wrapper'>
         <form className='loginForm' onSubmit={onLogin}>
           <h3>Login</h3>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+          <ul className='errors-wrapper'>
+            {errors.map((error, index) => (
+              <li classname='errorsList' key={index}>{error}</li>
             ))}
-          </div>
+          </ul>
           <div>
             <label htmlFor='email'>Email</label>
             <input
