@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp, login } from '../../store/session';
-import '../../styles/signup.css'
+import './styles/signup.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -55,9 +55,9 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className='signupDiv'>
-      {/* <img className='signupImg' src="images/signup.jpg" alt=""/> */}
-      <div className='form_wrapper'>
+    <div className='signup-wrapper'>
+      <img className='signupImg' src="images/signup.jpg" alt=""/>
+      <div className='form-wrapper'>
         <form className='signupForm' onSubmit={onSignUp}>
           <h3>Signup</h3>
           <div>
@@ -72,6 +72,7 @@ const SignUpForm = () => {
               name='firstName'
               onChange={updateFirstName}
               value={firstName}
+              required
             ></input>
           </div>
           <div>
@@ -81,6 +82,7 @@ const SignUpForm = () => {
               name='lastName'
               onChange={updateLastName}
               value={lastName}
+              required
             ></input>
           </div>
           <div>
@@ -90,6 +92,7 @@ const SignUpForm = () => {
               name='email'
               onChange={updateEmail}
               value={email}
+              required
             ></input>
           </div>
           <div>
@@ -99,6 +102,7 @@ const SignUpForm = () => {
               name='password'
               onChange={updatePassword}
               value={password}
+              required
             ></input>
           </div>
           <div>

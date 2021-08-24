@@ -7,7 +7,7 @@
     min-height: 100vh;
 }
 
-.formWrapper {
+.form-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;

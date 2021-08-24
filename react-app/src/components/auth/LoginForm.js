@@ -40,7 +40,7 @@ const LoginForm = () => {
   return (
     <div className='login-wrapper'>
       <img className='loginImg' src="images/signup.jpg" alt=""/>
-      <div className='formWrapper'>
+      <div className='form-wrapper'>
         <form className='loginForm' onSubmit={onLogin}>
           <h3>Login</h3>
           <div>
