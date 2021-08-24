@@ -71,7 +71,9 @@
 }
 
 .demoUser {
-    margin-top: 5px;
+    /* position: absolute; */
+    display: inline;
+    /* margin-top: 5px; */
     padding: 10px;
     border: black solid 1px;
     border-radius: 5px;
@@ -81,4 +83,5 @@
     font-size: 15px;
     cursor: pointer;
     width: 185px;
+
 }
