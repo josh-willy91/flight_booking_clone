@@ -56,4 +56,29 @@
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
+    max-width: 185px;
+}
+
+.errors-wrapper {
+    padding-left: 5px;
+    color: red;
+    list-style: none;
+
+}
+
+.errorsList {
+
+}
+
+.demoUser {
+    margin-top: 5px;
+    padding: 10px;
+    border: black solid 1px;
+    border-radius: 5px;
+    background-color: rgb(0, 55, 138);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    width: 185px;
 }

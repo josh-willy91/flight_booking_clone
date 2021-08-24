@@ -60,11 +60,11 @@ const SignUpForm = () => {
       <div className='form-wrapper'>
         <form className='signupForm' onSubmit={onSignUp}>
           <h3>Signup</h3>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+          <ul className='errors-wrapper'>
+            {errors.map((error, index) => (
+              <li classname='errorsList' key={index}>{error}</li>
             ))}
-          </div>
+          </ul>
           <div>
             <label>First Name</label>
             <input
