@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import '../../styles/login.css'
+import './styles/login.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -30,7 +30,7 @@ const LoginForm = () => {
   const demoSubmit = async() => {
     const email = 'demo@aa.io'
     const password = 'password'
-    const data = await dispatch(login(email, password))
+    await dispatch(login(email, password))
   };
 
   if (user) {
@@ -38,8 +38,8 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='loginDiv'>
-      {/* <img className='loginImg' src="images/signup.jpg" alt=""/> */}
+    <div className='login-wrapper'>
+      <img className='loginImg' src="images/signup.jpg" alt=""/>
       <div className='formWrapper'>
         <form className='loginForm' onSubmit={onLogin}>
           <h3>Login</h3>
