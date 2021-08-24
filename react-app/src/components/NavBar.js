@@ -9,7 +9,7 @@ const NavBar = () => {
 
   const sessionUser = useSelector((state) => state.session.user)
 
-  if(sessionUser) {
+  if (sessionUser) {
     return (
       <nav className='navbar'>
         <ul className='navbarUl'>

@@ -1,0 +1,45 @@
+
+
+
+.footer-wrapper {
+    background-color: rgb(0, 55, 138);
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gitHub-div {
+    height: 50px;
+    width: 50px;
+    margin: 25px;
+}
+
+.gitHub {
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+}
+
+.linkedIn {
+    height: 50px;
+    width: 50px;
+    margin: 25px;
+}
+
+.linkedIn {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 25px;
+}
