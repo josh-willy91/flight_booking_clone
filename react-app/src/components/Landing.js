@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import '../styles/landing.css'
+import landing1 from '/root/projects/flight_booking_clone/react-app/src/images/landing-1.jpg'
 
 function Landing() {
     const [user, setUser] = useState({});
@@ -34,7 +34,7 @@ function Landing() {
                 </div>
             </div>
             <div className='img-1'>
-                <img className='landing-image' src='images/landing-1.jpg'></img>
+                <img className='landing-image' src={landing1}></img>
             </div>
             <div className='img-2'>
                 <img className='landing-image' src='images/landing-2.jpg'></img>
