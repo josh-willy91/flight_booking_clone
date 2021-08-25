@@ -7,7 +7,7 @@
     text-decoration: none;
 }
 
-.navbar {
+.navbar-wrapper {
     display: flex;
     background-color: rgb(0, 55, 138);
     margin: 0;
@@ -22,28 +22,21 @@
     'links logo buttons'
     ;
     width: 100%;
+    margin: 0px;
 }
 
 .logo {
     grid-area: logo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    text-align: center;
 }
 
-.navBarLeft {
-    grid-area: links;
-    display: grid;
-    grid-template-columns: 3, 33%;
-    grid-template-rows: auto;
-    grid-template-areas:
-    'left middle right'
-    ;
-}
-
-.navLink {
+/* .navLink {
     padding: 0px;
     width: 100%;
-}
+} */
 
 .navBut {
     grid-area: buttons;
@@ -64,23 +57,41 @@
     cursor: pointer;
 }
 
-.left {
-    grid-area: left;
+.navBarLeft {
+    grid-area: links;
+    display: grid;
+    grid-template-columns: 3, 33%;
+    grid-template-rows: auto;
+    grid-template-areas:
+    'leftAnchor middleAnchor rightAnchor'
+    ;
+    /* display: flex;
+    flex-direction: row; */
+}
+
+.leftNav {
+    grid-area: leftAnchor;
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 85px;
     cursor: pointer;
 }
 
-.middle {
-    grid-area: middle;
+.middleNav {
+    grid-area: middleAnchor;
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 85px;
     cursor: pointer;
 }
 
-.right {
-    grid-area: right;
+.rightNav {
+    grid-area: rightAnchor;
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 85px;
     cursor: pointer;
 }

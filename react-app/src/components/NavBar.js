@@ -11,19 +11,17 @@ const NavBar = () => {
 
   if (sessionUser) {
     return (
-      <nav className='navbar'>
+      <nav className='navbar-wrapper'>
         <ul className='navbarUl'>
           <h2 className='logo'>BookYeah</h2>
           <div className='navBarLeft'>
-            <NavLink className='navLink' className='middle'
-              to='/bookyeah' exact={true} activeClassName='active'>
-              Home
-            </NavLink>
-          </div>
-          <div className='navBarLeft'>
-            <NavLink className='navLink' className='left'
+            <NavLink className='navLink' className='leftNav'
               to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
               Dashboard
+            </NavLink>
+            <NavLink className='navLink' className='middleNav'
+              to='/bookyeah' exact={true} activeClassName='active'>
+              Home
             </NavLink>
           </div>
           <div className='navBut'>
@@ -34,22 +32,18 @@ const NavBar = () => {
     );
   } else {
     return (
-      <nav className='navbar'>
+      <nav className='navbar-wrapper'>
         <ul className='navbarUl'>
           <div className='navBarLeft'>
-            <NavLink className='navLink' className='middle'
-              to='/bookyeah' exact={true} activeClassName='active'>
-              Home
-            </NavLink>
-          </div>
-          <div className='navBarLeft'>
-            <NavLink className='navLink' className='left'
+            <NavLink className='navLink' className='leftNav'
               to='/login' exact={true} activeClassName='active'>
               Login
             </NavLink>
-          </div>
-          <div className='navBarLeft'>
-            <NavLink className='navLink' className='right'
+            <NavLink className='navLink' className='middleNav'
+              to='/bookyeah' exact={true} activeClassName='active'>
+              Home
+            </NavLink>
+            <NavLink className='navLink' className='rightNav'
               to='/sign-up' exact={true} activeClassName='active'>
               Sign Up
             </NavLink>
