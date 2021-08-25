@@ -1,6 +1,16 @@
 
 
 
+.landing-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 16.7%);
+    grid-template-rows: auto;
+    grid-template-areas:
+    'img-1 img-2 img-3 img-4 img-5 img-6'
+    'T R A V E L'
+    ;
+}
+
 .landingDiv {
     background-color: rgb(247, 243, 230);
     width: 100%;
@@ -11,6 +21,7 @@
 }
 
 .landingContent {
+    position: absolute;
     border: black solid 1px;
     border-radius: 5px;
     width: 30%;
@@ -19,6 +30,7 @@
     word-spacing: 1px;
     box-shadow: 0px 0px 10px 5px black;
     background-color: white;
+    z-index: 2;
 }
 
 .landingContent h3 {
@@ -54,4 +66,96 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+}
+
+.landing-p {
+    font-size: 18px;
+}
+
+.landing-p strong {
+    color: rgb(0, 55, 138);
+}
+
+.img-1 {
+    grid-area: img-1;
+}
+
+.img-2 {
+    grid-area: img-2;
+}
+
+.img-3 {
+    grid-area: img-3;
+}
+
+.img-4 {
+    grid-area: img-4;
+}
+
+.img-5 {
+    grid-area: img-5;
+}
+
+.img-6 {
+    grid-area: img-6;
+}
+
+.T {
+    grid-area: T;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 300px;
+    font-size: 100px;
+}
+
+.R {
+    grid-area: R;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 300px;
+    font-size: 100px;
+}
+
+.A {
+    grid-area: A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 300px;
+    font-size: 100px;
+}
+
+.V {
+    grid-area: V;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 300px;
+    font-size: 100px;
+}
+
+.E {
+    grid-area: E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 300px;
+    font-size: 100px;
+}
+
+.L {
+    grid-area: L;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 300px;
+    font-size: 100px;
 }
