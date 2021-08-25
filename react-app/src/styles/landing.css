@@ -9,28 +9,21 @@
     'img-1 img-2 img-3 img-4 img-5 img-6'
     'T R A V E L'
     ;
-}
-
-.landingDiv {
-    background-color: rgb(247, 243, 230);
     width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .landingContent {
     position: absolute;
     border: black solid 1px;
     border-radius: 5px;
-    width: 30%;
+    width: 35%;
     padding: 20px;
-    margin-bottom: 20%;
     word-spacing: 1px;
     box-shadow: 0px 0px 10px 5px black;
-    background-color: white;
+    background-color: rgba(250, 250, 250, .9);
     z-index: 2;
+    left: 31.5%;
+    top: 15%;
 }
 
 .landingContent h3 {
@@ -70,34 +63,51 @@
 
 .landing-p {
     font-size: 18px;
+    text-align: center;
 }
 
 .landing-p strong {
     color: rgb(0, 55, 138);
 }
 
+.landing-image {
+    height: 100%;
+    width: 100%;
+}
+
 .img-1 {
     grid-area: img-1;
+    height: 600px;
 }
 
 .img-2 {
     grid-area: img-2;
+    height: 600px;
+    width: 100%;
 }
 
 .img-3 {
     grid-area: img-3;
+    height: 600px;
+    width: 100%;
 }
 
 .img-4 {
     grid-area: img-4;
+    height: 600px;
+    width: 100%;
 }
 
 .img-5 {
     grid-area: img-5;
+    height: 600px;
+    width: 100%;
 }
 
 .img-6 {
     grid-area: img-6;
+    height: 600px;
+    width: 100%;
 }
 
 .T {
@@ -105,7 +115,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: rgb(0, 255, 255);
     height: 300px;
     font-size: 100px;
 }
@@ -115,7 +125,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: rgb(25, 63, 23);
     height: 300px;
     font-size: 100px;
 }
@@ -125,7 +135,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: rgb(170, 91, 0);
     height: 300px;
     font-size: 100px;
 }
@@ -135,7 +145,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: rgb(146, 146, 146);
     height: 300px;
     font-size: 100px;
 }
@@ -145,7 +155,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: rgb(243, 166, 0);
     height: 300px;
     font-size: 100px;
 }
@@ -155,7 +165,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: rgb(62, 155, 0);
     height: 300px;
     font-size: 100px;
 }

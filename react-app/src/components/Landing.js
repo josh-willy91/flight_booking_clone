@@ -33,12 +33,24 @@ function Landing() {
                     <button onClick={loginClick}>Login</button>
                 </div>
             </div>
-            <img className='img-1' src='images/landing-1.jpg'></img>
-            <img className='img-2' src='images/landing-2.jpg'></img>
-            <img className='img-3' src='images/landing-3.jpg'></img>
-            <img className='img-4' src='images/landing-4.jpg'></img>
-            <img className='img-5' src='images/landing-5.jpg'></img>
-            <img className='img-6' src='images/landing-6.jpg'></img>
+            <div className='img-1'>
+                <img className='landing-image' src='images/landing-1.jpg'></img>
+            </div>
+            <div className='img-2'>
+                <img className='landing-image' src='images/landing-2.jpg'></img>
+            </div>
+            <div className='img-3'>
+                <img className='landing-image' src='images/landing-3.jpg'></img>
+            </div>
+            <div className='img-4'>
+                <img className='landing-image' src='images/landing-4.jpg'></img>
+            </div>
+            <div className='img-5'>
+                <img className='landing-image' src='images/landing-5.jpg'></img>
+            </div>
+            <div className='img-6'>
+                <img className='landing-image' src='images/landing-6.jpg'></img>
+            </div>
             <div className='T'>T</div>
             <div className='R'>R</div>
             <div className='A'>A</div>
