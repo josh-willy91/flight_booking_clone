@@ -73,6 +73,7 @@
 .landing-image {
     height: 100%;
     width: 100%;
+    object-fit: cover;
 }
 
 .img-1 {
@@ -125,7 +126,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(25, 63, 23);
+    background-color: rgb(46, 117, 42);
     height: 200px;
     font-size: 100px;
 }
@@ -145,7 +146,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(146, 146, 146);
+    background-color: rgb(168, 168, 168);
     height: 200px;
     font-size: 100px;
 }
@@ -155,7 +156,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(243, 166, 0);
+    background-color: rgb(248, 131, 131);
     height: 200px;
     font-size: 100px;
 }
@@ -165,7 +166,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(62, 155, 0);
+    background-color: rgb(243, 171, 88);
     height: 200px;
     font-size: 100px;
 }
