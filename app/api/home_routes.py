@@ -45,7 +45,8 @@ def search_flights():
             client_id=os.environ.get('API_PUBLIC_KEY'),
             client_secret=os.environ.get('API_SECRET_KEY')
         )
-        response = amadeus.shopping.flight_offers_search.get(
+        try:
+            response = amadeus.shopping.flight_offers_search.get(
             originLocationCode = origin,
             destinationLocationCode = destination,
             departureDate = departure_date,
@@ -54,8 +55,10 @@ def search_flights():
             currencyCode = 'USD',
             max = 50,
         )
-        # print(response.data)
-        return {'flight': response.data}
+            return {'flight': response.data}
+            # print(response.data)
+        except:
+            return {'errors': 'Search failed'}
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}
 

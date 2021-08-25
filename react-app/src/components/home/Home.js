@@ -46,7 +46,15 @@ function Home() {
                     start={start} end={end} setStart={setStart} setEnd={setEnd}/>
             </div>
             <div className='searchResultsDiv'>
-                {searchResults ?
+                {searchResults && searchResults.errors ?
+                    <div>
+                        <h3 className='errors-h'>{searchResults.errors}</h3>
+                        <p className='errors-p'>Your search failed. Make sure the airport codes
+                            you are using are correct.  An example would be MIA for
+                            Miami International Airport.
+                        </p>
+                    </div>
+                    :
                     <div>
                         <h3>Search Results</h3>
                         <ul>
@@ -56,8 +64,6 @@ function Home() {
                             ))}
                         </ul>
                     </div>
-                    :
-                    <h3>Results pending search</h3>
                 }
             </div>
         </div>

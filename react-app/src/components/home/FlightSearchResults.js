@@ -91,8 +91,13 @@ function FlightSearchResults({ flight, origin, destination }) {
         }
     }
 
-    return (
-        <li key={flight.id} className='searchResultsLi'>
+    if(flight.errors) {
+        return (
+            <div>{flight.errors}</div>
+        )
+    } else {
+        return (
+            <li key={flight.id} className='searchResultsLi'>
             {/* {noDuplicateFlights(flight) === true ? null : null} */}
                 <div className='searchResultsRoute'>
                     {flight.oneWay === true ?
@@ -133,8 +138,9 @@ function FlightSearchResults({ flight, origin, destination }) {
                     >Book Flight</button> :
                     <button className='searchResultsButton' onClick={noUserRedirect}>Login to Book</button>
                 }
-        </li>
-    )
+            </li>
+        )
+    }
 }
 
 export default FlightSearchResults;
