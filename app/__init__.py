@@ -76,28 +76,28 @@ def inject_csrf_token(response):
 def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
-    if path == 'gitHub.jpg':
-        return app.send_static_file('gitHub.jpg')
-    if path == 'linkedIn.jpg':
-        return app.send_static_file('linkedIn.jpg')
-    if path == 'login.jpg':
-        return app.send_static_file('login.jpg')
-    if path == 'searchBackground.jpg':
-        return app.send_static_file('searchBackground.jpg')
-    if path == 'signup.jpg':
-        return app.send_static_file('signup.jpg')
-    if path == 'plane.jpg':
-        return app.send_static_file('plane.jpg')
+    if path == 'images/gitHub.jpg':
+        return app.send_static_file('images/gitHub.jpg')
+    if path == 'images/linkedIn.jpg':
+        return app.send_static_file('images/linkedIn.jpg')
+    if path == 'images/login.jpg':
+        return app.send_static_file('images/login.jpg')
+    if path == 'images/searchBackground.jpg':
+        return app.send_static_file('images/searchBackground.jpg')
+    if path == 'images/signup.jpg':
+        return app.send_static_file('images/signup.jpg')
+    if path == 'images/plane.jpg':
+        return app.send_static_file('images/plane.jpg')
     if path == 'landing-1.jpg':
-        return app.send_static_file('landing-1.jpg')
-    if path == 'landing-2.jpg':
-        return app.send_static_file('landing-2.jpg')
-    if path == 'landing-3.jpg':
-        return app.send_static_file('landing-3.jpg')
-    if path == 'landing-4.jpg':
-        return app.send_static_file('landing-4.jpg')
-    if path == 'landing-5.jpg':
-        return app.send_static_file('landing-5.jpg')
-    if path == 'landing-6.jpg':
-        return app.send_static_file('landing-6.jpg')
+        return app.send_static_file('images/landing-1.jpg')
+    if path == 'images/landing-2.jpg':
+        return app.send_static_file('images/landing-2.jpg')
+    if path == 'images/landing-3.jpg':
+        return app.send_static_file('images/landing-3.jpg')
+    if path == 'images/landing-4.jpg':
+        return app.send_static_file('images/landing-4.jpg')
+    if path == 'images/landing-5.jpg':
+        return app.send_static_file('images/landing-5.jpg')
+    if path == 'images/landing-6.jpg':
+        return app.send_static_file('images/landing-6.jpg')
     return app.send_static_file('index.html')
