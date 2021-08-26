@@ -7,6 +7,7 @@ import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
 import FlightSearchResults from './FlightSearchResults';
 import FlightSearchForm from './FlightSearchForm';
+import searchBackground from '../../images/searchBackground.jpg'
 import '../../styles/home.css'
 
 
@@ -35,11 +36,9 @@ function Home() {
     // }, [origin])
 
 
-
-
     return (
         <div className='homeDiv'>
-            {/* <img src="images/searchBackground.jpg" alt="" className="searchBackground" /> */}
+            {/* <img src={searchBackground} alt="" className="searchBackground" /> */}
             <div className='searchDiv'>
                 <FlightSearchForm origin={origin} setOrigin={setOrigin}
                     destination={destination} setDestination={setDestination}
