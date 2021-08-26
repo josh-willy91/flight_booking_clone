@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import landingOne from '/root/projects/flight_booking_clone/react-app/src/images/landing-1.jpg';
-import landingTwo from '/root/projects/flight_booking_clone/react-app/src/images/landing-2.jpg';
-import landingThree from '/root/projects/flight_booking_clone/react-app/src/images/landing-3.jpg';
-import landingFour from '/root/projects/flight_booking_clone/react-app/src/images/landing-4.jpg';
-import landingFive from '/root/projects/flight_booking_clone/react-app/src/images/landing-5.jpg';
-import landingSix from '/root/projects/flight_booking_clone/react-app/src/images/landing-6.jpg';
+// import landingOne from '/root/projects/flight_booking_clone/react-app/src/images/landing-1.jpg';
+// import landingTwo from '/root/projects/flight_booking_clone/react-app/src/images/landing-2.jpg';
+// import landingThree from '/root/projects/flight_booking_clone/react-app/src/images/landing-3.jpg';
+// import landingFour from '/root/projects/flight_booking_clone/react-app/src/images/landing-4.jpg';
+// import landingFive from '/root/projects/flight_booking_clone/react-app/src/images/landing-5.jpg';
+// import landingSix from '/root/projects/flight_booking_clone/react-app/src/images/landing-6.jpg';
+import landingOne from '../images/landing-1.jpg';
+import landingTwo from '../images/landing-2.jpg';
+import landingThree from '../images/landing-3.jpg';
+import landingFour from '../images/landing-4.jpg';
+import landingFive from '../images/landing-5.jpg';
+import landingSix from '../images/landing-6.jpg';
 import '../styles/landing.css'
 
 
