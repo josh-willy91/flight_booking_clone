@@ -76,10 +76,28 @@ def inject_csrf_token(response):
 def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
+    if path == 'gitHub.jpg':
+        return app.send_static_file('gitHub.jpg')
+    if path == 'linkedIn.jpg':
+        return app.send_static_file('linkedIn.jpg')
     if path == 'login.jpg':
         return app.send_static_file('login.jpg')
     if path == 'searchBackground.jpg':
         return app.send_static_file('searchBackground.jpg')
     if path == 'signup.jpg':
         return app.send_static_file('signup.jpg')
+    if path == 'plane.jpg':
+        return app.send_static_file('plane.jpg')
+    if path == 'landing-1.jpg':
+        return app.send_static_file('landing-1.jpg')
+    if path == 'landing-2.jpg':
+        return app.send_static_file('landing-2.jpg')
+    if path == 'landing-3.jpg':
+        return app.send_static_file('landing-3.jpg')
+    if path == 'landing-4.jpg':
+        return app.send_static_file('landing-4.jpg')
+    if path == 'landing-5.jpg':
+        return app.send_static_file('landing-5.jpg')
+    if path == 'landing-6.jpg':
+        return app.send_static_file('landing-6.jpg')
     return app.send_static_file('index.html')

@@ -7,7 +7,7 @@ import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
 import FlightSearchResults from './FlightSearchResults';
 import FlightSearchForm from './FlightSearchForm';
-import searchBackground from '../../images/searchBackground.jpg'
+// import searchBackground from '/searchBackground.jpg'
 import '../../styles/home.css'
 
 
