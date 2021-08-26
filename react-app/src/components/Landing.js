@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import landingOne from '/root/projects/flight_booking_clone/react-app/public/images/landing-1.jpg';
-// import landingTwo from '/root/projects/flight_booking_clone/react-app/public/images/landing-2.jpg';
-// import landingThree from '/root/projects/flight_booking_clone/react-app/public/images/landing-3.jpg';
-// import landingFour from '/root/projects/flight_booking_clone/react-app/public/images/landing-4.jpg';
-// import landingFive from '/root/projects/flight_booking_clone/react-app/public/images/landing-5.jpg';
-// import landingSix from '/root/projects/flight_booking_clone/react-app/public/images/landing-6.jpg';
+import landingOne from '/root/projects/flight_booking_clone/react-app/src/images/landing-1.jpg';
+import landingTwo from '/root/projects/flight_booking_clone/react-app/src/images/landing-2.jpg';
+import landingThree from '/root/projects/flight_booking_clone/react-app/src/images/landing-3.jpg';
+import landingFour from '/root/projects/flight_booking_clone/react-app/src/images/landing-4.jpg';
+import landingFive from '/root/projects/flight_booking_clone/react-app/src/images/landing-5.jpg';
+import landingSix from '/root/projects/flight_booking_clone/react-app/src/images/landing-6.jpg';
 import '../styles/landing.css'
 
 
@@ -41,22 +41,22 @@ function Landing() {
                 </div>
             </div>
             <div className='img-1'>
-                <img className='landing-image' src='images/landing-1.jpg'></img>
+                <img className='landing-image' src={landingOne}></img>
             </div>
             <div className='img-2'>
-                <img className='landing-image' src='images/landing-2.jpg'></img>
+                <img className='landing-image' src={landingTwo}></img>
             </div>
             <div className='img-3'>
-                <img className='landing-image' src='images/landing-3.jpg'></img>
+                <img className='landing-image' src={landingThree}></img>
             </div>
             <div className='img-4'>
-                <img className='landing-image' src='images/landing-4.jpg'></img>
+                <img className='landing-image' src={landingFour}></img>
             </div>
             <div className='img-5'>
-                <img className='landing-image' src='images/landing-5.jpg'></img>
+                <img className='landing-image' src={landingFive}></img>
             </div>
             <div className='img-6'>
-                <img className='landing-image' src='images/landing-6.jpg'></img>
+                <img className='landing-image' src={landingSix}></img>
             </div>
             <div className='T'>T</div>
             <div className='R'>R</div>

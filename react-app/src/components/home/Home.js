@@ -7,7 +7,7 @@ import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
 import FlightSearchResults from './FlightSearchResults';
 import FlightSearchForm from './FlightSearchForm';
-// import searchBackground from '/searchBackground.jpg'
+// import searchBackground from '/root/projects/flight_booking_clone/react-app/src/images/searchBackground.jpg'
 import '../../styles/home.css'
 
 

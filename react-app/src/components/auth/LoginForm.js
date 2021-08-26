@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-// import planeImage from '/root/projects/flight_booking_clone/react-app/public/images/plane.jpg'
+import planeImage from '/root/projects/flight_booking_clone/react-app/src/images/plane.jpg'
 import './styles/login.css'
 
 const LoginForm = () => {
@@ -40,7 +40,7 @@ const LoginForm = () => {
 
   return (
     <div className='login-wrapper'>
-      <img className='loginImg' src='/images/plane.jpg' alt=""/>
+      <img className='loginImg' src={planeImage} alt=""/>
       <div className='form-wrapper'>
         <form className='loginForm' onSubmit={onLogin}>
           <h3>Login</h3>
