@@ -1,0 +1,73 @@
+
+
+.searchResultsDiv ul {
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 423px;
+}
+
+.searchResultsLi {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.searchResultsLi P {
+    margin: 5px;
+    padding: 15px;
+    text-align: center;
+}
+
+.searchResultsLiDiv {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    text-align: center;
+}
+
+.searchResultsRoute {
+    font-weight: bold;
+    max-width: 90px;
+}
+
+.searchResultsRoute-p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.bookFlight-div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.searchResultsButton {
+    cursor: pointer;
+    font-weight: bold;
+    border: black solid 1px;
+    border-radius: 5px;
+    background-color: rgb(0, 55, 138);
+    color: white;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.unhide {
+    visibility: visible;
+}
+
+.noMatch {
+    color: red;
+    text-align: center;
+}
+
+.flightNumber {
+    max-width: 100px;
+}

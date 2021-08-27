@@ -38,7 +38,7 @@ def search_flights():
 
     today = date.today()
     # print(form.data, '==============form data==================')
-    print(today, '==============today date==================')
+    # print(today, '==============today date==================')
     if(form.validate_on_submit()):
 
         amadeus = Client(
@@ -55,6 +55,8 @@ def search_flights():
             currencyCode = 'USD',
             max = 50,
         )
+            if response.data == []:
+                return {'flight': ['Sorry there are no fligths matching those criteria']}
             return {'flight': response.data}
             # print(response.data)
         except:

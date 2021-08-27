@@ -7,8 +7,8 @@ import formatISO from 'date-fns/formatISO'
 import format from 'date-fns/formatISO'
 import FlightSearchResults from './FlightSearchResults';
 import FlightSearchForm from './FlightSearchForm';
-// import searchBackground from '/root/projects/flight_booking_clone/react-app/src/images/searchBackground.jpg'
-import '../../styles/home.css'
+import searchBackground from '../../images/searchBackground.jpg'
+import './styles/home.css'
 
 
 function Home() {
@@ -38,7 +38,7 @@ function Home() {
 
     return (
         <div className='homeDiv'>
-            {/* <img src={searchBackground} alt="" className="searchBackground" /> */}
+            <img src={searchBackground} alt="" className="searchBackground" />
             <div className='searchDiv'>
                 <FlightSearchForm origin={origin} setOrigin={setOrigin}
                     destination={destination} setDestination={setDestination}
@@ -55,12 +55,12 @@ function Home() {
                     </div>
                     :
                     <div>
-                        <h3>Search Results</h3>
+                        <h3 className='searchResults-h3'>Search Results</h3>
                         <ul>
                             {searchResults && searchResults.flight.map((flightDetails) => (
                                 <FlightSearchResults flight={flightDetails} origin={origin} destination={destination}/>
                                 // flight, origin, destination, start, end
-                            ))}
+                                ))}
                         </ul>
                     </div>
                 }

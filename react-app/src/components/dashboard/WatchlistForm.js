@@ -3,7 +3,8 @@ import { createOneWatchlist } from '../../store/dashboard';
 import ModalWatchlistQuestion from './ModalWatchlistQuestion';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import '../../styles/dashboard.css'
+import './styles/dashboard.css'
+
 
 
 function WatchlistForm({ origin, setOrigin, destination, setDestination,

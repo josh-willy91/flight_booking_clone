@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { editOneWatchlist } from '../../store/dashboard';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
-import '../../styles/modalWatchlistForm.css'
+import './styles/modalWatchlistForm.css'
 
 
 function Bookings({setFlightId}) {

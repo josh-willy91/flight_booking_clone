@@ -12,7 +12,7 @@ import landingThree from '../images/landing-3.jpg';
 import landingFour from '../images/landing-4.jpg';
 import landingFive from '../images/landing-5.jpg';
 import landingSix from '../images/landing-6.jpg';
-import '../styles/landing.css'
+import './styles/landing.css'
 
 
 function Landing() {

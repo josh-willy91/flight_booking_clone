@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
-import '../styles/footer.css'
+import './styles/footer.css'
 // import gitHub from '/root/projects/flight_booking_clone/react-app/src/images/gitHub.png';
 // import linkedIn from '/root/projects/flight_booking_clone/react-app/src/images/linkedIn.jpg';
 import gitHub from '../images/gitHub.png';

@@ -6,7 +6,7 @@ import WatchlistForm from './WatchlistForm';
 import ModalWatchlistForm from './ModalWatchlistForm';
 import Bookings from './Bookings';
 import WatchlistSearch from './WatchlistSearch';
-import '../../styles/dashboard.css'
+import './styles/dashboard.css'
 
 
 function Dashboard() {
