@@ -55,3 +55,10 @@
     border: none;
     cursor: pointer;
 }
+
+.searchForm-errors {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}

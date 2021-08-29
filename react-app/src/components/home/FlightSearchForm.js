@@ -21,38 +21,32 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     // const [destination, setDestination] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
-    const [errors, setErrors] = useState([])
-
-    // const form = document.getElementById('formValidation')
-    // const originInput = document.getElementById('originInput')
-    // const departureInput = document.getElementById('departureInput')
-    // const destinationInput = document.getElementById('destinationInput')
-    // const returnInput = document.getElementById('returnInput')
-    // const errorElement = document.getElementById('errorElement')
+    const [errors, setErrors] = useState(false)
 
 
     const updateOrigin = (event) => {
         const value = (event.target.value).toUpperCase()
         setOrigin(value)
     }
-    const updateDestination = (event) => setDestination((event.target.value).toUpperCase())
-    const updateStart = (event) => {
-        let flightOut = event.target.value
-        let intoMilli = Date.parse(flightOut)
-        let day = 60 * 60 * 24 * 1000;
-        let departureDate = new Date(intoMilli + day)
 
-        let today = new Date()
-        console.log(departureDate < today)
+    const updateDestination = (event) => setDestination((event.target.value).toUpperCase())
+
+    const updateStart = (event) => {
+        const departureEvent = event.target.value
+        const intoMilli = Date.parse(departureEvent)
+        const day = 60 * 60 * 24 * 1000;
+        const departureDate = new Date(intoMilli + day)
+
+        const today = new Date()
 
         if(departureDate < today) {
-            setErrors(['Cannot choose a departure date that is in the past.'])
-            console.log(errors)
+            setErrors('Invalid departure date. Please select a departure date in the future.')
         } else {
             setStart(event.target.value)
-            console.log(event.target.value)
+            setErrors(false)
         }
     }
+
     const updateEnd = (event) => setEnd(event.target.value)
 
 
@@ -84,6 +78,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     return (
         <div className='form_wrapper'>
             <h3>Search Flights</h3>
+            <div className='searchForm-errors'>{errors ? errors : ''}</div>
             <form onSubmit={searchFlights} className='searchForm' id='formValidation'>
                 <div className='searchInputDiv_Origin'>
                     <div id = 'errorElement'>{}</div>
@@ -130,7 +125,9 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
                         onChange={updateEnd}
                     ></input>
                 </div>
-                <button className='searchFormButton'>Search Flights</button>
+                {errors ? <button disabled/> :
+                    <button className='searchFormButton'>Search Flights</button>
+                }
             </form>
             {/* <div className='flightFilters'>
                 <select>
