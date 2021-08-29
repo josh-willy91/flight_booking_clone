@@ -19,9 +19,16 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
 
     // const [origin, setOrigin] = useState('');
     // const [destination, setDestination] = useState('');
-    const [start, setStart] = useState('');
+    const [start, setStart] = useState(false);
     const [end, setEnd] = useState('');
     const [errors, setErrors] = useState(false)
+
+    function formDate(date) {
+        const intoMilli = Date.parse(date)
+        const day = 60 * 60 * 24 * 1000;
+        const departureDate = new Date(intoMilli + day)
+        return departureDate
+    }
 
 
     const updateOrigin = (event) => {
@@ -32,22 +39,27 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     const updateDestination = (event) => setDestination((event.target.value).toUpperCase())
 
     const updateStart = (event) => {
-        const departureEvent = event.target.value
-        const intoMilli = Date.parse(departureEvent)
-        const day = 60 * 60 * 24 * 1000;
-        const departureDate = new Date(intoMilli + day)
-
+        setStart(event.target.value)
+        formDate(event.target.value)
         const today = new Date()
 
-        if(departureDate < today) {
+        if(formDate(event.target.value) < today) {
             setErrors('Invalid departure date. Please select a departure date in the future.')
         } else {
-            setStart(event.target.value)
             setErrors(false)
         }
     }
 
-    const updateEnd = (event) => setEnd(event.target.value)
+    const updateEnd = (event) => {
+        setEnd(event.target.value)
+        const returnDate = formDate(event.target.value)
+
+        if(returnDate < formDate(start)) {
+            setErrors('Invalid return date. Please select a return date greater than the departure date.')
+        } else {
+            setErrors(false)
+        }
+    }
 
 
     const searchFlights = async(event) => {
@@ -117,6 +129,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
                 </div>
                 <div className='searchInputDiv_Return'>
                     <label>Return Date</label>
+                    {start ?
                     <input
                         id = 'returnInput'
                         type='date'
@@ -124,6 +137,13 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
                         value={end}
                         onChange={updateEnd}
                     ></input>
+                    : <input
+                        id = 'returnInput'
+                        type='date'
+                        name='return'
+                        disabled
+                    ></input>
+                    }
                 </div>
                 {errors ? <button disabled/> :
                     <button className='searchFormButton'>Search Flights</button>
