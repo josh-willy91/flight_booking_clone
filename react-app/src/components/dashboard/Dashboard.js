@@ -23,7 +23,7 @@ function Dashboard() {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [price, setPrice] = useState('');
-  const [start, setStart] = useState('');
+  const [start, setStart] = useState(false);
   const [tripReturn, setTripReturn] = useState('');
 
   const [openModal, setOpenModal] = useState(false)
