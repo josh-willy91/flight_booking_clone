@@ -23,19 +23,6 @@ function Home() {
     const [end, setEnd] = useState('');
 
 
-
-    // useEffect(() => {
-
-    //     // if(origin) {
-    //     //     const upperCase = origin.toUpperCase()
-    //     //     setOrigin(upperCase)
-    //     //     console.log(origin, '==============start==================')
-
-    //     console.log(origin.toUpperCase(), '=============start=================')
-
-    // }, [origin])
-
-
     return (
         <div className='homeDiv'>
             <img src={searchBackground} alt="" className="searchBackground" />
