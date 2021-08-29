@@ -10,22 +10,30 @@ import './styles/dashboard.css'
 function WatchlistForm({ origin, setOrigin, destination, setDestination,
     price, setPrice, start, setStart, tripReturn, setTripReturn, openModal, closeModal }) {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const { userId } = useParams();
+    const [errors, setErrors] = useState(false);
 
-    const updateOrigin = (event) => setOrigin(event.target.value)
-    const updateDestination = (event) => setDestination(event.target.value)
-    const updateStart = (event) => setStart(event.target.value)
-    const updateReturn = (event) => setTripReturn(event.target.value)
-    const updatePrice = (event) => setPrice(event.target.value)
+    function formDate(date) {
+        const intoMilli = Date.parse(date)
+        const day = 60 * 60 * 24 * 1000;
+        const departureDate = new Date(intoMilli + day)
+        return departureDate
+    };
+
+    const updateOrigin = (event) => setOrigin(event.target.value);
+    const updateDestination = (event) => setDestination(event.target.value);
+    const updateStart = (event) => setStart(event.target.value);
+    const updateReturn = (event) => setTripReturn(event.target.value);
+    const updatePrice = (event) => setPrice(event.target.value);
 
 
     const submitWatchlistForm = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
         if (price === '') {
             setPrice(null)
-        }
+        };
 
         const payload = {
             'origin': origin,
@@ -33,11 +41,11 @@ function WatchlistForm({ origin, setOrigin, destination, setDestination,
             'price': price,
             'start': start,
             'tripReturn': tripReturn,
-            'userId': userId
-        }
-        await dispatch(createOneWatchlist(payload))
+            'userId': userId,
+        };
+        await dispatch(createOneWatchlist(payload));
         window.location.reload();
-    }
+    };
 
     return (
         <div className='watchlistsDiv'>
