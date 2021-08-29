@@ -18,7 +18,7 @@ function Bookings({setFlightId}) {
         if(value === 0) {
             return 'Your flight departs today!!!'
         } else if(value < 0) {
-            return null
+            return 'Your flight departure has already occured...'
         }
         return `${value} days until flight departure`
     }

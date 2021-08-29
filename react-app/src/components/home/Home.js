@@ -37,7 +37,7 @@ function Home() {
                         <h3 className='errors-h'>{searchResults.errors}</h3>
                         <p className='errors-p'>Your search failed. Make sure the airport codes
                             you are using are correct.  An example would be MIA for
-                            Miami International Airport.
+                            Miami International Airport. Please also verify the dates.
                         </p>
                     </div>
                     :

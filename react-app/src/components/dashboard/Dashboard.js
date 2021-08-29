@@ -57,18 +57,6 @@ function Dashboard() {
     window.location.reload();
   }
 
-  // const showHideElements = () => {
-  //   let show = document.getElementById('showHide')
-
-  //   if(show.classList === 'show') {
-  //     show.classList.remove('show')
-  //     show.classList.add('hidden')
-  //   } else {
-  //     show.classList.remove('hidden')
-  //     show.classList.add('show')
-  //   }
-  // }
-
 
   if (!sessionUser) {
     return null;
