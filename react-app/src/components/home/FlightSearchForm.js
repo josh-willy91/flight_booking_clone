@@ -21,6 +21,7 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     // const [destination, setDestination] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
+    const [errors, setErrors] = useState([])
 
     // const form = document.getElementById('formValidation')
     // const originInput = document.getElementById('originInput')
@@ -29,39 +30,27 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     // const returnInput = document.getElementById('returnInput')
     // const errorElement = document.getElementById('errorElement')
 
-    // form.addEventListener('submit', (event) => {
-    //     event.preventDefault()
-    //     let messages = []
-
-    //     if(messages.length > 0) {
-    //         event.preventDefault()
-
-    //     }
-    // })
-
 
     const updateOrigin = (event) => {
         const value = (event.target.value).toUpperCase()
-        console.log(value, 'vale========================')
-        // const format = value.toUppercase()
-        // console.log(value, '======31=========')
         setOrigin(value)
-        // console.log(origin, '=======33========')
     }
     const updateDestination = (event) => setDestination((event.target.value).toUpperCase())
     const updateStart = (event) => {
-        setStart(event.target.value)
         let flightOut = event.target.value
+        let intoMilli = Date.parse(flightOut)
+        let day = 60 * 60 * 24 * 1000;
+        let departureDate = new Date(intoMilli + day)
+
         let today = new Date()
-        console.log(flightOut < today)
+        console.log(departureDate < today)
 
-        let dateFormat = format(today, 'yyyy')
-
-        console.log(typeof(today))
-        console.log(today, dateFormat, '======today==============')
-
-        if(start > today) {
-            console.log('conditional works')
+        if(departureDate < today) {
+            setErrors(['Cannot choose a departure date that is in the past.'])
+            console.log(errors)
+        } else {
+            setStart(event.target.value)
+            console.log(event.target.value)
         }
     }
     const updateEnd = (event) => setEnd(event.target.value)
