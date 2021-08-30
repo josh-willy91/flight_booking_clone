@@ -54,36 +54,41 @@ function WatchlistSearch({setOpenModal, setWatchlistId, deleteWatchlist}) {
                         <div className='carousel'>
                             {watchlists.watchlist_data_obj[`${details.id}`].map((flight) => (
                                 <li className='carousel_item' key={flight.id}>
+                                    {!flight ? <div className='errors'>Your watchlist departure date as occured.  Please edit the watchlist and update the date or delete.</div>
+                                    :
                                     <div>
-                                        {flight.oneWay === true ?
-                                            <p>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
-                                            <p>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</p>
-                                        }
+                                        <div>
+                                            {flight.oneWay === true ?
+                                                <p>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</p> :
+                                                <p>Flight Route {flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</p>
+                                            }
+                                        </div>
+                                        <div>
+                                            {flight.oneWay === true ?
+                                                <p>One Way: Yes</p> :
+                                                <p>Layovers: {flight.itineraries[0].segments.length - 1}</p>
+                                            }
+                                        </div>
+                                        <div>
+                                            <p>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</p>
+                                        </div>
+                                        <div>
+                                            <p>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</p>
+                                        </div>
+                                        <div>
+                                            <p>Return Flight: {format(getLastDeparture(flight))}</p>
+                                        </div>
+                                        <div>
+                                            <p>Price: ${flight.price.total}</p>
+                                        </div>
+                                        <div>
+                                            <p>Airline Code: {flight.validatingAirlineCodes[0]}</p>
+                                        </div>
+                                        <div>
+                                            <p>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        {flight.oneWay === true ?
-                                            <p>One Way: Yes</p> :
-                                            <p>Layovers: {flight.itineraries[0].segments.length - 1}</p>
-                                        }
-                                    </div>
-                                    <div>
-                                        <p>Departs: {format(flight.itineraries[0].segments[0].departure.at)}</p>
-                                    </div>
-                                    <div>
-                                        <p>Arrival: {format(flight.itineraries[0].segments[0].arrival.at)}</p>
-                                    </div>
-                                    <div>
-                                        <p>Return Flight: {format(getLastDeparture(flight))}</p>
-                                    </div>
-                                    <div>
-                                        <p>Price: ${flight.price.total}</p>
-                                    </div>
-                                    <div>
-                                        <p>Airline Code: {flight.validatingAirlineCodes[0]}</p>
-                                    </div>
-                                    <div>
-                                        <p>Flight Number: {flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
-                                    </div>
+                                    }
                                 </li>
                             ))}
                         </div>

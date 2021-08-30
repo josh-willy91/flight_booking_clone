@@ -3,7 +3,7 @@ import { createOneWatchlist } from '../../store/dashboard';
 import ModalWatchlistQuestion from './ModalWatchlistQuestion';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import './styles/dashboard.css'
+import './styles/watchlistForm.css'
 
 
 
@@ -78,7 +78,7 @@ function WatchlistForm({ origin, setOrigin, destination, setDestination,
             <div className='watchlistsFormDiv'>
                 <form className='watchlistsForm' onSubmit={submitWatchlistForm}>
                     {errors ?
-                        <div>{errors}</div>
+                        <div className='errors'>{errors}</div>
                     :
                     <div></div>
                     }
@@ -146,7 +146,7 @@ function WatchlistForm({ origin, setOrigin, destination, setDestination,
                         }
                     </div>
                     {errors ?
-                    <button type='submit' disabled>Create Watchlist</button>
+                    <button className='disabled' type='submit' disabled>Create Watchlist</button>
                     :
                     <button type='submit'>Create Watchlist</button>
                     }

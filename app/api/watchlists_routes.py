@@ -1,10 +1,12 @@
 from logging import error
 import os
+from re import search
 # import amadeus
 from flask import Flask,  Blueprint, request
 from flask.wrappers import Response
 from flask_login import login_required
 from app.models import db, User, Watchlist
+from datetime import date
 from amadeus import Client, ResponseError
 
 
@@ -16,7 +18,7 @@ def get_watchlists(id):
     search_results = {}
     watchlists_query = Watchlist.query.filter_by(user_id = id).all()
     watchlist_list = [watchlist.to_dict() for watchlist in watchlists_query]
-    print(watchlist_list, '==================line 19======================')
+    # print(watchlist_list, '==================line 19======================')
 
     for watchlist_obj in watchlist_list:
 
@@ -29,9 +31,15 @@ def get_watchlists(id):
         num_adults = 1
         # print(id, origin, destination, departure_date, trip_return, price, num_adults,
         # '==============================================')
+        today = date.today()
+        if today > departure_date:
+            search_results[f'{id}'] = [False]
+            print(today, departure_date, today < departure_date, '================================')
+            print(search_results, '=======================')
+
 
         if(price == None):
-            print(price, f'================price is none===={id}============')
+            # print(price, f'================price is none===={id}============')
 
             amadeus = Client(
                 client_id=os.environ.get('API_PUBLIC_KEY'),
@@ -53,7 +61,7 @@ def get_watchlists(id):
                 print(error)
 
         else:
-            print(f'==========================line 56 inside else=========={id}==============')
+            # print(f'==========================line 56 inside else=========={id}==============')
             amadeus = Client(
                 client_id=os.environ.get('API_PUBLIC_KEY'),
                 client_secret=os.environ.get('API_SECRET_KEY')
