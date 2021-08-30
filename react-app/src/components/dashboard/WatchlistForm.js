@@ -13,6 +13,7 @@ function WatchlistForm({ origin, setOrigin, destination, setDestination,
     const dispatch = useDispatch();
     const { userId } = useParams();
     const [errors, setErrors] = useState(false);
+    console.log(start)
 
     function formDate(date) {
         const intoMilli = Date.parse(date)
@@ -24,6 +25,7 @@ function WatchlistForm({ origin, setOrigin, destination, setDestination,
     const updateOrigin = (event) => setOrigin(event.target.value);
     const updateDestination = (event) => setDestination(event.target.value);
     const updatePrice = (event) => setPrice(event.target.value);
+
     const updateStart = (event) => {
         setStart(event.target.value);
         const departureDate = formDate(event.target.value)
@@ -35,13 +37,13 @@ function WatchlistForm({ origin, setOrigin, destination, setDestination,
             setErrors(false)
         }
     }
+
     const updateReturn = (event) => {
         setTripReturn(event.target.value);
         const returnDate = formDate(event.target.value)
 
         if(returnDate < formDate(start)) {
             setErrors('Invalid return date. Please select a return date greater than the departure date.')
-            console.log(errors)
         } else {
             setErrors(false)
         }
