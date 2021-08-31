@@ -14,12 +14,12 @@
 
 .landingContent {
     position: absolute;
-    border: black solid 1px;
+    border: rgb(120, 120, 120) solid 1px;
     border-radius: 5px;
     width: 35%;
     padding: 20px;
     word-spacing: 1px;
-    box-shadow: 0px 0px 10px 5px black;
+    box-shadow: 0px 0px 5px 1px rgb(153, 153, 153);
     background-color: rgba(250, 250, 250, .9);
     z-index: 2;
     left: 31.5%;
@@ -28,30 +28,29 @@
 
 .landingContent h3 {
     text-align: center;
-    border-bottom: black solid 1px;
-    margin-left: 175px;
-    margin-right: 175px;
+    border-bottom: rgb(153, 153, 153) solid 1px;
 }
 
 .buttonDiv {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .buttonDiv button {
     color: white;
     font-weight: bold;
+    font-size: 16px;
     background-color: rgb(0, 55, 138);
     padding: 15px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 8px;
+    letter-spacing: 1.2px;
 }
 
-.loginDiv button {
+/* .loginDiv button {
     color: white;
     font-weight: bold;
     background-color: rgb(0, 55, 138);
@@ -59,7 +58,7 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
-}
+} */
 
 .landing-p {
     font-size: 18px;
@@ -118,7 +117,7 @@
     align-items: center;
     background-color: rgb(0, 255, 255);
     height: 200px;
-    font-size: 100px;
+    font-size: 124px;
 }
 
 .R {
@@ -128,7 +127,7 @@
     align-items: center;
     background-color: rgb(46, 117, 42);
     height: 200px;
-    font-size: 100px;
+    font-size: 124px;
 }
 
 .A {
@@ -138,7 +137,7 @@
     align-items: center;
     background-color: rgb(170, 91, 0);
     height: 200px;
-    font-size: 100px;
+    font-size: 124px;
 }
 
 .V {
@@ -148,7 +147,7 @@
     align-items: center;
     background-color: rgb(168, 168, 168);
     height: 200px;
-    font-size: 100px;
+    font-size: 124px;
 }
 
 .E {
@@ -158,7 +157,7 @@
     align-items: center;
     background-color: rgb(248, 131, 131);
     height: 200px;
-    font-size: 100px;
+    font-size: 124px;
 }
 
 .L {
@@ -168,5 +167,5 @@
     align-items: center;
     background-color: rgb(243, 171, 88);
     height: 200px;
-    font-size: 100px;
+    font-size: 124px;
 }
