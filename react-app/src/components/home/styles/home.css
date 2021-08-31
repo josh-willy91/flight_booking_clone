@@ -67,6 +67,16 @@ body {
     z-index: 1;
 }
 
+.searchResultsUl {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.searchResultsUl::-webkit-scrollbar {
+    display: none;
+}
+
 .searchResults-h3 {
     display: flex;
     justify-content: center;

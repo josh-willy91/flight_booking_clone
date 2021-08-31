@@ -49,11 +49,13 @@
     font-weight: bold;
     background-color: rgb(0, 55, 138);
     position: fixed;
-    margin-top: 65px;
+    margin-top: 70px;
     padding: 10px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    letter-spacing: 1.2px;
+    font-size: 15px;
 }
 
 .searchForm-errors {

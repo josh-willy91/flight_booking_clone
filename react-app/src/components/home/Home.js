@@ -43,7 +43,7 @@ function Home() {
                     :
                     <div>
                         <h3 className='searchResults-h3'>Search Results</h3>
-                        <ul>
+                        <ul className='searchResultsUl'>
                             {searchResults && searchResults.flight.map((flightDetails) => (
                                 <FlightSearchResults flight={flightDetails} origin={origin} destination={destination}/>
                                 // flight, origin, destination, start, end
