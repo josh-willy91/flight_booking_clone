@@ -16,12 +16,12 @@ const NavBar = () => {
           <h2 className='logo'>BookYeah</h2>
           <div className='navBarLeft'>
             <NavLink className='navLink' className='leftNav'
-              to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
-              Dashboard
-            </NavLink>
-            <NavLink className='navLink' className='middleNav'
               to='/bookyeah' exact={true} activeClassName='active'>
               Home
+            </NavLink>
+            <NavLink className='navLink' className='middleNav'
+              to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
+              Dashboard
             </NavLink>
           </div>
           <div className='navBut'>
@@ -39,11 +39,11 @@ const NavBar = () => {
               to='/login' exact={true} activeClassName='active'>
               Login
             </NavLink>
-            <NavLink className='navLink' className='middleNav'
+            {/* <NavLink className='navLink' className='middleNav'
               to='/bookyeah' exact={true} activeClassName='active'>
               Home
-            </NavLink>
-            <NavLink className='navLink' className='rightNav'
+            </NavLink> */}
+            <NavLink className='navLink' className='middleNav'
               to='/sign-up' exact={true} activeClassName='active'>
               Sign Up
             </NavLink>
