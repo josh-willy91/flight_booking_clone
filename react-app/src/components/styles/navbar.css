@@ -55,8 +55,8 @@
 }
 
 .navBut button:hover {
-    background-color: black;
-    color: white;
+    background-color: rgb(199, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 .navBarLeft {
@@ -97,19 +97,19 @@
 }
 
 .leftNav:hover {
-    background-color: black;
-    color: white;
+    background-color: rgb(199, 255, 255);
+    color: rgb(0, 0, 0);
     overflow: hidden;
 }
 
 .middleNav:hover {
-    background-color: black;
-    color: white;
+    background-color: rgb(199, 255, 255);
+    color: rgb(0, 0, 0);
     overflow: hidden;
 }
 
 .rightNav:hover {
-    background-color: black;
-    color: white;
+    background-color: rgb(199, 255, 255);
+    color: rgb(0, 0, 0);
     overflow: hidden;
 }
