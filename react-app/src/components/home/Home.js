@@ -8,7 +8,8 @@ import format from 'date-fns/formatISO'
 import FlightSearchResults from './FlightSearchResults';
 import FlightSearchForm from './FlightSearchForm';
 import searchBackground from '../../images/searchBackground.jpg'
-import './styles/home.css'
+import './styles/home.css';
+import '../styles/loading.css';
 
 
 function Home() {
@@ -22,6 +23,10 @@ function Home() {
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
 
+    //test loading animation
+    const [loading, setLoading] = useState(false)
+    console.log(loading)
+
 
     return (
         <div className='homeDiv'>
@@ -29,7 +34,8 @@ function Home() {
             <div className='searchDiv'>
                 <FlightSearchForm origin={origin} setOrigin={setOrigin}
                     destination={destination} setDestination={setDestination}
-                    start={start} end={end} setStart={setStart} setEnd={setEnd}/>
+                    start={start} end={end} setStart={setStart} setEnd={setEnd}
+                    setLoading={setLoading}/>
             </div>
             <div className='searchResultsDiv'>
                 {searchResults && searchResults.errors ?
@@ -42,7 +48,34 @@ function Home() {
                     </div>
                     :
                     <div>
-                        <h3 className='searchResults-h3'>Search Results</h3>
+                        {loading ?
+                            <div className='loading'>loading</div>
+                            :
+                            <section className='loading-wrapper'>
+                                <div className='loading'>loading
+                                    {/* <span style='--i:1;'></span>
+                                    <span style='--i:2;'></span>
+                                    <span style='--i:3;'></span>
+                                    <span style='--i:4;'></span>
+                                    <span style='--i:5;'></span>
+                                    <span style='--i:6;'></span>
+                                    <span style='--i:7;'></span>
+                                    <span style='--i:8;'></span>
+                                    <span style='--i:9;'></span>
+                                    <span style='--i:10;'></span>
+                                    <span style='--i:11;'></span>
+                                    <span style='--i:12;'></span>
+                                    <span style='--i:13;'></span>
+                                    <span style='--i:14;'></span>
+                                    <span style='--i:15;'></span>
+                                    <span style='--i:16;'></span>
+                                    <span style='--i:17;'></span>
+                                    <span style='--i:18;'></span>
+                                    <span style='--i:19;'></span>
+                                    <span style='--i:20;'></span> */}
+                                </div>
+                            </section>}
+                        {/* <h3 className='searchResults-h3'>Search Results</h3> */}
                         <ul className='searchResultsUl'>
                             {searchResults && searchResults.flight.map((flightDetails) => (
                                 <FlightSearchResults flight={flightDetails} origin={origin} destination={destination}/>

@@ -1,0 +1,21 @@
+
+/* <div className='loading'>loading</div>
+:
+ <div className='searchResults-h3'>Search Results</div>} */
+
+/* :root {
+    --i:1;
+} */
+
+.loading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    margin: 0;
+    padding: 0;
+}
+
+.loading {
+    /* background-color: aqua; */
+}

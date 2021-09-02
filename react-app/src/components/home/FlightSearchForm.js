@@ -12,7 +12,7 @@ import './styles/flightSearchForm.css'
 
 
 
-function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
+function FlightSearchForm({origin, setOrigin, destination, setDestination, setLoading}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector((state) => state.session.user)
@@ -23,13 +23,13 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
     const [end, setEnd] = useState('');
     const [errors, setErrors] = useState(false)
 
+
     function formDate(date) {
         const intoMilli = Date.parse(date)
         const day = 60 * 60 * 24 * 1000;
         const departureDate = new Date(intoMilli + day)
         return departureDate
     }
-
 
     const updateOrigin = (event) => {
         const value = (event.target.value).toUpperCase()
@@ -64,6 +64,8 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
 
     const searchFlights = async(event) => {
         event.preventDefault();
+        setLoading(true)
+
         if (user) {
             const payload = {
                 userId: user.id,
@@ -72,8 +74,8 @@ function FlightSearchForm({origin, setOrigin, destination, setDestination}) {
                 start,
                 end
             }
-            console.log(payload, '==========payload============')
             await dispatch(searchAllFlights(payload))
+            setLoading(false)
         } else {
             const payload = {
                 userId: false,
