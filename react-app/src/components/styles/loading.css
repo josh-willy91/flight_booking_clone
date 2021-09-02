@@ -17,5 +17,142 @@
 }
 
 .loading {
-    /* background-color: aqua; */
+    position: relative;
+    width: 90px;
+    height: 90px;
+}
+
+.loading span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* all --i vars will be positions in a circle  */
+    transform: rotate(calc(18deg * var(--i)));
+    animation: animateLoading 10s linear infinite;
+}
+
+/* this will animate the color of the loading to alter between hues */
+/* @keyframes animateLoading
+{
+    0%
+    {
+        filter: hue-rotate(0deg);
+    }
+    100%
+    {
+        filter: hue-rotate(360deg);
+    }
+} */
+
+.loading span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgb(41, 205, 255);
+    box-shadow: 0 0 10px rgb(36, 204, 255),
+    0 0 20px rgb(36, 204, 255),
+    0 0 40px rgb(36, 204, 255),
+    0 0 60px rgb(36, 204, 255),
+    0 0 80px rgb(36, 204, 255),
+    0 0 100px rgb(36, 204, 255);
+    animation: animate 2s linear infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes animate
+{
+    0%
+    {
+        transform: scale(1);
+    }
+    100%
+    {
+        transform: scale(0);
+    }
+}
+
+.p1 {
+    --i: 1;
+}
+
+.p2 {
+    --i: 2;
+}
+
+.p3 {
+    --i: 3;
+}
+
+.p4 {
+    --i: 4;
+}
+
+.p5 {
+    --i: 5;
+}
+
+.p6 {
+    --i: 6;
+}
+
+.p7 {
+    --i: 7;
+}
+
+.p8 {
+    --i: 8;
+}
+
+.p9 {
+    --i: 9;
+}
+
+.p10 {
+    --i: 10;
+}
+
+.p11 {
+    --i: 11;
+}
+
+.p12 {
+    --i: 12;
+}
+
+.p13 {
+    --i: 13;
+}
+
+.p14 {
+    --i: 14;
+}
+
+.p15 {
+    --i: 15;
+}
+
+.p16 {
+    --i: 16;
+}
+
+.p17 {
+    --i: 17;
+}
+
+.p18 {
+    --i: 18;
+}
+
+.p19 {
+    --i: 19;
+}
+
+.p20 {
+    --i: 20;
 }
