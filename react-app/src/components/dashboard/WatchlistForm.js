@@ -72,7 +72,7 @@ function WatchlistForm({ origin, setOrigin, destination, setDestination,
     return (
         <div className='watchlistForm-wrapper'>
             <h3>Watchlists
-                <button className='watchlistsShowP'>?</button>
+                {/* <button className='watchlistsShowP'>?</button> */}
             </h3>
             {/* <ModalWatchlistQuestion openModal={openModal} closeModal={closeModal}/> */}
             <div className='watchlistsForm-container'>

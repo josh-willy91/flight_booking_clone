@@ -51,7 +51,7 @@
     margin: 20px;
     padding: 20px;
     margin-right: 55%;
-    min-width: 300px;
+    min-width: 375px;
 }
 
 .watchlistsForm div {
@@ -63,12 +63,14 @@
     width: 150px;
     margin: 3px;
     padding: 3px;
+    min-width: 150px;
 }
 
 .watchlistsForm label {
     display: flex;
     align-items: center;
     padding-right: 15px;
+    min-width: 175px;
 }
 
 .watchlistsForm button {
