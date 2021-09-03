@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteOneWatchlist } from '../../store/dashboard'
-
+import './styles/watchlistSearch.css'
 
 
 function WatchlistSearch({setOpenModal, setWatchlistId, deleteWatchlist}) {
@@ -20,7 +20,7 @@ function WatchlistSearch({setOpenModal, setWatchlistId, deleteWatchlist}) {
         return nested[length].arrival.iataCode
     }
 
-      // formatISO(date, [options]) syntax for function
+    // formatISO(date, [options]) syntax for function
     // formats the data string returned from query
     // ('+020201-06-26T00:00:00.000Z')
     const format = function (dateString) {
@@ -31,7 +31,7 @@ function WatchlistSearch({setOpenModal, setWatchlistId, deleteWatchlist}) {
 
 
     return (
-        <div className='watchlistsSearchDiv'>
+        <div className='watchlists-wrapper'>
             <ul className='watchlistsSearchUl'>
                 {watchlists && watchlists.watchlist_list.map((details) => (
                     <li className='watchlistsSearchLi' key={details.id}>
@@ -42,7 +42,7 @@ function WatchlistSearch({setOpenModal, setWatchlistId, deleteWatchlist}) {
                             <div>Destination: {details.destination}</div>
                             <div>Return flight leaves: {details.trip_return}</div>
                             <div>Price: {details.price ? `Less than $${details.price}` : 'No limit set'}</div>
-                            <div>
+                            <div className='watchlist-button-container'>
                                 <button onClick={() => deleteWatchlist(details.id)}>Delete Watchlist</button>
                                 <button onClick={() => {
                                     setOpenModal(true)

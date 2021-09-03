@@ -1,113 +1,18 @@
 
 
-.dashboardDiv {
+
+.dashboard-wrapper {
     background-color: rgb(247, 243, 230);
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-auto-rows: minmax(150px, auto);
     grid-template-areas:
-    'bookingsDiv watchlistsDiv'
-    'bookingsDiv watchlistsDiv'
-    'bookingsDiv watchlistsDiv'
-    '. .'
+    'bookings-wrapper watchlistForm-wrapper'
+    'bookings-wrapper watchlistForm-wrapper'
+    'bookings-wrapper watchlists-wrapper'
     ;
     width: 100%;
-}
-
-.bookingsDiv {
-    grid-area: bookingsDiv;
-    /* background-color: aqua; */
-    margin: 40px;
-}
-
-.bookingsDiv h3 {
-    border-bottom: black solid 1px;
-    text-align: center;
-    font-size: 25px;
-}
-
-.bookingsUl {
-    margin: 0;
-    padding: 0;
-}
-
-.bookingsLi {
-    list-style-type: none;
-    margin-top: 10px;
-    padding: 15px;
-    border: black solid 1px;
-    border-radius: 5px;
-    color: black;
-    font-weight: bold;
-    background-color: white;
-}
-
-.bookingsLi button {
-    background-color: rgb(0, 55, 138);
-    color: white;
-    border: black solid 1px;
-    border-radius: 5px;
-    padding: 10px;
-    font-weight: bold;
-    margin-top: 15px;
-    cursor: pointer;
-}
-
-.searchCriteriaDiv {
-
-}
-
-.searchCriteriaDiv button {
-    background-color: rgb(0, 55, 138);
-    color: white;
-    border: solid black 1px;
-    border-radius: 5px;
-    margin-top: 15px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.watchlistsSearchUl {
-    margin: 0;
-    padding: 0;
-}
-
-.watchlistsSearchLi {
-    list-style-type: none;
-    margin-top: 10px;
-    padding: 15px;
-    border: black solid 1px;
-    border-radius: 5px;
-    color: black;
-    font-weight: bold;
-    background-color: white;
-}
-
-.carousel {
-    overflow-x: scroll;
-    display: flex;
-    flex-direction: row;
-}
-
-.carousel_item {
-    list-style-type: none;
-    margin-top: 10px;
-    padding: 15px;
-    border: black solid 1px;
-    border-radius: 5px;
-    color: black;
-    font-weight: bold;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-}
-
-.carousel_item div {
-    width: 300px;
-    margin: 8px;
-    padding: 0;
-}
-
-.carousel div p {
-    margin: 0;
+    min-height: 100vh;
+    height: fit-content;
+    margin-bottom: 100px;
 }

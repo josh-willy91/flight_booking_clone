@@ -1,13 +1,12 @@
 
 
 
-.watchlistsDiv {
-    grid-area: watchlistsDiv;
-    /* background-color: burlywood; */
+.watchlistForm-wrapper {
+    grid-area: watchlistForm-wrapper;
     margin: 40px;
 }
 
-.watchlistsDiv h3 {
+.watchlistForm-wrapper h3 {
     border-bottom: black solid 1px;
     text-align: center;
     font-size: 25px;
@@ -40,7 +39,7 @@
     color: white;
 }
 
-.watchlistsFormDiv {
+.watchlistsForm-container {
     border: black solid 1px;
     border-radius: 5px;
     padding: 10px;

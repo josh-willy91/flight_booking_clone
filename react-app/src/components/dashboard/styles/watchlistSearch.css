@@ -1,0 +1,79 @@
+
+
+
+.watchlists-wrapper {
+    grid-area: watchlists-wrapper;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+
+.watchlistsSearchUl {
+    margin: 0;
+    padding: 0;
+}
+
+.watchlistsSearchLi {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 15px;
+    border: black solid 1px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+}
+
+.searchCriteriaDiv {
+
+}
+
+.searchCriteriaDiv h3 {
+    border-bottom: black solid 1px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.watchlist-button-container {
+
+}
+
+.watchlist-button-container button {
+    background-color: rgb(0, 55, 138);
+    color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.carousel {
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+}
+
+.carousel_item {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 15px;
+    border: black solid 1px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel_item div {
+    width: 300px;
+    margin: 8px;
+    padding: 0;
+}
+
+.carousel div p {
+    margin: 0;
+}

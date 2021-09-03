@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { editOneWatchlist } from '../../store/dashboard';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
-import './styles/modalWatchlistForm.css'
+import './styles/bookings.css'
 
 
 function Bookings({setFlightId}) {
@@ -25,7 +25,7 @@ function Bookings({setFlightId}) {
 
 
     return (
-        <div className='bookingsDiv'>
+        <div className='bookings-wrapper'>
             <h3>Bookings</h3>
             <ul className='bookingsUl'>
             {bookings && bookings.bookings_list.map((details) => (

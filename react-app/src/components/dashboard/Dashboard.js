@@ -62,19 +62,17 @@ function Dashboard() {
     return null;
   }
   return (
-    <div className='dashboardDiv'>
+    <div className='dashboard-wrapper'>
       <Bookings setFlightId={setFlightId} />
-      <div className='watchlistsDiv'>
-        <WatchlistForm origin={origin} setOrigin={setOrigin} destination={destination}
-          setDestination={setDestination} price={price} setPrice={setPrice} start={start}
-          setStart={setStart} tripReturn={tripReturn} setTripReturn={setTripReturn} />
-        <ModalWatchlistForm origin={origin} setOrigin={setOrigin} destination={destination}
-          setDestination={setDestination} price={price} setPrice={setPrice} start={start}
-          setStart={setStart} tripReturn={tripReturn} setTripReturn={setTripReturn}
-          watchlistId={watchlistId} openModal={openModal} closeModal={() => setOpenModal(false)} />
-        <WatchlistSearch setOpenModal={setOpenModal} setWatchlistId={setWatchlistId}
-          deleteWatchlist={deleteWatchlist} />
-      </div>
+      <WatchlistForm origin={origin} setOrigin={setOrigin} destination={destination}
+        setDestination={setDestination} price={price} setPrice={setPrice} start={start}
+        setStart={setStart} tripReturn={tripReturn} setTripReturn={setTripReturn} />
+      <ModalWatchlistForm origin={origin} setOrigin={setOrigin} destination={destination}
+        setDestination={setDestination} price={price} setPrice={setPrice} start={start}
+        setStart={setStart} tripReturn={tripReturn} setTripReturn={setTripReturn}
+        watchlistId={watchlistId} openModal={openModal} closeModal={() => setOpenModal(false)} />
+      <WatchlistSearch setOpenModal={setOpenModal} setWatchlistId={setWatchlistId}
+        deleteWatchlist={deleteWatchlist} />
     </div>
   );
 }

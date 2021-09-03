@@ -1,0 +1,40 @@
+
+
+
+.bookings-wrapper {
+    grid-area: bookings-wrapper;
+    margin: 40px;
+}
+
+.bookings-wrapper h3 {
+    border-bottom: black solid 1px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.bookingsUl {
+    margin: 0;
+    padding: 0;
+}
+
+.bookingsLi {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 15px;
+    border: black solid 1px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+}
+
+.bookingsLi button {
+    background-color: rgb(0, 55, 138);
+    color: white;
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
