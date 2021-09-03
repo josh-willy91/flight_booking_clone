@@ -127,7 +127,7 @@ function FlightSearchResults({ flight, origin, destination }) {
                             <p className='results-p'>Yes</p>
                         </div> :
                         <div className='stops'>Stops:
-                        <p className='results-p'>{flight.itineraries[0].segments.length - 1}</p>
+                            <p className='results-p'>{flight.itineraries[0].segments.length - 1}</p>
                         </div>
                     }
                     </div>
@@ -154,9 +154,9 @@ function FlightSearchResults({ flight, origin, destination }) {
                     </div>
                     <div className='bookFlight-container'>
                     {user ?
-                        <button className='searchResultsButton' onClick={bookFlightButton}
+                        <button className='bookFlight-button' onClick={bookFlightButton}
                         >Book Flight</button> :
-                        <button className='searchResultsButton' onClick={noUserRedirect}>Login to Book</button>
+                        <button className='bookFlight-button' onClick={noUserRedirect}>Login to Book</button>
                     }
                     </div>
 
