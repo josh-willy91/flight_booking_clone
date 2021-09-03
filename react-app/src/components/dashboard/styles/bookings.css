@@ -37,4 +37,12 @@
     font-weight: bold;
     margin-top: 15px;
     cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.bookingsLi button:hover {
+    background-color: rgb(199, 255, 255);
+    color: rgb(0, 0, 0);
+    border: solid 1px rgb(153, 153, 153);
 }

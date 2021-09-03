@@ -47,6 +47,16 @@
     padding: 10px;
     cursor: pointer;
     margin-right: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.watchlist-button-container button:hover {
+    background-color: rgb(199, 255, 255);
+    color: rgb(0, 0, 0);
+    border: solid 1px rgb(153, 153, 153);
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .carousel {

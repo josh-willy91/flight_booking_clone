@@ -16,3 +16,12 @@
     height: fit-content;
     margin-bottom: 100px;
 }
+
+/* .dashboardBackground {
+    background-image: url(../../../images/searchBackground.jpg);
+    width: 100%;
+    height: calc(100vh - 75px - 100px);
+    object-fit: cover;
+    opacity: .3;
+    z-index: 0;
+} */
