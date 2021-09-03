@@ -42,8 +42,8 @@ function Landing() {
                     signup or login and start booking flights.
                 </p>
                 <div className='buttonDiv'>
-                    <button onClick={signupClick}>Signup</button>
                     <button onClick={loginClick}>Login</button>
+                    <button onClick={signupClick}>Signup</button>
                 </div>
             </div>
             <div className='img-1'>
