@@ -9,8 +9,8 @@ body {
 .homeDiv {
     background-color: rgb(247, 243, 230);
     display: grid;
-    grid-template-columns: repeat(5, 20%);
-    grid-auto-rows: minmax(150px, auto);
+    grid-template-columns: 15% 20% 30% 20% 15%;
+    grid-auto-rows: minmax(80px, auto);
     grid-template-areas:
     'searchBackground searchBackground searchBackground searchBackground searchBackground'
     'searchBackground searchBackground searchBackground searchBackground searchBackground'
@@ -55,7 +55,7 @@ body {
     z-index: 1;
 }
 
-.searchResultsUl {
+/* .searchResultsUl {
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow-y: scroll;
@@ -63,7 +63,7 @@ body {
 
 .searchResultsUl::-webkit-scrollbar {
     display: none;
-}
+} */
 
 .searchResults-h3 {
     display: flex;

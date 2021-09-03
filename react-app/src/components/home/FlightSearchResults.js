@@ -13,7 +13,18 @@ function FlightSearchResults({ flight, origin, destination }) {
     const history = useHistory()
     const user = useSelector((state) => state.session.user)
 
-    // const [details, setDetails] = useState(false);
+    const [expand, setExpand] = useState(false);
+    console.log(expand, '====expand line 17========')
+
+    const toggle = () => {
+        if(expand) {
+            setExpand(false)
+            console.log(expand, 'if then false')
+        } else {
+            setExpand(true)
+            console.log(expand, 'else')
+        };
+    };
 
 
     const noUserRedirect = () => {
@@ -24,7 +35,7 @@ function FlightSearchResults({ flight, origin, destination }) {
         const nested = array.itineraries[0].segments
         const length = nested.length - 1;
         return nested[length].arrival.iataCode
-    }
+    };
 
     // formatISO(date, [options]) syntax for function
     // formats the data string returned from query
@@ -45,7 +56,7 @@ function FlightSearchResults({ flight, origin, destination }) {
         const nested = array.itineraries[itenaryLength].segments[0]
         // const length = nested.length - 1;
         return nested.departure.at
-    }
+    };
 
     const bookFlight = async (airline, start, end, flightNum, price, tripReturn) => {
         const payload = {
@@ -61,7 +72,7 @@ function FlightSearchResults({ flight, origin, destination }) {
         }
         await dispatch(createOneBooking(payload))
         history.push(`/users/${user.id}`)
-    }
+    };
 
     const bookFlightButton = () => {
         let airline = flight?.validatingAirlineCodes[0]
@@ -71,7 +82,7 @@ function FlightSearchResults({ flight, origin, destination }) {
         let price = flight?.price.total
         let tripReturn = format(getLastDeparture(flight))
         bookFlight(airline, start, end, flightNum, price, tripReturn)
-    }
+    };
 
     let noDuplicateFlightNums = {};
 
@@ -88,7 +99,7 @@ function FlightSearchResults({ flight, origin, destination }) {
             noDuplicateFlightNums[flightNum] = 'true'
             return false
         }
-    }
+    };
 
 
     if(flight.errors) {
@@ -101,59 +112,63 @@ function FlightSearchResults({ flight, origin, destination }) {
         )
     } else {
         return (
-            <li key={flight.id} className='searchResultsLi'>
+            <li key={flight.id} className={`searchResultsLi ${expand ? 'expand' : 'collapse'} `}>
             {/* {noDuplicateFlights(flight) === true ? null : null} */}
-                <div className='searchResultsLiDiv'>
-                    <div className='searchResultsRoute'>
+                <div className='result-wrapper'>
+                    <div className='route'>
                         {flight.oneWay === true ?
-                            <div className='searchResultsRoute-p'>{flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
-                            <div className='searchResultsRoute-p'>{flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
+                            <div className='route-p'>{flight.itineraries[0].segments[0].departure.iataCode} to {flight.itineraries[0].segments[0].arrival.iataCode}</div> :
+                            <div className='route-p'>{flight.itineraries[0].segments[0].departure.iataCode} to {getLastIATA(flight)}</div>
                         }
                     </div>
+                    <div className='stops-container'>
                     {flight.oneWay === true ?
                         <div className='oneWay'>One Way:
-                            <p className='searchResultsLiP'>Yes</p>
+                            <p className='results-p'>Yes</p>
                         </div> :
                         <div className='stops'>Stops:
-                        <p className='searchResultsLiP'>{flight.itineraries[0].segments.length - 1}</p>
+                        <p className='results-p'>{flight.itineraries[0].segments.length - 1}</p>
                         </div>
                     }
+                    </div>
                     <div className='departs'> Departs:
-                    <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].departure.at)}</p>
+                        <p className='results-p'>{format(flight.itineraries[0].segments[0].departure.at)}</p>
                     </div>
                     <div className='arrival'>Arrival:
-                        <p className='searchResultsLiP'>{format(flight.itineraries[0].segments[0].arrival.at)}</p>
+                        <p className='results-p'>{format(flight.itineraries[0].segments[0].arrival.at)}</p>
                     </div>
                     <div className='return'>Return Flight:
-                        <p className='searchResultsLiP'>{format(getLastDeparture(flight))}</p>
+                        <p className='results-p'>{format(getLastDeparture(flight))}</p>
                     </div>
                     <div className='price'>Price:
-                        <p className='searchResultsLiP'>${flight.price.total}</p>
+                        <p className='results-p'>${flight.price.total}</p>
                     </div>
                     <div className='code'>Airline:
-                        <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}</p>
+                        <p className='results-p'>{flight.validatingAirlineCodes[0]}</p>
                     </div>
                     <div className='flightNumber'>Flight Number:
-                        <p className='searchResultsLiP'>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
+                        <p className='results-p'>{flight.validatingAirlineCodes[0]}{flight.itineraries[0].segments[0].number}</p>
                     </div>
-                    {/* <div> */}
-                        {/* <button>Details</button> */}
-                    <div className='bookFlight-div'>
+                    <div className='details-container'>
+                        <div className={`details-button ${expand ? 'up-arrow' : 'down-arrow'}`} onClick={() => toggle()}></div>
+                    </div>
+                    <div className='bookFlight-container'>
                     {user ?
                         <button className='searchResultsButton' onClick={bookFlightButton}
                         >Book Flight</button> :
                         <button className='searchResultsButton' onClick={noUserRedirect}>Login to Book</button>
                     }
                     </div>
-                    {/* </div> */}
-                    {/* <div className='hidden' id='hidden'>
+
+
+                    {/* {<div className='hidden' id='hidden'>
                         <p>A bunch more information about the flight</p>
                         <button>Close</button>
-                    </div> */}
+                    </div>} */}
                 </div>
             </li>
         )
-    }
-}
+    };
+};
 
 export default FlightSearchResults;
