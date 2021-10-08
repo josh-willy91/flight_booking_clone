@@ -10,7 +10,6 @@ bookings_routes = Blueprint('bookings', __name__)
 def get_bookings(id):
     bookings_query = Booking.query.filter_by(user_id = id).all()
     booking_list = [booking.to_dict() for booking in bookings_query]
-    # print(booking_list, '================================')
     return {'bookings_list': booking_list}
 
 

@@ -29,16 +29,12 @@ def search_flights():
     destination = request_payload['destination'].upper()
     departure_date = request_payload['start']
     return_date = request_payload['end']
-    # print(departure_date, return_date, '========dates===========')
 
     form = SearchForm()
     form.data['return_date'] = return_date
     form.data['departure_date'] = departure_date
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    today = date.today()
-    # print(form.data, '==============form data==================')
-    # print(today, '==============today date==================')
     if(form.validate_on_submit()):
 
         amadeus = Client(
@@ -58,7 +54,6 @@ def search_flights():
             if response.data == []:
                 return {'flight': ['Sorry there are no fligths matching those criteria']}
             return {'flight': response.data}
-            # print(response.data)
         except:
             return {'errors': 'Search failed'}
     else:
@@ -66,8 +61,7 @@ def search_flights():
 
 
 
-    # bookings_query = Booking.query.filter_by(user_id = id).all()
-    # booking_list = [booking.to_dict() for booking in bookings_query]
+# Amadeus API call data below
 
 # https://test.api.amadeus.com/v2/shopping/flight-offers?
 # https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=JAX&destinationLocationCode=MCO&departureDate=2021-07-30&adults=1&nonStop=false&max=5

@@ -18,7 +18,6 @@ def get_watchlists(id):
     search_results = {}
     watchlists_query = Watchlist.query.filter_by(user_id = id).all()
     watchlist_list = [watchlist.to_dict() for watchlist in watchlists_query]
-    # print(watchlist_list, '==================line 19======================')
 
     for watchlist_obj in watchlist_list:
 
@@ -29,17 +28,12 @@ def get_watchlists(id):
         trip_return = watchlist_obj['trip_return']
         price = watchlist_obj['price']
         num_adults = 1
-        # print(id, origin, destination, departure_date, trip_return, price, num_adults,
-        # '==============================================')
+
         today = date.today()
         if today > departure_date:
             search_results[f'{id}'] = [False]
-            print(today, departure_date, today < departure_date, '================================')
-            print(search_results, '=======================')
-
 
         if(price == None):
-            # print(price, f'================price is none===={id}============')
 
             amadeus = Client(
                 client_id=os.environ.get('API_PUBLIC_KEY'),
@@ -55,13 +49,11 @@ def get_watchlists(id):
                     currencyCode = 'USD',
                     max = 50,
                 )
-                # print(response.data, '=================response=============================')
                 search_results[f'{id}'] = response.data
             except ResponseError as error:
                 print(error)
 
         else:
-            # print(f'==========================line 56 inside else=========={id}==============')
             amadeus = Client(
                 client_id=os.environ.get('API_PUBLIC_KEY'),
                 client_secret=os.environ.get('API_SECRET_KEY')
@@ -79,10 +71,8 @@ def get_watchlists(id):
                 )
                 search_results[f'{id}'] = response.data
             except ResponseError as error:
-                print(error, '===================errors============================')
+                print(error)
 
-    # watchlist_data_obj['watchlist_list'] = watchlist_list
-    # print(watchlist_data_obj, '=====================================================')
     return {'watchlist_list': watchlist_list, 'watchlist_data_obj': search_results}
 
 
