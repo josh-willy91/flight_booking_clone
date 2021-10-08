@@ -17,6 +17,7 @@ class Watchlist(db.Model):
     user = db.relationship("User", back_populates="watchlist")
 
     def to_dict(self):
+        # If price is provided then return as a float
         if self.price:
             return {
                 'id': self.id,
@@ -28,6 +29,7 @@ class Watchlist(db.Model):
                 'createdAt': self.createdAt,
                 'updatedAt': self.updatedAt,
             }
+        # If price is None then return price as None which API route checks for to run seperate API call to Amadeus
         else:
             return {
                 'id': self.id,

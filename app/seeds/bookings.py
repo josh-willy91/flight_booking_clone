@@ -1,7 +1,7 @@
 from app.models import db, Booking
 
 
-# Adds a demo user, you can add other users here if you want
+# Adds booking seed data
 def seed_bookings():
     demo = Booking(
         city_from = 'JAX',

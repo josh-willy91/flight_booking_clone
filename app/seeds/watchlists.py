@@ -4,7 +4,7 @@ from app.models.watchlist import Watchlist
 from app.models import db, Watchlist
 
 
-# Adds a demo user, you can add other users here if you want
+# Adds watchlist seed data
 def seed_watchlists():
     demo = Watchlist(
         origin = 'MCO',
