@@ -23,18 +23,25 @@ def validation_errors_to_error_messages(validation_errors):
 
 @home_routes.route('search', methods=['POST'])
 def search_flights():
+    """
+    Get external API Amadeus flight data to return to front end user
+    """
+    # Key into json object and assign to variable
     request_payload = request.get_json()
+    # Deconstruct payload object
     user_id = request_payload['userId']
     origin = request_payload['origin'].upper()
     destination = request_payload['destination'].upper()
     departure_date = request_payload['start']
     return_date = request_payload['end']
 
+    # Use FlaskForm to validate flight search inputs using regex
     form = SearchForm()
     form.data['return_date'] = return_date
     form.data['departure_date'] = departure_date
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    # If FlaskForm validates data then make the call to Amadeus API through their SDK
     if(form.validate_on_submit()):
 
         amadeus = Client(
@@ -51,12 +58,16 @@ def search_flights():
             currencyCode = 'USD',
             max = 50,
         )
+            # Edge case error handling if no flights exist with the parameters user input
             if response.data == []:
                 return {'flight': ['Sorry there are no fligths matching those criteria']}
+            # returns the flight information provided by Amadeus API
             return {'flight': response.data}
         except:
+            # Returns error message if call to Amadeus fails
             return {'errors': 'Search failed'}
     else:
+        # If FlaskForm rejects validation of user data then return error message to be displayed on from end
         return {'errors': validation_errors_to_error_messages(form.errors)}
 
 

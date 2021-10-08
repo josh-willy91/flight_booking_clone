@@ -40,7 +40,7 @@ def create_booking():
     """
     # Key into json object and assign to variable
     request_payload = request.get_json()
-    # Deconstruct payload obj
+    # Deconstruct payload object
     user_id = request_payload['userId']
     city_from = request_payload['cityFrom']
     city_to = request_payload['cityTo']
