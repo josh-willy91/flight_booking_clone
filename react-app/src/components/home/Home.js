@@ -23,9 +23,8 @@ function Home() {
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
 
-    //test loading animation
+    // loading animation state
     const [loading, setLoading] = useState(false)
-    console.log(loading)
 
 
     return (
